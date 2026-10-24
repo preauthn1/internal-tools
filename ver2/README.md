@@ -1,6 +1,8 @@
 # ver2
 
-原始路径：`ver2`　|　文件：**71**　|　主语言：JavaScript 46, JSON 12, CSS 5
+> 本目录原始 README 见文末，本节为快照补充信息。
+
+原始路径：`ver2`　|　文件 **71**　|　主语言：JavaScript 46, JSON 12, CSS 5
 
 ## 目录构成
 
@@ -21,22 +23,12 @@ aqn-wallet-node/public/  — 1
 
 ## 关键文件
 
-- 依赖清单：`browser-dapp/package.json`、`aqn-wallet-node/package.json`、`react-wallet-aqn/package.json`
 - 服务端主程序：`browser-dapp/src/Main.js`、`browser-dapp/src/App.js`、`react-wallet-aqn/src/Main.js`
 - 前端入口：`browser-dapp/public/index.html`、`aqn-wallet-node/app.js`、`react-wallet-aqn/public/index.html`
 
-## 主要文件
+---
 
-- `browser-dapp/package-lock.json`
-- `react-wallet-aqn/package-lock.json`
-- `aqn-wallet-node/package-lock.json`
-- `browser-dapp/config/webpack.config.js`
-- `react-wallet-aqn/src/Game.js`
-- `react-wallet-aqn/src/api/getMainnetInfuraApi.js`
-- `aqn-wallet-node/routes/poa.js`
-- `react-wallet-aqn/src/RecoveryComponent.js`
+## 原始说明
 
-## 说明
-
-该工程为平台的一个组件。仅收录文本源码与配置，图片、音频等二进制资源未收录；凭据、密钥、内网地址与域名已按实际内容替换。
+# ver2
 
