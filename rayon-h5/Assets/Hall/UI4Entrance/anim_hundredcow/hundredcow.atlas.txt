@@ -1,0 +1,195 @@
+
+hundredcow.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+001
+  rotate: false
+  xy: 2, 8
+  size: 124, 48
+  orig: 124, 48
+  offset: 0, 0
+  index: -1
+002
+  rotate: false
+  xy: 169, 98
+  size: 133, 62
+  orig: 133, 62
+  offset: 0, 0
+  index: -1
+003
+  rotate: false
+  xy: 366, 720
+  size: 141, 135
+  orig: 141, 135
+  offset: 0, 0
+  index: -1
+004
+  rotate: false
+  xy: 354, 582
+  size: 148, 136
+  orig: 148, 136
+  offset: 0, 0
+  index: -1
+005
+  rotate: false
+  xy: 175, 162
+  size: 157, 137
+  orig: 157, 137
+  offset: 0, 0
+  index: -1
+006
+  rotate: false
+  xy: 178, 301
+  size: 158, 139
+  orig: 158, 139
+  offset: 0, 0
+  index: -1
+007
+  rotate: false
+  xy: 338, 299
+  size: 158, 139
+  orig: 158, 139
+  offset: 0, 0
+  index: -1
+008
+  rotate: false
+  xy: 182, 442
+  size: 159, 140
+  orig: 159, 140
+  offset: 0, 0
+  index: -1
+009
+  rotate: false
+  xy: 343, 440
+  size: 159, 140
+  orig: 159, 140
+  offset: 0, 0
+  index: -1
+010
+  rotate: false
+  xy: 197, 732
+  size: 167, 142
+  orig: 167, 142
+  offset: 0, 0
+  index: -1
+011
+  rotate: false
+  xy: 2, 206
+  size: 171, 143
+  orig: 171, 143
+  offset: 0, 0
+  index: -1
+012
+  rotate: false
+  xy: 2, 351
+  size: 174, 145
+  orig: 174, 145
+  offset: 0, 0
+  index: -1
+013
+  rotate: false
+  xy: 2, 498
+  size: 178, 145
+  orig: 178, 145
+  offset: 0, 0
+  index: -1
+014
+  rotate: false
+  xy: 197, 876
+  size: 181, 146
+  orig: 181, 146
+  offset: 0, 0
+  index: -1
+015
+  rotate: false
+  xy: 190, 584
+  size: 162, 146
+  orig: 162, 146
+  offset: 0, 0
+  index: -1
+016
+  rotate: false
+  xy: 2, 58
+  size: 165, 146
+  orig: 165, 146
+  offset: 0, 0
+  index: -1
+017
+  rotate: true
+  xy: 380, 857
+  size: 165, 112
+  orig: 165, 112
+  offset: 0, 0
+  index: -1
+018
+  rotate: false
+  xy: 334, 185
+  size: 93, 112
+  orig: 93, 112
+  offset: 0, 0
+  index: -1
+019
+  rotate: true
+  xy: 169, 12
+  size: 84, 111
+  orig: 84, 111
+  offset: 0, 0
+  index: -1
+020
+  rotate: false
+  xy: 429, 187
+  size: 75, 110
+  orig: 75, 110
+  offset: 0, 0
+  index: -1
+021
+  rotate: true
+  xy: 334, 109
+  size: 74, 109
+  orig: 74, 109
+  offset: 0, 0
+  index: -1
+022
+  rotate: true
+  xy: 372, 36
+  size: 71, 107
+  orig: 71, 107
+  offset: 0, 0
+  index: -1
+023
+  rotate: false
+  xy: 304, 2
+  size: 66, 105
+  orig: 66, 105
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 830
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 645
+  size: 186, 183
+  orig: 186, 183
+  offset: 0, 0
+  index: -1
+card
+  rotate: true
+  xy: 128, 16
+  size: 40, 37
+  orig: 40, 37
+  offset: 0, 0
+  index: -1
+coin
+  rotate: true
+  xy: 366, 859
+  size: 15, 12
+  orig: 15, 12
+  offset: 0, 0
+  index: -1

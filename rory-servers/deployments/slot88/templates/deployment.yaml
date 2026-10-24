@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "slot88.fullname" . }}
+  labels:
+    {{- include "slot88.labels" . | nindent 4 }}
+  annotations:
+    example.invalid/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: slot88
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      name: {{ include "slot88.fullname" . }}
+      labels:
+        app: slot88
+        {{- include "slot88.labels" . | nindent 8 }}
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: forward-config
+          configMap:
+            name: {{ include "slot88.fullname" . }}-forward
+            items:
+              - key: config.yaml
+                path: config.yaml
+        - name: storage
+          emptyDir: {}
+        - name: tz-config
+          hostPath: 
+            path: /usr/share/zoneinfo/{{ .Values.timezone | default "UTC" }}
+      containers:
+        - name: forward
+          image: example.invalid/slot88/forward:{{ .Values.version }}
+          imagePullPolicy: Always
+          ports:
+            - name: forward
+              containerPort: {{ .Values.forward.port }}
+              protocol: TCP
+          volumeMounts:
+            - name: forward-config
+              mountPath: /app/config.yaml
+              subPath: config.yaml
+              readOnly: true
+            - name: tz-config
+              mountPath: /etc/localtime
+              readOnly: true

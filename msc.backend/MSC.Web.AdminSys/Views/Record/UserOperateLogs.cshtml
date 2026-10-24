@@ -1,0 +1,165 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+    </h4>
+
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+
+            <div class="col-md-3">
+                <label for="cardNo" class="">@t.Text(i18nKeys.Common_Label_UserName)</label>
+                <input type="text" name="userName" id="userName" placeholder="@t.Text(i18nKeys.Common_Label_UserName)" class="form-control" v-model="dataTable.searchForm.userName">
+            </div>
+
+
+            <div class="col-md-3">
+                <label for="createtime" class="">@t.Text(i18nKeys.Common_Label_CreateTime)</label>
+                <input type="text" name="createtime" id="createtime" placeholder="@t.Text(i18nKeys.Common_Msg_FilterTimeRange)" class="form-control" v-model="dataTable.searchForm.createTime_displayText">
+            </div>
+
+            <div class="col-md-3">
+
+                @Html.Partial("_PartialQuickDatepicker")
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="search-btn-row">
+                    <button class="btn btn-alternate" v-on:click="getList(1)"> @t.Text(i18nKeys.Common_Button_Search)</button>
+                    <button class="btn btn-secondary" v-on:click="resetForm"> @t.Text(i18nKeys.Common_Button_Reset)</button>
+                </div>
+            </div>
+
+
+            <div style="clear:both;"></div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+
+
+        $(function () {
+
+
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+                detailInfo: {},
+                dataTable: {
+
+                    getData: function () {
+                        app.getList();
+                    },
+                    searchForm: {
+                        merchantID: '',
+                        userName: '',
+                        createTime_displayText: '',
+                        createTimeBegin: '',
+                        createTimeEnd: ''
+                    },
+                    pagination: {
+                        items: [],
+                        pageSize: 10,
+                        orderByColumn: "Id",
+                    },
+                    columns:
+                        [
+                            { text: "@t.Text(i18nKeys.Common_Label_SystemID)", column: "id", width: "10%"},
+                            { text: "@t.Text(i18nKeys.Common_Label_UserName)", column: "userName", width: "15%"},
+                            { text: "@t.Text(i18nKeys.Common_Label_Type)", column: "operationTypeText", width: "15%"},
+                            { text: "@t.Text(i18nKeys.Common_Label_Memo)", column: "memo", width: "20%" },
+                            { text: "@t.Text(i18nKeys.Common_Label_IPAddress)", column: "ipAddress" },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_CreateTime)", column: "createTime", "html":
+                                    function (row) {
+                                        return format_helper.to_display_time(row.createTime);
+                                    }
+                            },
+                        ]
+                }
+
+            },
+
+            methods: {
+
+
+                getList(targetPageIndex) {
+
+                    let vm = this;
+
+                    //如果有指定頁數
+                    if (targetPageIndex) {
+                        this.dataTable.pagination.pageIndex = 1;
+                    }
+
+                    var queryString = form_helper.getSearchFormQueryString(this.dataTable);
+
+                    ajaxHelper.get(window.API_DOMAIN + '/records/operation-logs' + queryString)
+                        .then((res) => {
+                            vm.dataTable.pagination = res.data.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+
+                }
+
+            },
+
+            mounted() {
+
+                this.getList();
+
+                this.getDropdownMerchants();
+
+                let vm = this;
+
+                date_picker.datetime_range_empty(
+                    {
+                        vue_instance: vm.dataTable.searchForm,
+                        element_ID: "#createtime",
+                        vue_prop_begin: "createTimeBegin",
+                        vue_prop_end: "createTimeEnd",
+                        vue_prop_text: "createTime_displayText"
+                    });
+            }
+        })
+
+
+    </script>
+
+}

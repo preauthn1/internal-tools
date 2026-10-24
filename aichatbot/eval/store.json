@@ -1,0 +1,21 @@
+{
+  "說明": "店家規則（bot.swift 使用）。價格計算、預約檢查都由程式依這裡的資料處理，不交給 AI。",
+  "name": "森日茶屋",
+  "openHour": 11,
+  "closeHour": 20,
+  "closedWeekdays": [2],
+  "maxPeople": 20,
+  "cardMinimum": 200,
+  "pickupDiscount": {"minTotal": 300, "rate": 0.9},
+  "menu": [
+    {"id": "hongyu", "price": 120,
+     "aliases": ["日月潭紅玉紅茶", "紅玉紅茶", "紅玉", "紅茶", "Ruby Black Tea", "black tea", "紅玉紅茶"],
+     "names": {"zh": "日月潭紅玉紅茶", "en": "Sun Moon Lake Ruby Black Tea", "ja": "日月潭紅玉紅茶"}},
+    {"id": "osmanthus", "price": 110,
+     "aliases": ["桂花烏龍", "烏龍", "Osmanthus Oolong", "oolong", "金木犀烏龍茶", "烏龍茶"],
+     "names": {"zh": "桂花烏龍", "en": "Osmanthus Oolong", "ja": "金木犀烏龍茶"}},
+    {"id": "matcha", "price": 150,
+     "aliases": ["抹茶拿鐵", "抹茶", "拿鐵", "Matcha Latte", "matcha", "抹茶ラテ", "那提"],
+     "names": {"zh": "抹茶拿鐵", "en": "Matcha Latte", "ja": "抹茶ラテ"}}
+  ]
+}

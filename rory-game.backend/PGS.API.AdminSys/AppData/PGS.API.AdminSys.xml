@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>target.API.AdminSys</name>
+    </assembly>
+    <members>
+        <member name="M:target.API.AdminSys.Controllers.BaseController.SetFilterMerchantIDs``1(``0)">
+            <summary>
+            根據當前登入的用戶jwt，設定可以篩選哪些merchantIDs
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.BaseController.GetAdminUserModelFromJwtHeader">
+            <summary>
+            直接呼叫此沒有檢查 過期/反查DB 的機制  請記得自行標上 AdminTokenrAuthorizeFilter 檢查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.InternalDocumentController.GetAllEnumsList">
+            <summary>
+            列出後端定義的所有enum
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.InternalHelperController.RemoveAllCache">
+            <summary>
+            清除所有Cache
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.BetRecordsController.GetDetailUrlByPegGameDetailLogID(System.Int32)">
+            <summary>
+            三方遊戲商，產生外部連結 (也許並非每個廠商都有)
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.BetRecordsController.GetDetailUrlByTransactionNo(System.String)">
+            <summary>
+            三方遊戲商，產生外部連結 (也許並非每個廠商都有)
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetAvailableOrgs">
+            <summary>
+            组织类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetAvailableMerchants(target.Models.ViewModels.QueryDropdownMerchantRequestViewModel)">
+            <summary>
+            商户
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetMerchantTypes">
+            <summary>
+            商户分類
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetInternalMerchants">
+            <summary>
+            內部測試用商户
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetDynamicQueryItems">
+            <summary>
+            簡易查詢的項目
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetRoomLevels">
+            <summary>
+            遊戲大廳房間類型
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetGameTypes">
+            <summary>
+            遊戲分類
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetBetRecordStatus">
+            <summary>
+            投注單狀態
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetGameVendorTypes">
+            <summary>
+            遊戲三方廠商
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetAvailableRoles">
+            <summary>
+            角色类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetGames">
+            <summary>
+            游戏类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetServers(target.Models.ViewModels.QueryServerListApiRequestParameterModel)">
+            <summary>
+            游戏伺服器类型
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetTimeZoneAreas">
+            <summary>
+            时区类型
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetTransactionTypes">
+            <summary>
+            交易類型
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetThirdPartyVendors">
+            <summary>
+            三方遊戲商
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.DropdownController.GetInternalTestPlayerAccounts">
+            <summary>
+            取得內部測試帳號
+            </summary>
+        </member>
+        <member name="T:target.API.AdminSys.Controllers.ExportExcelController">
+            <summary>
+            (已廢棄) 匯出excel
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.HomePageReportController.GetHomePageSummary(target.Models.ViewModels.QueryHomePageReportApiRequestParameterModel)">
+            <summary>
+            當日基本訊息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.InternalTestController.LaunchGameAndGetGamePageUrlByPlayerID(target.Models.ViewModels.InternalTestBundleRequestModel)">
+            <summary>
+            測試取得遊戲網址
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.InternalTestController.CheckOnlineVersion">
+            <summary>
+            檢查dev與正式環境的pipelineID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PerGameDetailController.GetByPagingFilter(target.Models.ViewModels.QueryPerGameDetailLogApiRequestParameterModel)">
+            <summary>
+            游戏历程查询
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PerGameDetailController.GetSlotHistoryByExternalLinkQuery(target.Models.ViewModels.ExternalLinkQueryPerGameRequestModel)">
+            <summary>
+            游戏历程查询 (供外部查詢、不需要登入token)
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PerGameDetailController.GetSlotHistoryFromPerGameLog(System.Int64)">
+            <summary>
+            游戏历程查询
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PerGameDetailController.GetFullInformationInPerGame(System.Int32)">
+            <summary>
+            游戏历程查询-详情
+            </summary>
+            <param name="perGameLogID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.GetByPagingFilter(game.Entity.Game.QueryPlayerApiRequestParameterModel)">
+            <summary>
+            用户列表
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.InternalTestAccountWalletDepositAmount(game.Entity.Game.InternalTestAccountPlusWalletRequestModel)">
+            <summary>
+            用戶補錢 (內部測試帳號)
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.CreateInernalTestAccount(game.Entity.Game.CreateInternalTestAccountRequestModel)">
+            <summary>
+            產生測試用帳號
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.ManualDepositPlayerWallet(target.Models.ViewModels.PlayerManualDepositRequestModel)">
+            <summary>
+            用戶補錢 (目前僅供使用API觸發)
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.GetPlayerSummaryInfo(System.Int32)">
+            <summary>
+            用户查询
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.GetPlayerSummaryInfoByNameOrID(System.String)">
+            <summary>
+            用户查询
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.RemovePlayerRoomLock(System.Int32)">
+            <summary>
+            解除卡房
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.UpdatePlayerStatus(System.Int32,target.Models.ViewModels.PlayerUpdateStatusRequestModel)">
+            <summary>
+            用户锁定/解锁
+            </summary>
+            <param name="playerID"></param>
+            <param name="model"></param>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.PlayerInfoController.UpdateMultiplePlayerStatus(target.Models.ViewModels.PlayerMultipleUpdateStatusRequestModel)">
+            <summary>
+            用户批量锁定
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.RecordsController.GetPlayerGameRecordPagingByFilter(target.Models.ViewModels.QueryPlayerGameRecordApiRequestParameterModel)">
+            <summary>
+            後台-進出房紀錄
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.RecordsController.GetPlayerLoginLogPagingByFilter(target.Models.ViewModels.QueryPlayerLoginLogApiRequestParameterModel)">
+            <summary>
+            後台-玩家遊戲啟動紀錄、三方遊戲啟動紀錄
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.RecordsController.GetPlayerStatusChangeRecords(target.Models.ViewModels.QueryUserOperateRecordApiRequestParameterModel)">
+            <summary>
+            後台-玩家封號紀錄
+            </summary>
+        </member>
+        <member name="P:target.API.AdminSys.Controllers.StatReportController.StatReportService">
+            <summary>
+            统计资料
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.StatReportController.GetStatReportPagingByFilter(target.Models.ViewModels.QueryStatGameReportApiRequestParameterModel)">
+            <summary>
+            游戏报表
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.StatReportController.GetMerchantSummaryStatReport(target.Models.ViewModels.QueryMerchantSummaryStatReportReportApiRequestParameterModel)">
+            <summary>
+            数据报表
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:target.API.AdminSys.Controllers.StatReportController.GetMerchantDailySummaryStatReport(target.Models.ViewModels.QueryMerchantDailySummaryStatReportReportApiRequestParameterModel)" -->
+        <member name="M:target.API.AdminSys.Controllers.StatReportController.GetStatReportChartData(target.Models.Enums.ChartDataTypeEnum,target.Models.ViewModels.QueryChartDataStatReportApiRequestParameterModel)">
+            <summary>
+            数据报表-圖
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="T:target.API.AdminSys.Controllers.TransactionRecordController">
+            <summary>
+            帳變紀錄
+            </summary>
+        </member>
+        <member name="P:target.API.AdminSys.Controllers.TransactionRecordController.TransactionRecordService">
+            <summary>
+            帳變紀錄
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.TransactionRecordController.GetPagingByFilter(target.Models.ViewModels.QueryTransactionRecordRequestViewModel)">
+            <summary>
+            後台-金幣紀錄(帳變紀錄)
+            </summary>
+        </member>
+        <member name="M:target.API.AdminSys.Controllers.TransferRecordController.GetTransferRecordPagingByFilter(target.Models.ViewModels.QueryTransferRecordApiRequestParameterModel)">
+            <summary>
+            後台-轉帳紀錄
+            </summary>
+        </member>
+    </members>
+</doc>

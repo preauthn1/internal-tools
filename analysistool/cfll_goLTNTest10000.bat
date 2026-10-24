@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\cfll.exe analysis --proto D:\Project\777Project\GameServerConfig\slotconfig\protodata -c D:\Project\777Project\GameServerConfig\slotconfig\cfll_1\config -l  -r -t 1000000

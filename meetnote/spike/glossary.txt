@@ -1,0 +1,22 @@
+# 常用詞彙：一行一個，會放進 whisper 的 prompt 和 Haiku 的 system prompt。# 開頭為註解。
+Hyperf
+cert-manager
+Cloudflare
+Redis
+Kubernetes
+GitLab
+MR
+code review
+deploy
+staging
+callback
+timeout
+Telegram
+金流商
+遊戲商
+代理後台
+儲值
+總投注
+總輸贏
+有效投注
+工單

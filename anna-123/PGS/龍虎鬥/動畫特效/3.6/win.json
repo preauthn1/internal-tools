@@ -1,0 +1,72 @@
+{ "skeleton": { "images": "images/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "flash_all", "bone": "root", "attachment": "flash_all" },
+	{ "name": "outer_tiger", "bone": "root", "attachment": "outer_tiger" },
+	{ "name": "b_tiger", "bone": "root", "attachment": "b_tiger" },
+	{ "name": "text_tiger", "bone": "root", "attachment": "text_tiger" },
+	{ "name": "shine_tiger", "bone": "root", "attachment": "shine_tiger" },
+	{ "name": "outer_dragon", "bone": "root", "attachment": "outer_dragon" },
+	{ "name": "b_dragon", "bone": "root", "attachment": "b_dragon" },
+	{ "name": "text_dragon", "bone": "root", "attachment": "text_dragon" },
+	{ "name": "shine_dragon", "bone": "root", "attachment": "shine_dragon" },
+	{ "name": "shadow_all", "bone": "root", "attachment": "shadow_all" },
+	{ "name": "outer_tie", "bone": "root", "attachment": "outer_tie" },
+	{ "name": "ray_all", "bone": "root", "attachment": "ray_all" },
+	{ "name": "b_tie", "bone": "root", "attachment": "b_tie" },
+	{ "name": "text_tie", "bone": "root", "attachment": "text_tie" },
+	{ "name": "shine_tie", "bone": "root", "attachment": "shine_tie" }
+],
+"skins": {
+	"default": {
+		"flash_all": {
+			"flash_all": { "x": 354, "y": -336, "width": 708, "height": 672 }
+		},
+		"outer_tiger": {
+			"outer_tiger": { "x": 360, "y": -351, "width": 426, "height": 432 }
+		},
+		"b_tiger": {
+			"b_tiger": { "x": 365, "y": -353, "width": 378, "height": 378 }
+		},
+		"text_tiger": {
+			"text_tiger": { "x": 360, "y": -343, "width": 268, "height": 136 }
+		},
+		"shine_tiger": {
+			"shine_tiger": { "x": 359.5, "y": -337.5, "width": 259, "height": 121 }
+		},
+		"outer_dragon": {
+			"outer_dragon": { "x": 360, "y": -351, "width": 426, "height": 432 }
+		},
+		"b_dragon": {
+			"b_dragon": { "x": 365, "y": -353, "width": 378, "height": 378 }
+		},
+		"text_dragon": {
+			"text_dragon": { "x": 359.5, "y": -343, "width": 269, "height": 136 }
+		},
+		"shine_dragon": {
+			"shine_dragon": { "x": 359, "y": -338.5, "width": 260, "height": 121 }
+		},
+		"shadow_all": {
+			"shadow_all": { "x": 364.5, "y": -365.5, "width": 523, "height": 523 }
+		},
+		"outer_tie": {
+			"outer_tie": { "x": 360, "y": -351, "width": 426, "height": 432 }
+		},
+		"ray_all": {
+			"ray_all": { "x": 365.5, "y": -353, "width": 449, "height": 444 }
+		},
+		"b_tie": {
+			"b_tie": { "x": 365, "y": -353, "width": 378, "height": 378 }
+		},
+		"text_tie": {
+			"text_tie": { "x": 358, "y": -353.5, "width": 264, "height": 135 }
+		},
+		"shine_tie": {
+			"shine_tie": { "x": 359, "y": -347, "width": 254, "height": 120 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

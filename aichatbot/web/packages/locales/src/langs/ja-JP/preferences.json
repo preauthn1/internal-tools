@@ -1,0 +1,232 @@
+{
+  "title": "環境設定",
+  "subtitle": "環境設定をカスタマイズしてリアルタイムでプレビュー",
+  "enableStickyPreferencesNavigationBar": "環境設定のナビゲーションバーを固定する",
+  "disableStickyPreferencesNavigationBar": "環境設定のナビゲーションバーの固定を解除する",
+  "resetTip": "データが変更されました。クリックするとリセットします",
+  "resetTitle": "環境設定をリセット",
+  "resetSuccess": "環境設定をリセットしました",
+  "appearance": "外観",
+  "layout": "レイアウト",
+  "content": "コンテンツ",
+  "other": "その他",
+  "wide": "ワイド",
+  "compact": "固定幅",
+  "followSystem": "システムに従う",
+  "vertical": "垂直",
+  "verticalTip": "サイドの垂直メニューモード",
+  "horizontal": "水平",
+  "horizontalTip": "水平メニューモード。すべてのメニューを上部に表示します",
+  "twoColumn": "2 カラム",
+  "twoColumnTip": "垂直 2 カラムメニューモード",
+  "headerSidebarNav": "ヘッダー＋垂直",
+  "headerSidebarNavTip": "ヘッダーを全幅にし、サイドバーナビゲーションを表示するモード",
+  "headerTwoColumn": "ヘッダー＋2 カラム",
+  "headerTwoColumnTip": "ヘッダーナビゲーションとサイドバー 2 カラムを併用",
+  "mixedMenu": "混合メニュー",
+  "mixedMenuTip": "垂直メニューと水平メニューを併用",
+  "fullContent": "コンテンツ全画面",
+  "fullContentTip": "コンテンツ本体のみを表示し、すべてのメニューを非表示にします",
+  "normal": "標準",
+  "plain": "シンプル",
+  "rounded": "角丸",
+  "copyPreferences": "設定をコピー",
+  "enableCopyPreferences": "設定コピーボタンを表示",
+  "copyPreferencesSuccessTitle": "コピーしました",
+  "copyPreferencesSuccess": "コピーしました。app 配下の `src/preferences.ts` で上書きしてください",
+  "clearAndLogout": "キャッシュをクリアしてログアウト",
+  "mode": "モード",
+  "general": "一般",
+  "language": "言語",
+  "timezone": "タイムゾーン",
+  "dynamicTitle": "動的タイトル",
+  "watermark": "透かし",
+  "watermarkContent": "透かしの内容を入力してください",
+  "checkUpdates": "定期的に更新を確認",
+  "position": {
+    "title": "環境設定ボタンの位置",
+    "header": "ヘッダー",
+    "auto": "自動",
+    "fixed": "固定",
+    "userDropdown": "ユーザーメニュー"
+  },
+  "sidebar": {
+    "buttons": "ボタンを表示",
+    "buttonFixed": "固定",
+    "buttonCollapsed": "折りたたみ",
+    "title": "サイドバー",
+    "width": "幅",
+    "visible": "サイドバーを表示",
+    "draggable": "サイドバーメニューのドラッグ",
+    "collapsed": "メニューを折りたたむ",
+    "collapsedShowTitle": "メニュータイトルを表示",
+    "autoActivateChild": "サブメニューを自動で開く",
+    "autoActivateChildTip": "`有効` にすると、メニューをクリックしたときにサブメニューを自動で開きます。",
+    "expandOnHover": "ホバーで展開",
+    "expandOnHoverTip": "マウスをメニューに重ねたとき、\n `有効` の場合は子メニューを展開し、\n `無効` の場合はサイドバー全体を展開します。"
+  },
+  "tabbar": {
+    "title": "タブバー",
+    "enable": "タブバーを有効にする",
+    "icon": "タブのアイコンを表示",
+    "showMore": "「その他」ボタンを表示",
+    "showMaximize": "最大化ボタンを表示",
+    "persist": "タブを保持",
+    "visitHistory": "閲覧履歴",
+    "visitHistoryTip": "有効にすると、タブバーはタブの閲覧履歴を記録します。\n現在のタブを閉じると、直前に開いていたタブが自動で選択されます。",
+    "maxCount": "タブの最大数",
+    "maxCountTip": "タブの数が最大数を超えると、\n最も古いタブが閉じられます。\n 0 に設定すると数の制限を無効にします。",
+    "draggable": "ドラッグで並べ替え",
+    "wheelable": "マウスホイールに対応",
+    "middleClickClose": "マウスの中ボタンクリックでタブを閉じる",
+    "wheelableTip": "有効にすると、タブバー領域でマウスホイールの縦スクロールに反応します。",
+    "styleType": {
+      "title": "タブのスタイル",
+      "chrome": "Chrome",
+      "card": "カード",
+      "plain": "シンプル",
+      "brisk": "軽快"
+    },
+    "contextMenu": {
+      "reload": "再読み込み",
+      "close": "閉じる",
+      "pin": "固定",
+      "unpin": "固定を解除",
+      "closeLeft": "左側のタブを閉じる",
+      "closeRight": "右側のタブを閉じる",
+      "closeOther": "他のタブを閉じる",
+      "closeAll": "すべてのタブを閉じる",
+      "openInNewWindow": "新しいウィンドウで開く",
+      "maximize": "最大化",
+      "restoreMaximize": "元に戻す"
+    }
+  },
+  "navigationMenu": {
+    "title": "ナビゲーションメニュー",
+    "style": "ナビゲーションメニューのスタイル",
+    "accordion": "サイドバーのアコーディオンメニュー",
+    "split": "ナビゲーションメニューの分割",
+    "splitTip": "有効にすると、サイドバーにトップバーのサブメニューを表示します"
+  },
+  "breadcrumb": {
+    "title": "パンくずリスト",
+    "home": "ホームボタンを表示",
+    "enable": "パンくずリストを有効にする",
+    "icon": "パンくずリストのアイコンを表示",
+    "background": "背景",
+    "style": "パンくずリストのスタイル",
+    "hideOnlyOne": "1 つだけのときは非表示"
+  },
+  "animation": {
+    "title": "アニメーション",
+    "loading": "ページ読み込み",
+    "transition": "ページ遷移",
+    "progress": "ページ進捗バー"
+  },
+  "theme": {
+    "title": "テーマ",
+    "radius": "角丸",
+    "fontSize": "フォントサイズ",
+    "fontSizeTip": "全体のフォントサイズを調整し、リアルタイムでプレビューします",
+    "light": "ライト",
+    "dark": "ダーク",
+    "darkSidebar": "ダークサイドバー",
+    "darkSidebarTip": "テーマがライトで、レイアウトが「水平」「コンテンツ全画面」以外のときに有効にできます。",
+    "darkSidebarSub": "ダークサイドバー（サブ）",
+    "darkSidebarSubTip": "テーマがライトでダークサイドバーが有効、かつレイアウトが「2 カラム」メニューモードのときに有効にできます。",
+    "darkHeader": "ダークヘッダー",
+    "weakMode": "色弱モード",
+    "grayMode": "グレーモード",
+    "builtin": {
+      "title": "プリセット",
+      "default": "デフォルト",
+      "violet": "バイオレット",
+      "pink": "ピンク",
+      "rose": "ローズ",
+      "skyBlue": "スカイブルー",
+      "deepBlue": "ディープブルー",
+      "green": "グリーン",
+      "deepGreen": "ディープグリーン",
+      "orange": "オレンジ",
+      "yellow": "イエロー",
+      "zinc": "ジンク",
+      "neutral": "ニュートラル",
+      "slate": "スレート",
+      "gray": "グレー",
+      "custom": "カスタム"
+    }
+  },
+  "header": {
+    "title": "ヘッダー",
+    "visible": "ヘッダーを表示",
+    "modeStatic": "固定しない",
+    "modeFixed": "固定",
+    "modeAuto": "自動で表示・非表示",
+    "modeAutoScroll": "スクロールで表示・非表示",
+    "menuAlign": "メニューの配置",
+    "menuAlignStart": "左寄せ",
+    "menuAlignEnd": "右寄せ",
+    "menuAlignCenter": "中央"
+  },
+  "footer": {
+    "title": "フッター",
+    "visible": "フッターを表示",
+    "fixed": "下部に固定"
+  },
+  "copyright": {
+    "title": "著作権表示",
+    "enable": "著作権表示を有効にする",
+    "companyName": "会社名",
+    "companySiteLink": "会社サイトのリンク",
+    "date": "日付",
+    "icp": "ICP 登録番号",
+    "icpLink": "ICP サイトのリンク"
+  },
+  "shortcutKeys": {
+    "title": "ショートカットキー",
+    "global": "グローバル",
+    "search": "グローバル検索",
+    "logout": "ログアウト",
+    "preferences": "環境設定"
+  },
+  "widget": {
+    "title": "ウィジェット",
+    "globalSearch": "グローバル検索を有効にする",
+    "fullscreen": "全画面表示を有効にする",
+    "themeToggle": "テーマ切り替えを有効にする",
+    "languageToggle": "言語切り替えを有効にする",
+    "notification": "通知を有効にする",
+    "sidebarToggle": "サイドバー切り替えを有効にする",
+    "lockScreen": "画面ロックを有効にする",
+    "refresh": "更新ボタンを有効にする",
+    "timezone": "タイムゾーンを有効にする"
+  },
+  "antd": {
+    "tabLabel": "Antd 拡張",
+    "title": "業務設定",
+    "fields": {
+      "enableFormFullscreen": {
+        "label": "フォームの全画面モードを有効にする",
+        "tip": "サブプロジェクトは、それぞれの業務シナリオでこの拡張設定を読み取れます。"
+      },
+      "tenantMode": {
+        "label": "テナントモード",
+        "options": {
+          "single": {
+            "label": "シングルテナント"
+          },
+          "multi": {
+            "label": "マルチテナント"
+          }
+        }
+      },
+      "defaultTableSize": {
+        "label": "デフォルトのページサイズ"
+      },
+      "reportTitle": {
+        "label": "デフォルトのレポートタイトル",
+        "placeholder": "デフォルトのレポートタイトルを入力してください"
+      }
+    }
+  }
+}

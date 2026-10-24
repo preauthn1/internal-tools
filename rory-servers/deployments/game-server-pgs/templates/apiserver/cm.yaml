@@ -1,0 +1,20 @@
+{{- if .Values.api }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "game-server.fullname" . }}-api
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+data:
+  api.dat: |
+    [tcp]
+    addr=:8000
+    grpcaddr=:3101
+    apiaddr=:8001
+
+    [conn]
+    schema={{ .Values.api.schema }}
+    backendapi={{ .Values.api.endpoint }}
+    api_cer={{ .Values.api.cer }}
+    semaphore={{ .Values.api.semaphore }}
+{{- end }}

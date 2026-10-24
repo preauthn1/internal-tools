@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\dfdc.exe analysis --proto D:\Project\KubeEnvironment\game-server\protodata\dfdc -c D:\Project\777Project\GameServerConfig\slotconfig\dfdc_1\config -r -t 1000000

@@ -1,0 +1,493 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+
+
+        <button class="btn btn-red2 " v-on:click="showCreateModal">+ @t.Text(i18nKeys.Common_Button_Create)</button>
+
+
+    </h4>
+
+
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+
+            <div class="col-md-3">
+
+                <label for="" class="">@t.Text(i18nKeys.Common_Label_Status)</label>
+
+
+                <select class="form-control" v-model="dataTable.searchForm.status" v-cloak>
+                    <option value="">@t.Text(i18nKeys.Common_Label_FilterAll)</option>
+                    <option v-for="(item , index) in dropdown.normalStatus " :value="item.value">
+                        {{item.text}}
+                    </option>
+                </select>
+
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="search-btn-row">
+                    <button class="btn btn-alternate" v-on:click="getList(1)"> @t.Text(i18nKeys.Common_Button_Search)</button>
+                    <button class="btn btn-secondary" v-on:click="resetForm"> @t.Text(i18nKeys.Common_Button_Reset)</button>
+                </div>
+            </div>
+
+
+            <div style="clear:both;"></div>
+
+
+        </div>
+
+    </div>
+
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+
+
+    <div id="create_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+        <div class="modal-dialog modal-lg" role="document" style="width: 600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">
+                        <span v-if="editForm.isEdit">@t.Text(i18nKeys.Common_Button_Edit)</span>
+                        <span v-if="!editForm.isEdit">@t.Text(i18nKeys.Common_Button_Create)</span>
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    <div class="clearboth"></div>
+
+                </div>
+                <div class="modal-body editForm">
+
+                    <div>@Html.RenderInput(t.Text(i18nKeys.Common_Label_DisplayName), "editForm.displayName")</div>
+                    <div>@Html.RenderInput(t.Text(i18nKeys.Common_Label_Memo), "editForm.memo")</div>
+                    <div>@Html.RenderDropdown("幣別", "editForm.currency", "dropdown.currency" , "!editForm.isEdit")</div>
+                    <div>@Html.RenderDropdown(t.Text(i18nKeys.Common_Label_Status), "editForm.status", "dropdown.normalStatus")</div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">@t.Text(i18nKeys.Common_Button_Close)</button>
+                    <button type="button" class="btn btn-red2" v-on:click="save()">@t.Text(i18nKeys.Common_Button_Save)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="advanceSetting_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+        <div class="modal-dialog modal-lg" role="document" style="width: 600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">
+                        進階設置
+
+                        <span style="font-size:16px;font-weight:400;">
+                            ({{currentSelectedMerchant.displayName}})
+                        </span>
+
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    <div class="clearboth"></div>
+
+                </div>
+                <div class="modal-body editForm">
+
+
+                    <div v-for="(item,index) in advanceSetting.groups" style="margin-bottom:75px;">
+
+                        <span style="font-size:18px;color:#666;font-weight:700;">
+                            {{item.groupName}}
+                        </span>
+
+
+                        <div v-if="item.isAllDisableEdit" style="display: inline-block;float: right;margin-right: 15%;">
+
+                            <button v-if="!item.isEditMode" class="btn btn-light" disabled="disabled">
+                                @t.Text(i18nKeys.Common_Button_DisabledEdit)
+                            </button>
+
+                        </div>
+
+                        <div v-if="!item.isAllDisableEdit" style="display: inline-block;float: right;margin-right: 15%;">
+
+                            <button v-if="!item.isEditMode" class="btn btn-green2" v-on:click="switchEditMode(item , true)">
+                                @t.Text(i18nKeys.Common_Button_Edit)
+                            </button>
+
+
+                            <button v-if="item.isEditMode" class="btn btn-light" v-on:click="switchEditMode(item , false)">
+                                @t.Text(i18nKeys.Common_Button_Cancel)
+                            </button>
+
+
+                            <button v-if="item.isEditMode" class="btn btn-danger" v-on:click="saveAdvanceSetting(item.items , item)">
+                                @t.Text(i18nKeys.Common_Button_Save)
+                            </button>
+
+                        </div>
+
+
+                        <div style="padding:1px 20px;">
+
+                            <div v-for="(eachSetting , settingIndex) in item.items">
+                                <div class="form-label"><label>{{ eachSetting.settingKeyDisplayName}}</label></div>
+                                <div class="">
+
+                                    <div v-if="eachSetting.dataTypeName == 'string'">
+                                        <input type="text" class="form-control" v-model="eachSetting.value" :disabled="!item.isEditMode" />
+                                    </div>
+
+                                    <div v-if="eachSetting.dataTypeName == 'boolean'">
+
+                                        <div class="system-setting-switch">
+                                            <label class="form-check-label">
+                                                <input name="radio1" type="radio" class="form-check-input" v-model="eachSetting.value" v-bind:value="true" :disabled="!item.isEditMode">
+                                                启用
+                                            </label>
+                                        </div>
+                                        <div class="system-setting-switch">
+                                            <label class="form-check-label">
+                                                <input name="radio1" type="radio" class="form-check-input" v-model="eachSetting.value" v-bind:value="false" :disabled="!item.isEditMode">
+                                                关闭
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">@t.Text(i18nKeys.Common_Button_Close)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+        $(function () {
+
+
+        })
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+                detailInfo: {},
+
+                currentSelectedMerchant: {},
+                advanceSettingMerchantID : '',
+                advanceSetting:
+                {
+                    groups : []
+                },
+
+                editForm:
+                {
+                   currency: '',
+                   isEdit : false,
+                },
+
+                dataTable: {
+
+                    getData: function () {
+                        app.getList();
+                    },
+                    searchForm: {
+                        status: '',
+                        merchantID: '',
+                        cardNo: '',
+                        createTime_displayText: '',
+                        createTimeBegin: '',
+                        createTimeEnd: ''
+                    },
+                    pagination: {
+                        items: [],
+                        pageSize: 10,
+                        orderByColumn: "",
+                    },
+                    columns:
+                        [
+                            { text: "@t.Text(i18nKeys.Common_Label_MerchantID)", column: "merchantID" },
+                            { text: "@t.Text(i18nKeys.Common_Label_DisplayName)", column: "displayName" },
+                            { text: "@t.Text(i18nKeys.Common_Label_Memo)", column: "memo" },
+                            { text: "幣別", column: "currency", align: "r" },
+                            { text: "商戶餘額", column: "walletAmount", align: "r", isMoneyFormat: true },
+                            { text: "@t.Text(i18nKeys.Common_Label_Status)", column: "statusText" },
+                            { text: "API金鑰", column: "apiSecretKey", isPopupText: true },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_AvailableAmounts)", column: "availableAmounts", isPopupText: true
+                            },
+                            { text: "分配域名", column: "cardInputPage_DomainUrl", isPopupText: true  },
+                            { text: "手續費比例", column: "feeRate", align: "r" },
+                            { text: "@t.Text(i18nKeys.Common_Label_CreateTime)", column: "createTime", "html": function (row) { return format_helper.to_display_time(row.createTime); } },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_OperateFunction)", column: "text", width: "15%", templates: [
+
+                                    constant.template.edit,
+                                    constant.template.advanceSetting,
+                                    constant.template.generateOrderLink
+                                ]
+                            }
+                        ]
+                }
+
+            },
+
+            methods: {
+
+
+                click_dataTable(btn_type, row_data) {
+
+                    switch (btn_type) {
+                        case constant.template.edit:
+                            this.showEditModal(row_data);
+                            break;
+
+                        case constant.template.advanceSetting:
+                            this.showAdvanceSettingModal(row_data);
+                            break;
+
+                        case constant.template.generateOrderLink:
+                            this.generateOrderLink(row_data);
+                            break;
+
+                        default:
+                            alert('undefined! ' + btn_type);
+                    }
+
+                },
+
+                generateOrderLink(row_data) {
+
+                    let url = window.API_DOMAIN + "/merchants/order-gen?merchantID=" + row_data.merchantID;
+                    ajaxHelper.get(url)
+                        .then((res) => {
+                            let url = res.data.data.link;
+                            window.open(url, '_blank');
+                        })
+                        .catch((error) => {
+
+                            alert(error.data.message)
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                },
+
+
+                showCreateModal() {
+
+                    this.editForm = {};
+                    this.editForm.isEdit = false;
+                    this.editForm.status = 1;
+                    this.editForm.currency = '';
+                    $("#create_modal").modal("show");
+                },
+
+                closeModal() {
+                    $("#create_modal").modal("hide");
+                    $("#advanceSetting_modal").modal("hide");
+                },
+
+                showEditModal(row) {
+
+                    this.editForm = Object.assign({}, row) ;
+                    this.editForm.isEdit = true;
+                    $("#create_modal").modal("show");
+                },
+
+                showAdvanceSettingModal(row) {
+
+
+                    this.currentSelectedMerchant = row;
+                    this.saveAdvanceSetting.groups = [];
+
+                    $("#advanceSetting_modal").modal("show");
+
+                    this.advanceSettingMerchantID = row.merchantID;
+
+                    let url = window.API_DOMAIN + '/merchants/' + this.advanceSettingMerchantID + '/settings';
+
+                    ajaxHelper.get(url)
+                        .then((res) => {
+                            this.advanceSetting = res.data.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                },
+
+
+                switchEditMode(item , targetValue) {
+
+                    item.isEditMode = targetValue;
+                },
+
+
+                saveAdvanceSetting(settings , group) {
+
+                    let url = window.API_DOMAIN + '/merchants/' + this.advanceSettingMerchantID + '/settings';
+
+                    ajaxHelper.post(url, settings)
+                        .then((res) => {
+                            group.isEditMode = false;
+                            this.successAlert();
+                            this.getList();
+                        })
+                        .catch((error) => {
+                            alert(error.data.message);
+                        })
+                        .finally(() => {
+
+                        });
+
+                },
+
+
+                save() {
+
+                    let url = window.API_DOMAIN + '/merchants';
+
+                    if (this.editForm.isEdit) {
+
+                        ajaxHelper.put(url, this.editForm)
+                            .then((res) => {
+                                console.log(res);
+
+                                this.successAlert();
+                                this.closeModal();
+                                this.getList();
+                            })
+                            .catch((error) => {
+                                alert(error.data.message);
+                            })
+                            .finally(() => {
+
+                            });
+                    }
+                    else {
+
+                        ajaxHelper.post(url, this.editForm)
+                            .then((res) => {
+                                console.log(res);
+
+                                this.successAlert();
+                                this.closeModal();
+                                this.getList();
+                            })
+                            .catch((error) => {
+                                alert(error.data.message);
+                            })
+                            .finally(() => {
+
+                            });
+                    }
+
+
+
+                },
+
+
+                getList(targetPageIndex) {
+
+                    let vm = this;
+
+                    //如果有指定頁數
+                    if (targetPageIndex) {
+                        this.dataTable.pagination.pageIndex = 1;
+                    }
+
+                    var queryString = form_helper.getSearchFormQueryString(this.dataTable);
+
+                    let url = window.API_DOMAIN + '/merchants';
+                    ajaxHelper.get(url + queryString)
+                        .then((res) => {
+                            vm.dataTable.pagination = res.data.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+
+                }
+
+            },
+
+
+            mounted() {
+
+
+                this.getList();
+
+                this.getDropdownNormalStatus();
+                this.getDropdownCurrency();
+
+                let vm = this;
+
+
+                date_picker.datetime_range_empty(
+                    {
+                        vue_instance: vm.dataTable.searchForm,
+                        element_ID: "#createtime",
+                        vue_prop_begin: "createTimeBegin",
+                        vue_prop_end: "createTimeEnd",
+                        vue_prop_text: "createTime_displayText"
+                    });
+            }
+        })
+
+
+    </script>
+
+}

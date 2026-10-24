@@ -1,0 +1,114 @@
+version: 2
+importPivots: 1
+tpsheetFileNames:
+- Assets/example.invalid/Example/SpriteSheet/sprites.tpsheet
+- Assets/Hall/UI/Game_UI/Game_UI.tpsheet
+- Assets/Hall/UI/gi_Hall/gi_Hall.tpsheet
+- Assets/Hall/UI/MessageBox/MessageBox.tpsheet
+- Assets/Hall/UI/MoneyPool/MoneyPool.tpsheet
+- Assets/Hall/UI/UIActivity/UIActivity.tpsheet
+- Assets/Hall/UI/UIAgent/UIAgent.tpsheet
+- Assets/Hall/UI/UIBank/UIBank.tpsheet
+- Assets/Hall/UI/UICommon/UICommon_0.tpsheet
+- Assets/Hall/UI/UICommon/UICommon_1.tpsheet
+- Assets/Hall/UI/UIExchange/UIExchange.tpsheet
+- Assets/Hall/UI/UIGameClass/pic.tpsheet
+- Assets/Hall/UI/UIGameClass/title.tpsheet
+- Assets/Hall/UI/UIHall/UIHall.tpsheet
+- Assets/Hall/UI/UIHall_Activity_2/UIHall_Activity_2.tpsheet
+- Assets/Hall/UI/UIHall_Activity0/UIHall_Activity0.tpsheet
+- Assets/Hall/UI/UIHall_Activity1/UIHall_Activity1.tpsheet
+- Assets/Hall/UI/UILB/pot/setting.tpsheet
+- Assets/Hall/UI/UILoading/UILoading.tpsheet
+- Assets/Hall/UI/UILogin/UILogin.tpsheet
+- Assets/Hall/UI/UINetProfit/UINetProfit-0.tpsheet
+- Assets/Hall/UI/UINetProfit/UINetProfit-1.tpsheet
+- Assets/Hall/UI/UIProxy/0/UIProxy_0.tpsheet
+- Assets/Hall/UI/UIProxy/1/UIProxy_1.tpsheet
+- Assets/Hall/UI/UIProxy/UIProxy_0.tpsheet
+- Assets/Hall/UI/UIProxy/UIProxy_1.tpsheet
+- Assets/Hall/UI/UIProxy1/UIProxy1.tpsheet
+- Assets/Hall/UI/UIRank/UIRank.tpsheet
+- Assets/Hall/UI/UIRecharge/UIRecharge.tpsheet
+- Assets/Hall/UI/UIRecharge_IOS/UIRecharge_IOS.tpsheet
+- Assets/Hall/UI/UISendMsgToGM/UISendMsgToGM.tpsheet
+- Assets/Hall/UI/UISetting/UISetting.tpsheet
+- Assets/Hall/UI/UIUpdateGame/UIUpdateGame.tpsheet
+- Assets/Hall/UI/UIUserInfo/UIUserInfo.tpsheet
+- Assets/Hall/UI/UIUserInfoFrame/UIUserInfoFrame.tpsheet
+- Assets/Hall/UI/UIWXD/UIWXD.tpsheet
+textureFileNames:
+- Assets/example.invalid/Example/SpriteSheet/sprites.png
+- Assets/Hall/UI/Game_UI/Game_UI.png
+- Assets/Hall/UI/gi_Hall/gi_Hall.png
+- Assets/Hall/UI/MessageBox/MessageBox.png
+- Assets/Hall/UI/MoneyPool/MoneyPool.png
+- Assets/Hall/UI/UIActivity/UIActivity.png
+- Assets/Hall/UI/UIAgent/UIAgent.png
+- Assets/Hall/UI/UIBank/UIBank.png
+- Assets/Hall/UI/UICommon/UICommon_0.png
+- Assets/Hall/UI/UICommon/UICommon_1.png
+- Assets/Hall/UI/UIExchange/UIExchange.png
+- Assets/Hall/UI/UIGameClass/pic.png
+- Assets/Hall/UI/UIGameClass/title.png
+- Assets/Hall/UI/UIHall/UIHall.png
+- Assets/Hall/UI/UIHall_Activity_2/UIHall_Activity_2.png
+- Assets/Hall/UI/UIHall_Activity0/UIHall_Activity0.png
+- Assets/Hall/UI/UIHall_Activity1/UIHall_Activity1.png
+- Assets/Hall/UI/UILB/pot/setting.png
+- Assets/Hall/UI/UILoading/UILoading.png
+- Assets/Hall/UI/UILogin/UILogin.png
+- Assets/Hall/UI/UINetProfit/UINetProfit-0.png
+- Assets/Hall/UI/UINetProfit/UINetProfit-1.png
+- Assets/Hall/UI/UIProxy/0/UIProxy_0.png
+- Assets/Hall/UI/UIProxy/1/UIProxy_1.png
+- Assets/Hall/UI/UIProxy/UIProxy_0.png
+- Assets/Hall/UI/UIProxy/UIProxy_1.png
+- Assets/Hall/UI/UIProxy1/UIProxy1.png
+- Assets/Hall/UI/UIRank/UIRank.png
+- Assets/Hall/UI/UIRecharge/UIRecharge.png
+- Assets/Hall/UI/UIRecharge_IOS/UIRecharge_IOS.png
+- Assets/Hall/UI/UISendMsgToGM/UISendMsgToGM.png
+- Assets/Hall/UI/UISetting/UISetting.png
+- Assets/Hall/UI/UIUpdateGame/UIUpdateGame.png
+- Assets/Hall/UI/UIUserInfo/UIUserInfo.png
+- Assets/Hall/UI/UIUserInfoFrame/UIUserInfoFrame.png
+- Assets/Hall/UI/UIWXD/UIWXD.png
+normalmapFileNames:
+- Assets/example.invalid/Example/SpriteSheet/sprites_n.png
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+enableDebugOutput: 0

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package apisvc;
+
+// 遊戲結果相關服務
+service GameResultService {
+  // 每局結算完寫分、更新錢包
+  rpc SettlementV2(SettlementReq) returns (SettlementRes);
+}
+
+message SettlementReq {
+  // 驗證
+  string AccessToken = 1;
+  int32 PlayerID = 2;
+  int32 ServerID = 3;
+  int64 TradeID = 4;
+  int64 UpdateAmount = 5;
+  string IPAddress = 6;
+  string TransactionNo = 7;
+  int64 BetAmount = 8;
+  int64 ValidAmount = 9;
+  int64 PayoutAmount = 10;
+  int64 TaxAmount = 11;
+}
+
+message SettlementRes { int64 AfterAmount = 1; }

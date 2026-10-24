@@ -1,0 +1,11 @@
+FROM example.invalid/dotnet/core/aspnet:3.1-bionic AS runtime
+ENV ASPNETCORE_ENVIRONMENT Dev
+EXPOSE 3100/tcp
+EXPOSE 3101/tcp
+EXPOSE 3102/tcp
+EXPOSE 3109/tcp
+
+COPY release/target.API.AdminSys .
+WORKDIR /app/target.API.AdminSys
+
+ENTRYPOINT ["dotnet", "target.API.AdminSys.dll"]

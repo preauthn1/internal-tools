@@ -1,0 +1,265 @@
+{
+"skeleton": { "hash": "BT37PrG0UFQmH2T1UCO6/nCeH18", "spine": "3.6.53", "width": 194, "height": 192, "images": "./images/" },
+"bones": [
+	{ "name": "root", "x": 5.75, "y": 1.33 },
+	{ "name": "bg", "parent": "root", "length": 41.27, "rotation": 89.27, "x": 0.3, "y": -77.32 },
+	{ "name": "dragon", "parent": "root", "length": 55.55, "rotation": 88.91, "x": 36.27, "y": -17.54 },
+	{ "name": "claw", "parent": "dragon", "length": 15.49, "rotation": -6.76, "x": -17.55, "y": -23.09 },
+	{ "name": "coin", "parent": "root", "length": 35.01, "rotation": 94.33, "x": -4.46, "y": 35.89 },
+	{ "name": "fx", "parent": "root", "length": 22.22, "rotation": 90, "x": -2.35, "y": 26.9 },
+	{ "name": "tiger", "parent": "root", "length": 50.28, "rotation": 91.81, "x": -36.2, "y": -52.98 }
+],
+"slots": [
+	{ "name": "bg", "bone": "bg", "attachment": "bg" },
+	{ "name": "dragon", "bone": "dragon", "attachment": "dragon" },
+	{ "name": "claw", "bone": "claw", "attachment": "claw" },
+	{ "name": "coin", "bone": "coin", "attachment": "coin" },
+	{ "name": "tiger", "bone": "tiger", "attachment": "tiger" },
+	{ "name": "00", "bone": "fx", "color": "97f4ffff" }
+],
+"skins": {
+	"default": {
+		"00": {
+			"00": { "x": 19.6, "y": 26.74, "rotation": -90, "width": 46, "height": 92 },
+			"01": { "x": 18.6, "y": 26.24, "rotation": -90, "width": 47, "height": 92 },
+			"02": { "x": -1.4, "y": 28.24, "rotation": -90, "width": 53, "height": 134 },
+			"03": { "x": -1.9, "y": 28.24, "rotation": -90, "width": 55, "height": 133 },
+			"04": { "x": -1.4, "y": 27.74, "rotation": -90, "width": 56, "height": 134 },
+			"05": { "x": -1.4, "y": 27.74, "rotation": -90, "width": 56, "height": 134 },
+			"06": { "x": -1.4, "y": 27.24, "rotation": -90, "width": 57, "height": 134 },
+			"07": { "x": -30.4, "y": 22.74, "rotation": -90, "width": 64, "height": 76 },
+			"08": { "x": -29.4, "y": 17.74, "rotation": -90, "width": 72, "height": 78 },
+			"09": { "x": -28.4, "y": 12.24, "rotation": -90, "width": 81, "height": 80 },
+			"10": { "x": -24.4, "y": -8.76, "rotation": -90, "width": 123, "height": 88 },
+			"11": { "x": -22.9, "y": -7.76, "rotation": -90, "width": 123, "height": 91 },
+			"12": { "x": -21.9, "y": -7.76, "rotation": -90, "width": 125, "height": 93 },
+			"13": { "x": -20.4, "y": -7.26, "rotation": -90, "width": 124, "height": 96 },
+			"14": { "x": -19.4, "y": -21.76, "rotation": -90, "width": 97, "height": 98 },
+			"15": { "x": -17.9, "y": -26.76, "rotation": -90, "width": 89, "height": 101 },
+			"16": { "x": -11.4, "y": 1.24, "rotation": -90, "width": 149, "height": 114 },
+			"17": { "x": -11.9, "y": 0.74, "rotation": -90, "width": 148, "height": 113 },
+			"18": { "x": -11.4, "y": 0.74, "rotation": -90, "width": 148, "height": 114 },
+			"19": { "x": -11.4, "y": 1.24, "rotation": -90, "width": 147, "height": 114 },
+			"20": { "x": -11.9, "y": 0.74, "rotation": -90, "width": 146, "height": 113 },
+			"21": { "x": -17.4, "y": -43.76, "rotation": -90, "width": 55, "height": 100 },
+			"22": { "x": -17.4, "y": -44.26, "rotation": -90, "width": 54, "height": 100 },
+			"23": { "x": -17.9, "y": -44.26, "rotation": -90, "width": 52, "height": 99 }
+		},
+		"bg": {
+			"bg": { "x": 80.81, "y": 0.92, "rotation": -89.27, "width": 193, "height": 192 }
+		},
+		"claw": {
+			"claw": { "x": 19.22, "y": -3.8, "rotation": -82.15, "width": 37, "height": 83 }
+		},
+		"coin": {
+			"coin": { "x": -24.16, "y": -2.56, "rotation": -94.33, "width": 96, "height": 117 }
+		},
+		"dragon": {
+			"dragon": { "x": 26.95, "y": 4.87, "rotation": -88.91, "width": 132, "height": 180 }
+		},
+		"tiger": {
+			"tiger": { "x": 39.87, "y": -19.88, "rotation": -91.81, "width": 157, "height": 136 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"slots": {
+			"00": {
+				"color": [
+					{ "time": 1.4333, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.3333, "name": "00" },
+					{ "time": 0.4, "name": "01" },
+					{ "time": 0.4667, "name": "02" },
+					{ "time": 0.5333, "name": "03" },
+					{ "time": 0.6, "name": "04" },
+					{ "time": 0.6667, "name": "05" },
+					{ "time": 0.7333, "name": "06" },
+					{ "time": 0.8, "name": "07" },
+					{ "time": 0.8667, "name": "08" },
+					{ "time": 0.9333, "name": "09" },
+					{ "time": 1, "name": "10" },
+					{ "time": 1.0667, "name": "11" },
+					{ "time": 1.1333, "name": "12" },
+					{ "time": 1.2, "name": "13" },
+					{ "time": 1.2667, "name": "14" },
+					{ "time": 1.3333, "name": "15" },
+					{ "time": 1.4, "name": "16" },
+					{ "time": 1.4667, "name": "17" },
+					{ "time": 1.5333, "name": "18" },
+					{ "time": 1.6, "name": "19" },
+					{ "time": 1.6667, "name": "20" },
+					{ "time": 1.7333, "name": "21" },
+					{ "time": 1.8, "name": "22" },
+					{ "time": 1.8667, "name": "23" },
+					{ "time": 2, "name": null }
+				]
+			},
+			"bg": {
+				"attachment": [
+					{ "time": 0, "name": "bg" },
+					{ "time": 1, "name": "bg" },
+					{ "time": 2, "name": "bg" }
+				]
+			},
+			"claw": {
+				"attachment": [
+					{ "time": 0, "name": "claw" },
+					{ "time": 1, "name": "claw" },
+					{ "time": 2, "name": "claw" }
+				]
+			},
+			"coin": {
+				"attachment": [
+					{ "time": 0, "name": "coin" },
+					{ "time": 1, "name": "coin" },
+					{ "time": 2, "name": "coin" }
+				]
+			},
+			"dragon": {
+				"attachment": [
+					{ "time": 0, "name": "dragon" },
+					{ "time": 1, "name": "dragon" },
+					{ "time": 2, "name": "dragon" }
+				]
+			},
+			"tiger": {
+				"attachment": [
+					{ "time": 0, "name": "tiger" },
+					{ "time": 1, "name": "tiger" },
+					{ "time": 2, "name": "tiger" }
+				]
+			}
+		},
+		"bones": {
+			"tiger": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0, "curve": "stepped" },
+					{ "time": 2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": -0.26, "y": -1.28 },
+					{ "time": 1, "x": 3.06, "y": 0.1 },
+					{ "time": 2, "x": -0.26, "y": -1.28 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 2, "x": 1, "y": 1 }
+				]
+			},
+			"fx": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0, "curve": "stepped" },
+					{ "time": 2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 2, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 2, "x": 1, "y": 1 }
+				]
+			},
+			"claw": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0, "curve": "stepped" },
+					{ "time": 2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 2, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 2, "x": 1, "y": 1 }
+				]
+			},
+			"dragon": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0, "curve": "stepped" },
+					{ "time": 2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0.44, "y": 0.77 },
+					{ "time": 1, "x": -4.65, "y": 0.09 },
+					{ "time": 2, "x": 0.44, "y": 0.77 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 2, "x": 1, "y": 1 }
+				]
+			},
+			"coin": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0, "curve": "stepped" },
+					{ "time": 2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 2, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 2, "x": 1, "y": 1 }
+				]
+			},
+			"bg": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0, "curve": "stepped" },
+					{ "time": 2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 2, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 2, "x": 1, "y": 1 }
+				]
+			},
+			"root": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0, "curve": "stepped" },
+					{ "time": 2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 2, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 2, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"drawOrder": [
+			{ "time": 0 },
+			{ "time": 1 },
+			{ "time": 2 }
+		]
+	}
+}
+}

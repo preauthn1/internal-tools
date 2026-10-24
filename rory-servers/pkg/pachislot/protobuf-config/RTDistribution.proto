@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+// RTDistributionOption RT表分配項
+message RTDistributionOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 最小值
+    int32 Min = 3;
+
+    // 最大值
+    int32 Max = 4;
+
+    // 權重
+    int32 Weight = 5;
+}

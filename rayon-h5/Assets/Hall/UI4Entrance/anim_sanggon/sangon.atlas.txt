@@ -1,0 +1,76 @@
+
+sangon.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 62
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+card01
+  rotate: false
+  xy: 197, 52
+  size: 126, 100
+  orig: 126, 100
+  offset: 0, 0
+  index: -1
+card02
+  rotate: true
+  xy: 2, 2
+  size: 48, 70
+  orig: 48, 70
+  offset: 0, 0
+  index: -1
+card03
+  rotate: false
+  xy: 325, 69
+  size: 82, 83
+  orig: 82, 83
+  offset: 0, 0
+  index: -1
+coin01
+  rotate: true
+  xy: 409, 78
+  size: 78, 72
+  orig: 78, 72
+  offset: 0, 0
+  index: -1
+coin02
+  rotate: false
+  xy: 197, 154
+  size: 137, 100
+  orig: 137, 100
+  offset: 0, 0
+  index: -1
+coin03
+  rotate: false
+  xy: 336, 158
+  size: 138, 96
+  orig: 138, 96
+  offset: 0, 0
+  index: -1
+star01
+  rotate: false
+  xy: 74, 17
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+star02
+  rotate: false
+  xy: 476, 219
+  size: 34, 35
+  orig: 34, 35
+  offset: 0, 0
+  index: -1
+star03
+  rotate: false
+  xy: 476, 189
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1

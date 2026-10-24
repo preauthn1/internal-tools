@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+message StageGroup {
+	// StageGroup的群組編號
+	int32 StageGroupID = 1;
+	// 定義Pattern使用的發射器群組
+	int32 EmitterGroupID = 2;
+	// 執行順序
+	int32 OrderID = 3;
+	// 執行時序
+	// 前一個執行完後，間隔多少毫秒再執行
+	// (輸入1000=1秒後再執行)
+	// 如果是第一個，則是遊戲開始後延遲幾秒才開始執行。
+	// 如要立即執行，給0
+	int32 GroupDelayTime = 4;
+}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+import "base.proto";
+
+// ReelStripSymbol 排列帶上符號
+message ReelStripSymbol {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // Reel 輪軸編號
+    int32 Reel = 3;
+    
+    // Row 輪帶位置
+    int32 Row = 4;
+
+    // Symbol 符號名稱
+    Symbol Symbol = 5;
+}

@@ -1,0 +1,48 @@
+
+anim_fish_blue.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 2, 2
+  size: 97, 111
+  orig: 97, 111
+  offset: 0, 0
+  index: -1
+fin01
+  rotate: true
+  xy: 101, 3
+  size: 28, 34
+  orig: 28, 34
+  offset: 0, 0
+  index: -1
+fin_down
+  rotate: false
+  xy: 101, 33
+  size: 56, 38
+  orig: 56, 38
+  offset: 0, 0
+  index: -1
+fin_tail
+  rotate: false
+  xy: 195, 76
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+fin_up
+  rotate: false
+  xy: 101, 73
+  size: 92, 40
+  orig: 92, 40
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: false
+  xy: 159, 37
+  size: 22, 34
+  orig: 22, 34
+  offset: 0, 0
+  index: -1

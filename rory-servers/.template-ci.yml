@@ -1,0 +1,49 @@
+.go-cache:
+  variables:
+    GOPATH: $CI_PROJECT_DIR/.go
+  before_script:
+    - mkdir -p .go
+  cache:
+    paths:
+      - .go/pkg/mod/
+.build_windows_base_template:
+  extends: .go-cache
+#  artifacts:
+#    expire_in: 1 day
+#    paths:
+#      - ${CI_JOB_NAME}.tar.gz
+#  allow_failure: true
+  before_script:
+    - go version
+    - export GOOS="windows"
+  after_script:
+    ### copy to /mnt/release ###
+    - source .go/.variables
+    - mkdir -p /mnt/release/${BUILD_NAME}
+    - cp -rf ${CI_PROJECT_DIR}/bin/* /mnt/release/${BUILD_NAME}/
+#    ### package files ###
+#    - cd ${CI_PROJECT_DIR}/bin
+#    - tar -zcf ${CI_JOB_NAME}.tar.gz *
+#    - du -sh ${CI_JOB_NAME}.tar.gz
+#    - cp ${CI_JOB_NAME}.tar.gz $CI_PROJECT_DIR
+
+.build_linux_base_template:
+  extends: .go-cache
+  #  artifacts:
+  #    expire_in: 1 day
+  #    paths:
+  #      - ${CI_JOB_NAME}.tar.gz
+  #  allow_failure: true
+  before_script:
+    - go version
+    - export GOOS="linux"
+  after_script:
+    ### copy to /mnt/release ###
+    - source .go/.variables
+    - mkdir -p /mnt/release/${BUILD_NAME}
+    - cp -rf ${CI_PROJECT_DIR}/bin/* /mnt/release/${BUILD_NAME}/
+#    ### package files ###
+#    - cd ${CI_PROJECT_DIR}/bin
+#    - tar -zcf ${CI_JOB_NAME}.tar.gz *
+#    - du -sh ${CI_JOB_NAME}.tar.gz
+#    - cp ${CI_JOB_NAME}.tar.gz $CI_PROJECT_DIR

@@ -1,0 +1,145 @@
+﻿@{
+    var user = AuthTokenHelper.GetUserModelByCookieToken();
+    string envText = SettingHelper.AdminSysWebsiteSetting.HeaderEnvText;
+}
+
+
+<div id="fixedHeader" class="app-header header-shadow bg-dark  header-text-light">
+    <div class="app-header__logo">
+        <div class="logo-src">
+
+            @if (AdminSysHelper.GetWebSiteBrandingType() == WebSiteBrandingTypeEnum.OGC)
+            {
+                <img src="~/img/logo-ogc2.png" style="height:35px;margin-top:-8px;opacity:.65" />
+            }
+            else
+            {
+                <img src="~/img/logo-msc.png" style="height:35px;margin-top:-8px;opacity:.65" />
+            }
+
+        </div>
+        <div class="header__pane ml-auto">
+            <div>
+                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="app-header__mobile-menu">
+        <div>
+            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="app-header__menu">
+        <span>
+            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                <span class="btn-icon-wrapper">
+                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                </span>
+            </button>
+        </span>
+    </div>    
+    <div class="app-header__content">
+
+            @if (!string.IsNullOrWhiteSpace(envText))
+            {
+                <div style="color:#FFF;padding: 5px 20px;background:@SettingHelper.AdminSysWebsiteSetting.HeaderEnvColor">
+                    @envText 環境
+                </div>
+            }
+        
+
+        <div class="app-header-right">
+            <div class="header-btn-lg pr-0">
+                <div class="widget-content p-0">
+                    <div class="widget-content-wrapper">
+
+
+
+                        @*@if (!string.IsNullOrWhiteSpace(envText))
+                        {
+                            <div style="color:#FFF;padding: 5px 10px;background:@SettingHelper.AdminSysWebsiteSetting.HeaderEnvColor">
+                                @envText 環境
+                            </div>
+                        }*@
+
+
+                        <div class="widget-content-left  ml-3 header-user-info" style="margin-right:10px;">
+                            <div class="widget-heading text-r">
+                                @user.LoginName
+                            </div>
+                            <div class="widget-subheading">
+                                维运人员
+                            </div>
+                        </div>
+                        <div class="widget-content-left">
+                            <div class="btn-group">
+                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                    <img width="42" class="rounded-circle" src="~/img/bot-avatars.jpg" />
+                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                </a>
+
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+
+                                    @*<button type="button" tabindex="0" class="dropdown-item">個人資料設置</button>
+        <button type="button" tabindex="0" class="dropdown-item">修改密碼</button>*@
+                                    
+
+
+                                    <a href="/user/ChangePassword">
+                                        <button type="button" tabindex="0" class="dropdown-item" >修改密碼</button>
+                                    </a>
+
+                                    <button type="button" tabindex="0" class="dropdown-item" v-on:click="logout">登出</button>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+
+    $(function () {
+
+
+        var app = new Vue({
+            el: '#fixedHeader',
+            components: {
+                //hello,
+            },
+            data: {
+
+            },
+
+            methods: {
+                logout() {
+                    Cookies.remove(constant.KEY_COOKIE_TOKEN);
+                    location.href = "/Login?fromLogout=1";
+                }
+
+            }
+
+        })
+
+    })
+
+
+</script>

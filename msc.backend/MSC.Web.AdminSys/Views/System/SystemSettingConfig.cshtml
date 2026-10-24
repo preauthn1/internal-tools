@@ -1,0 +1,187 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+    </h4>
+
+
+    <div class="card search-form-card">
+
+        <div>
+
+            <div class="modal-body editForm" style="max-width: 700px;">
+
+
+                <div v-for="(item,index) in systemSetting.groups" style="margin-bottom:75px;" v-cloak>
+
+                    <span style="font-size:18px;color:#666;font-weight:700;">
+                        {{item.groupName}}
+                    </span>
+
+
+                    <div v-if="item.isAllDisableEdit" style="display: inline-block;float: right;margin-right: 15%;">
+
+                        <button v-if="!item.isEditMode" class="btn btn-light" disabled="disabled">
+                            @t.Text(i18nKeys.Common_Button_DisabledEdit)
+                        </button>
+
+                    </div>
+
+                    <div v-if="!item.isAllDisableEdit" style="display: inline-block;float: right;margin-right: 15%;">
+
+                        <button v-if="!item.isEditMode" class="btn btn-green2" v-on:click="switchEditMode(item , true)">
+                            @t.Text(i18nKeys.Common_Button_Edit)
+                        </button>
+
+
+                        <button v-if="item.isEditMode" class="btn btn-light" v-on:click="switchEditMode(item , false)">
+                            @t.Text(i18nKeys.Common_Button_Cancel)
+                        </button>
+
+
+                        <button v-if="item.isEditMode" class="btn btn-danger" v-on:click="saveAdvanceSetting(item.items , item)">
+                            @t.Text(i18nKeys.Common_Button_Save)
+                        </button>
+
+                    </div>
+
+
+                    <div style="padding:1px 20px;">
+
+                        <div v-for="(eachSetting , settingIndex) in item.items" style="margin-bottom:20px;">
+                            <div class="form-label"><label>{{ eachSetting.settingKeyDisplayName}}</label></div>
+                            <div class="">
+
+                                <div v-if="eachSetting.dataTypeName == 'string'">
+                                    <input type="text" class="form-control" v-model="eachSetting.value" :disabled="!item.isEditMode" />
+                                </div>
+
+                                <div v-if="eachSetting.dataTypeName == 'boolean'">
+
+                                        <div class="system-setting-switch" >
+                                            <label class="form-check-label">
+                                                <input name="radio1" type="radio" class="form-check-input" v-model="eachSetting.value" v-bind:value="true" :disabled="!item.isEditMode">
+                                                启用
+                                            </label>
+                                        </div>
+                                        <div class="system-setting-switch" >
+                                            <label class="form-check-label">
+                                                <input name="radio1" type="radio" class="form-check-input" v-model="eachSetting.value" v-bind:value="false" :disabled="!item.isEditMode">
+                                                关闭
+                                            </label>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+        $(function () {
+
+
+        })
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+              
+                systemSetting:
+                {
+                    groups : []
+                }                
+
+            },
+
+            methods: {
+
+                getSettings(row) {
+
+                    this.currentSelectedMerchant = row;
+                    this.saveAdvanceSetting.groups = [];
+
+
+                    let url = window.API_DOMAIN + '/system-settings';
+
+                    ajaxHelper.get(url)
+                        .then((res) => {
+                            this.systemSetting = res.data.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                },
+
+
+                switchEditMode(item , targetValue) {
+
+                    item.isEditMode = targetValue;
+                },
+
+
+                saveAdvanceSetting(settings , group) {
+
+                    let url = window.API_DOMAIN + '/system-settings';
+
+                    ajaxHelper.post(url, settings)
+                        .then((res) => {
+                            group.isEditMode = false;
+                            this.successAlert();
+                            this.getList();
+                        })
+                        .catch((error) => {
+                            alert(error.data.message);
+                        })
+                        .finally(() => {
+
+                        });
+
+                },
+            },
+
+
+            mounted() {
+
+                this.getSettings();
+
+                let vm = this;
+
+            }
+        })
+
+
+    </script>
+
+}

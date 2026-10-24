@@ -1,0 +1,20 @@
+enum FKEB_GameMessageClassID {
+FKEBSettingID = 10001
+,FKEBStateID = 10002
+,FKEBBetID = 10003
+,FKEBBroadCastBetID = 10004
+,FKEBGameResultMajiangID = 10005
+,FKEBGameSceneID = 10006
+,FKEBGameResultWinID = 10007
+,FKEBBetInfoID = 10008
+,FKEBBetRetID = 10009
+,FKEBShangZhuangID = 10010
+,FKEBShangZhuangRetID = 10011
+,FKEBGetShangZhuangListID = 10012
+,FKEBShangZhuangListInfoID = 10013
+,FKEBZhuangInfoID = 10014
+,FKEBBetClearID = 10015
+,FKEBResultCardListID = 10016
+,FKEBBetClearRetID = 10017
+,FKEBGetZhuangWinRetID = 10018
+};

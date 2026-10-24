@@ -1,0 +1,2 @@
+D:\Project\GameServerConfig\analysisTool\jkjl.exe analysis --proto D:\Project\KubeEnvironment\game-server\protodata\jkjl --config D:\Project\GameServerConfig\slotconfig\jkjl_1\config -R -t 1000000
+pause

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cliapisvc;
+
+message Empty {}
+
+message QueryCondition {
+    int32 PlayerID = 1;
+    int32 Table = 2;
+    int32 Seat = 3;
+    bool IsLogined = 4;
+    bool IsGuest = 5;
+    bool IsGaming = 6;
+    bool IsFree = 7;
+}

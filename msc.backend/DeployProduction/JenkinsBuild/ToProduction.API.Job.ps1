@@ -1,0 +1,24 @@
+﻿$now = Get-Date
+$dateStr = $now.ToString("yyyyMMdd_HHmm")
+echo $dateStr
+
+$currentPath = Split-Path $script:MyInvocation.MyCommand.Path
+echo $currentPath
+
+$SHA1 = git rev-parse HEAD
+$SHA1_s = $SHA1.substring(0, 8)
+echo $SHA1
+
+
+cd $currentPath
+cd ..
+cd ..
+cd MSC.API.Job
+
+
+$text_content =  -join($dateStr , "____" ,$SHA1);
+Set-Content -Path "./AppData/AppVersion.txt" -Value $text_content -Force
+& "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe" MSC.API.Job.csproj /p:Platform="AnyCPU" /p:DeployOnBuild=true /p:AllowUntrustedCertificate=True /p:PublishProfile="ogcWebAPIJob - Web Deploy.pubxml" /p:Password=[REDACTED]"
+
+$postParams = "token=[REDACTED]"
+Invoke-WebRequest -Uri https://example.invalid/api/chat.postMessage -Method POST -Body $postParams 

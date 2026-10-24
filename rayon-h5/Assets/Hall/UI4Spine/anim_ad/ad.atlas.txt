@@ -1,0 +1,41 @@
+
+ad.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+frame
+  rotate: false
+  xy: 2, 96
+  size: 321, 410
+  orig: 321, 410
+  offset: 0, 0
+  index: -1
+glow
+  rotate: false
+  xy: 325, 260
+  size: 234, 246
+  orig: 234, 246
+  offset: 0, 0
+  index: -1
+lamp01
+  rotate: false
+  xy: 561, 446
+  size: 18, 60
+  orig: 18, 60
+  offset: 0, 0
+  index: -1
+lamp02
+  rotate: false
+  xy: 325, 214
+  size: 37, 44
+  orig: 37, 44
+  offset: 0, 0
+  index: -1
+lamp03
+  rotate: false
+  xy: 2, 2
+  size: 47, 92
+  orig: 47, 92
+  offset: 0, 0
+  index: -1

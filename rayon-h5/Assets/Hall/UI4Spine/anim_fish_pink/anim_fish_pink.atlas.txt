@@ -1,0 +1,83 @@
+
+anim_fish_pink.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 2, 23
+  size: 88, 101
+  orig: 88, 101
+  offset: 0, 0
+  index: -1
+bodyfin
+  rotate: true
+  xy: 92, 23
+  size: 23, 28
+  orig: 23, 28
+  offset: 0, 0
+  index: -1
+findown
+  rotate: false
+  xy: 92, 77
+  size: 56, 47
+  orig: 56, 47
+  offset: 0, 0
+  index: -1
+finup
+  rotate: false
+  xy: 150, 80
+  size: 57, 44
+  orig: 57, 44
+  offset: 0, 0
+  index: -1
+hear02
+  rotate: false
+  xy: 62, 8
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+heart01
+  rotate: false
+  xy: 245, 116
+  size: 9, 8
+  orig: 9, 8
+  offset: 0, 0
+  index: -1
+heart03
+  rotate: true
+  xy: 35, 2
+  size: 19, 25
+  orig: 19, 25
+  offset: 0, 0
+  index: -1
+heart04
+  rotate: true
+  xy: 122, 23
+  size: 23, 22
+  orig: 23, 22
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: true
+  xy: 2, 2
+  size: 19, 31
+  orig: 19, 31
+  offset: 0, 0
+  index: -1
+ribbon
+  rotate: false
+  xy: 92, 48
+  size: 50, 27
+  orig: 50, 27
+  offset: 0, 0
+  index: -1
+tailfin
+  rotate: false
+  xy: 209, 93
+  size: 34, 31
+  orig: 34, 31
+  offset: 0, 0
+  index: -1

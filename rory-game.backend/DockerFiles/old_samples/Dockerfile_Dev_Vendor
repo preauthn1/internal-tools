@@ -1,0 +1,41 @@
+FROM example.invalid/dotnet/core/sdk:3.1-bionic AS build
+WORKDIR app
+
+# copy csproj and restore as distinct layers
+COPY target.API.Docker.sln .
+COPY target.Models/*.csproj ./target.Models/
+COPY target.DA/*.csproj ./target.DA/
+COPY target.BL/*.csproj ./target.BL/
+COPY target.Utility/*.csproj ./target.Utility/
+COPY target.Web.Modules/*.csproj ./target.Web.Modules/
+COPY target.API.Game/*.csproj ./target.API.Game/
+COPY target.API.AdminSys/*.csproj ./target.API.AdminSys/
+COPY target.API.Public/*.csproj ./target.API.Public/
+COPY target.API.Vendor/*.csproj ./target.API.Vendor/
+RUN dotnet restore
+
+
+COPY target.Models/. ./target.Models/
+COPY target.DA/. ./target.DA/
+COPY target.BL/. ./target.BL/
+COPY target.Utility/. ./target.Utility/
+COPY target.Web.Modules/. ./target.Web.Modules/
+COPY target.API.Vendor/. ./target.API.Vendor/
+COPY target.API.Game/. ./target.API.Game/
+COPY target.API.AdminSys/. ./target.API.AdminSys/
+COPY target.API.Public/. ./target.API.Public/
+
+
+WORKDIR /app/target.API.Vendor
+RUN dotnet publish -c Release -o out
+
+FROM example.invalid/dotnet/core/aspnet:3.1-bionic AS runtime
+ENV ASPNETCORE_ENVIRONMENT Dev
+EXPOSE 3100/tcp
+EXPOSE 3101/tcp
+EXPOSE 3102/tcp
+EXPOSE 3109/tcp
+
+WORKDIR /app/target.API.Vendor
+COPY --from=build /app/target.API.Vendor/out .
+ENTRYPOINT ["dotnet", "target.API.Vendor.dll"]

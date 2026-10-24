@@ -1,0 +1,239 @@
+﻿@{
+    Layout = "_LayoutNotLogin";
+    ViewData["Title"] = t.Text(i18nKeys.Common_Label_Login);
+
+    string websiteName = AdminSysHelper.WebSiteDisplayName();
+    bool isLocal = SettingHelper.IsLocalHost;    
+}
+
+<div>
+
+    <div style="background:#374f64;height: 250px;">
+
+    </div>
+
+
+    <div id="app" class="login-form">
+
+        <div class="main-card mb-3 card">
+
+
+            <div style="display:none;">
+                @AdminSysHelper.GetWebSiteBrandingType()
+            </div>
+
+            <div style="padding:25px 15px 0px 15px;">
+
+                <h2>
+                    <b>
+
+                        @Html.Raw(Html.Encode(websiteName))
+                    </b>
+                </h2>
+
+                <div style="color:#888;">
+                    @t.Text(i18nKeys.Common_Label_Login)
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="search-form" style="padding:0px 15px;">
+
+                    <div class="each-row">
+                        <label for="cardNo" class="">@t.Text(i18nKeys.Common_Label_Account)</label>
+                        <input type="text" name="account" id="account" placeholder="@t.Text(i18nKeys.Common_Label_Account)" class="form-control" v-model="editForm.account">
+
+                    </div>
+
+                    <div class="each-row">
+                        <label for="createtime" class="">@t.Text(i18nKeys.Common_Label_Password)</label>
+                        <input type="password" name="password" id="password" placeholder="@t.Text(i18nKeys.Common_Label_Password)" class="form-control" v-model="editForm.password">
+                    </div>
+
+
+                    <div class="each-row">
+                        <label for="createtime" class="">@t.Text(i18nKeys.Common_Label_GoogleAuthCode)</label>
+                        <input type="text" name="googleAuthCode" id="googleAuthCode" placeholder="首次登入无需输入" class="form-control" v-model="editForm.googleAuthCode" maxlength="6">
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+            <div class="d-block text-right card-footer">
+                <a href="javascript:void(0);" class="btn-wide btn btn-success" style="width: 125px;" v-on:click="submit">登入</a>
+
+                <a>
+
+                </a>
+            </div>
+        </div>
+
+
+
+        <div id="google_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+            <div class="modal-dialog modal-lg" role="document" style="width: 600px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title" id="myModalLabel">
+                            需绑定安全登入
+                        </h4>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div class="clearboth"></div>
+
+                    </div>
+                    <div class="modal-body editForm">
+
+                        <div style="margin-top:25px;margin-bottom:50px;">
+
+                            <div>
+                                您的帐号已启用安全登入，需绑定谷哥验证码
+                            </div>
+                            <div>
+                                请安装 Google验证器 (Google Authenticator)、並掃描以下QRCode後，输入验证码进行登入
+                            </div>
+
+
+                            <img :src="googleImage" style="margin-top:15px;" />
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+@section Scripts{
+
+
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            components: {
+                //hello,
+            },
+            data: {
+
+                isShowGoogleQRCode: false,
+                googleImage : '',
+                isAutoLogin : "@(isLocal ? "1" : "0")",
+                editForm:
+                {
+                    account: '@(isLocal ? "admin" : "")',
+                    password: [REDACTED] ? "qwer1234" : "")',
+                    googleAuthCode : '@(isLocal ? SystemConstant.GoogleAuthMagicCode : "")'
+                }
+            },
+
+            mounted() {
+
+                let vm = this;
+
+                this.generateDeviceID();
+
+                let fromLogout = this.getQueryString()["fromLogout"];
+
+                setTimeout(() => {
+
+                    if (vm.isAutoLogin == "1" && fromLogout != "1")
+                    {
+                        vm.submit();
+                    }
+
+                } , 250)
+
+            },
+
+            methods: {
+
+                generateDeviceID() {
+                    let device = localStorage.getItem("X-Device-ID");
+
+                    if (device === undefined || device == null) {
+                        localStorage.setItem("X-Device-ID", '@Guid.NewGuid()');
+                    }
+                },
+
+
+                submit() {
+
+                    let vm = this;
+
+                    this.showMask();
+
+                    ajaxHelper.post(window.API_DOMAIN + '/auth/login', this.editForm)
+                        .then((res) => {
+
+                            if (res.data.data.isGoogleAuthNotInitial)
+                            {
+                                vm.isShowGoogleQRCode = true;
+
+                                $("#google_modal").modal("show");
+                                vm.googleImage = "data:image/jpeg;base64," + res.data.data.googleAuth.base64;
+                            }
+                            else
+                            {
+                                //設置token
+                                Cookies.set(constant.KEY_COOKIE_TOKEN, res.data.data.token);
+                                location.href = "/";
+                            }                   
+
+                        })
+                        .catch((error) => {
+                            alert(error.data.message);
+                            console.error(error)
+                        })
+                        .finally(() => {
+
+                            this.hideMask();
+                        });
+
+                }
+             
+
+            }
+        })
+
+
+    </script>
+
+}
+
+
+<style>
+
+    .login-form {
+        margin-top: -80px;
+        width: 500px;
+        min-height: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background: #FFF;
+    }
+
+    .search-form .each-row {
+        margin-top: 15px;
+        text-align: left;
+    }
+</style>

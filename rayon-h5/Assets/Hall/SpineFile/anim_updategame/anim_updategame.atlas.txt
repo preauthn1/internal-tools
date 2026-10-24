@@ -1,0 +1,167 @@
+
+anim_updategame.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+01
+  rotate: false
+  xy: 2, 326
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+02
+  rotate: false
+  xy: 615, 413
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+22
+  rotate: false
+  xy: 615, 413
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+03
+  rotate: false
+  xy: 2, 245
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+04
+  rotate: false
+  xy: 117, 326
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+05
+  rotate: false
+  xy: 730, 413
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+06
+  rotate: false
+  xy: 2, 164
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+07
+  rotate: false
+  xy: 117, 245
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+08
+  rotate: false
+  xy: 232, 326
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+09
+  rotate: false
+  xy: 845, 413
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+10
+  rotate: false
+  xy: 2, 83
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+11
+  rotate: false
+  xy: 117, 164
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+12
+  rotate: false
+  xy: 232, 245
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+13
+  rotate: false
+  xy: 347, 326
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+14
+  rotate: false
+  xy: 2, 2
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+15
+  rotate: false
+  xy: 117, 83
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+16
+  rotate: false
+  xy: 232, 164
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+17
+  rotate: false
+  xy: 347, 245
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+18
+  rotate: false
+  xy: 462, 326
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+19
+  rotate: false
+  xy: 117, 2
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+20
+  rotate: false
+  xy: 232, 83
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+21
+  rotate: false
+  xy: 347, 164
+  size: 113, 79
+  orig: 113, 79
+  offset: 0, 0
+  index: -1
+board
+  rotate: false
+  xy: 2, 407
+  size: 611, 85
+  orig: 611, 85
+  offset: 0, 0
+  index: -1

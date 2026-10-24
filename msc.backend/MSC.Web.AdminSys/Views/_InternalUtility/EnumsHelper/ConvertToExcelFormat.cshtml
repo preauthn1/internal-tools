@@ -1,0 +1,28 @@
+﻿@model List<MSC.Web.AdminSys.Models.EnumsToExcelFormatViewModel>
+
+
+<div style="padding:25px;">
+
+
+    <table>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+
+
+                    <td>@item.Category</td>
+                    <td>@item.ColumnKeyName</td>
+
+                </tr>
+            }
+
+        }
+
+    </table>
+
+
+
+</div>

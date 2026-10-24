@@ -1,0 +1,21 @@
+﻿<Project Sdk="example.invalid.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Base\Template\template.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\target.DA\target.DA.csproj" />
+    <ProjectReference Include="..\target.Models\target.Models.csproj" />
+    <ProjectReference Include="..\target.Utility\target.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Base\Template\" />
+  </ItemGroup>
+
+</Project>

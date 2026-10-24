@@ -1,0 +1,38 @@
+
+{
+    "get_started":"Starten Sie",
+    "there_is_already_an_account":"Es ist bereits ein Konto vorhanden",
+    "restore_the_wallet":"Wiederherstellen der Brieftasche",
+    "wallet_activation":"Wallet-Aktivierung",
+    "email_verification":"E-Mail-Überprüfung",
+    "description_email_verification":"Wir nehmen die Sicherheit Ihres Kontos ernst und akzeptieren nur Geräte, auf denen sich Ihr privater Schlüssel befindet. Jedes Mal, wenn Sie sich auf einem neuen Gerät anmelden, werden wir Sie bitten, sich zu authentifizieren, bevor Sie sich anmelden und es nutzen können",
+    "description_verification_code":"Ein Verifizierungscode wurde an Ihre E-Mail-Adresse gesendet, bitte überprüfen Sie diesen und geben Sie den folgenden sechsstelligen Verifizierungscode ein",
+    "description_email_verification_complete":"Sie können beginnen, Ihre Kryptowährung einzuzahlen oder andere Funktionen zu nutzen. Wenn Sie sich das nächste Mal mit Ihrem neuen Gerät anmelden, folgen Sie bitte den Anweisungen zur Authentifizierung Ihres Logins",
+    "please_enter_your_email":"Bitte geben Sie Ihre Email ein",
+
+    "wallet_restore_success":"Wallet wiederherstellen Erfolg",
+    "wallet_activation_success":"Wallet-Aktivierung Erfolg",
+
+    "establishing_account":"Konto einrichten",
+    "deposit": "Einzahlen",
+    "withdraw": "Abheben",
+    "transaction_history": "Txns",
+    "logout": "Logout",
+
+    "deposit_address":"Adresse der Einzahlung",
+    "deposit_history":"Einzahlungshistorie",
+
+    "remaining_balance":"Verbleibender Saldo",
+    "withdrawal_amount":"Abhebungsbetrag",
+    "withdrawal_address":"Abhebungsadresse",
+    "fee":"Honorar",
+    "withdrwal_history":"Abhebungshistorie",
+
+    "next":"Weiter",
+    "confirm":"Erhalten",
+    "processing":"Bearbeitung",
+
+    "withdraw_to": "Abhebung an:",
+    "from": "Von:",
+    "transaction_hash": "Transaktions-Hash"
+}

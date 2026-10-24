@@ -1,0 +1,128 @@
+{
+  "merchant": {
+    "name": "霧光髮廊",
+    "intro": "霧光髮廊（Mistlight Hair）是一間小型美髮沙龍，有三位設計師，提供洗剪吹、染髮、燙髮、護髮和頭皮養護。採預約制，也接受現場候位。",
+    "contact": "電話：02-0000-5678；地址：台北市松竹區雲杉路 88 號 2 樓；也可以直接在 LINE 留言",
+    "preferred_language": "zh"
+  },
+  "knowledge": [
+    {
+      "title": "服務與價目",
+      "body": "洗剪吹：女生 800 元、男生 600 元、12 歲以下兒童 400 元。\n單剪（不洗）：500 元。\n洗髮加造型：400 元。\n染髮：短髮 1800 元起、中長髮 2400 元起、長髮 3000 元起；漂髮每次另加 1500 元起。\n燙髮：冷燙 2200 元起、溫塑燙 3200 元起。\n護髮：基礎護髮 800 元、深層結構式護髮 1500 元。\n頭皮養護：1200 元。\n染燙的實際價格依長度和髮量，由設計師現場評估後先告知再開始。"
+    },
+    {
+      "title": "設計師介紹",
+      "body": "阿澈（店長）：擅長男士短髮和俐落剪裁，指定店長加收 200 元。\nMia：擅長染髮，特別是霧感色和低調挑染。\n小葵：擅長燙髮和自然捲度造型。\n指定 Mia 或小葵不加價。"
+    },
+    {
+      "title": "營業時間與公休",
+      "body": "週二到週日 10:00–20:00，每週一公休。染髮、燙髮最晚 18:00 開始；剪髮最晚 19:30 開始。國定假日照常營業，農曆過年的營業時間會另外公告。"
+    },
+    {
+      "title": "交通與停車",
+      "body": "地址：台北市松竹區雲杉路 88 號 2 樓（一樓是花店，從旁邊的樓梯上來）。搭捷運到雲杉站 2 號出口，步行約 5 分鐘。店裡沒有專屬停車位，步行 3 分鐘有雲杉公有停車場，消費滿 1500 元可以折抵 1 小時停車費。機車可以停在騎樓旁的機車格。"
+    },
+    {
+      "title": "注意事項",
+      "body": "染髮前 48 小時不建議洗頭，頭皮比較不容易刺激。對染劑過敏或頭皮有傷口，請先告訴設計師，可以先做局部測試。剛燙完 48 小時內不要洗頭，捲度比較持久。孕婦可以剪髮和護髮，染燙請先和設計師討論。店內不能帶寵物（導盲犬除外）。"
+    },
+    {
+      "title": "會員與優惠",
+      "body": "第一次來店洗剪吹打 9 折。生日當月護髮打 8 折（要出示證件）。儲值 5000 元送 500 元，儲值金不能退現。優惠不能合併使用。"
+    }
+  ],
+  "faq": [
+    {
+      "key": "price_cut",
+      "question": "洗剪吹多少錢",
+      "alt_questions": ["剪髮價格", "剪頭髮要多少錢"],
+      "answer": "洗剪吹女生 800 元、男生 600 元，12 歲以下兒童 400 元；只剪不洗 500 元。"
+    },
+    {
+      "key": "price_color",
+      "question": "染髮多少錢",
+      "alt_questions": ["染頭髮價格"],
+      "answer": "染髮依長度：短髮 1800 元起、中長髮 2400 元起、長髮 3000 元起，漂髮另計，實際價格由設計師現場評估後先告知。"
+    },
+    {
+      "key": "price_perm",
+      "question": "燙髮多少錢",
+      "alt_questions": ["燙頭髮價格"],
+      "answer": "冷燙 2200 元起、溫塑燙 3200 元起，依長度和髮量調整。"
+    },
+    {
+      "key": "price_treatment",
+      "question": "護髮多少錢",
+      "alt_questions": ["護髮價格"],
+      "answer": "基礎護髮 800 元、深層結構式護髮 1500 元；頭皮養護 1200 元。"
+    },
+    {
+      "key": "reservation",
+      "question": "需要預約嗎",
+      "alt_questions": ["可以現場直接去嗎"],
+      "answer": "建議先預約；現場也可以，但要看當下有沒有設計師有空。染髮、燙髮一定要先預約喔。"
+    },
+    {
+      "key": "cancel_late",
+      "question": "取消或遲到怎麼辦",
+      "alt_questions": ["要改期怎麼辦"],
+      "answer": "取消或改期請在前一天告訴我們；遲到超過 15 分鐘，可能要改約或縮短服務內容。"
+    },
+    {
+      "key": "parking",
+      "question": "附近哪裡停車",
+      "alt_questions": ["有沒有停車場"],
+      "answer": "店裡沒有專屬停車位，步行 3 分鐘有雲杉公有停車場，消費滿 1500 元可以折抵 1 小時停車費。"
+    },
+    {
+      "key": "payment",
+      "question": "付款方式有哪些",
+      "alt_questions": ["收不收信用卡"],
+      "answer": "可以付現金、刷信用卡，或用 LINE Pay。"
+    },
+    {
+      "key": "kids",
+      "question": "可以帶小孩去嗎",
+      "alt_questions": ["小朋友可以剪嗎"],
+      "answer": "歡迎帶小朋友，店裡有兒童座椅；12 歲以下兒童剪髮 400 元。"
+    },
+    {
+      "key": "pets",
+      "question": "可以帶寵物嗎",
+      "alt_questions": ["狗狗可以一起進去嗎"],
+      "answer": "店內不能帶寵物，導盲犬除外，請見諒。"
+    },
+    {
+      "key": "address",
+      "question": "店在哪裡",
+      "alt_questions": ["怎麼去你們店"],
+      "answer": "台北市松竹區雲杉路 88 號 2 樓，捷運雲杉站 2 號出口步行約 5 分鐘。"
+    }
+  ],
+  "intent_examples": [
+    {"text": "想約下禮拜六剪個頭", "intent": "booking", "builtin": false},
+    {"text": "可以幫我排染髮的時間嗎", "intent": "booking", "builtin": false},
+    {"text": "明天的燙髮不去了", "intent": "cancel", "builtin": false},
+    {"text": "燙完幾天可以洗頭", "intent": "general", "builtin": false},
+    {"text": "上次剪完瀏海歪一邊", "intent": "complaint", "builtin": false},
+    {"text": "推薦我適合圓臉的髮型", "intent": "general", "builtin": false}
+  ],
+  "features": [
+    {"name": "booking", "enabled": true},
+    {"name": "handoff", "enabled": true}
+  ],
+  "fixed_replies": [],
+  "languages": [
+    {"code": "zh", "enabled": true},
+    {"code": "en", "enabled": true},
+    {"code": "ja", "enabled": true}
+  ],
+  "custom_intents": [],
+  "booking_fields": {
+    "people_enabled": false,
+    "custom": [
+      {"key": "service", "name": "服務項目", "description": "顧客要預約的服務，例如剪髮、染髮、燙髮、護髮", "required": true},
+      {"key": "designer", "name": "指定設計師", "description": "顧客指定的設計師名字", "required": false}
+    ]
+  }
+}

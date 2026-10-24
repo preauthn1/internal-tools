@@ -1,0 +1,2 @@
+D:\Project\GameServerConfig\analysisTool\dgno.exe analysis --proto D:\Project\KubeEnvironment\game-server\protodata\dgno --config D:\Project\GameServerConfig\slotconfig\dgno_1\config --bet-money 100 -t 1000000
+pause

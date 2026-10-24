@@ -1,0 +1,65 @@
+{
+  "說明": "完整流程驗證題（held-out）。自動改進迴圈修改時不能看這個檔案，只看守門程式給的總分。格式同 flow_tests.json。",
+  "conversations": [
+    {"id": "H01", "title": "自我介紹後問名字", "turns": [
+      {"user": "哈囉", "keys": ["general"]},
+      {"user": "我叫阿德", "keys": ["self_intro"], "all": ["阿德"]},
+      {"user": "你記得我叫什麼嗎", "keys": ["identity"], "all": ["阿德"]}
+    ]},
+    {"id": "H02", "title": "資料沒有 → 照設計轉人工 → 轉人工期間不回覆", "turns": [
+      {"user": "可以帶狗狗進去嗎", "keys": ["handoff"]},
+      {"user": "回覆了嗎", "keys": ["silent"]},
+      {"user": "/pending", "pending_any": ["狗"]}
+    ]},
+    {"id": "H03", "title": "完整預約（分次給資料）", "turns": [
+      {"user": "想訂位", "keys": ["ask_date"]},
+      {"user": "{{date:+5:M/D}}", "keys": ["ask_time"]},
+      {"user": "晚上六點", "keys": ["ask_people"]},
+      {"user": "兩位", "keys": ["ask_name"]},
+      {"user": "阿美", "keys": ["ask_phone"]},
+      {"user": "0933221100", "keys": ["booking_done"], "all": ["{{date:+5:MM-DD}}", "18:00", "2", "阿美"]}
+    ]},
+    {"id": "H04", "title": "要算總價的問題照設計轉人工（Go 版不由程式算總價）", "turns": [
+      {"user": "自取兩杯桂花烏龍多少", "keys": ["handoff"]}
+    ]},
+    {"id": "H09", "title": "要算總價的問題照設計轉人工（另一種說法，從 H04 拆出）", "turns": [
+      {"user": "自取三杯抹茶拿鐵總共多少", "keys": ["handoff"]}
+    ]},
+    {"id": "H05", "title": "英文顧客問資料沒有的事", "turns": [
+      {"user": "Hello!", "keys": ["general"], "lang": "en"},
+      {"user": "Do you have oat milk?", "keys": ["handoff"]}
+    ]},
+    {"id": "H10", "title": "英文顧客問地址（從 H05 拆出，前面沒有轉人工）", "turns": [
+      {"user": "What is the shop address?", "keys": ["answer"], "any": ["Fuxing", "100"], "lang": "en"}
+    ]},
+    {"id": "H06", "title": "日文顧客", "turns": [
+      {"user": "おはようございます", "keys": ["general"], "lang": "ja"},
+      {"user": "月曜日は営業していますか", "keys": ["answer"], "any": ["月曜"], "lang": "ja"}
+    ]},
+    {"id": "H07", "title": "閒聊不進待處理", "turns": [
+      {"user": "桂花烏龍現在一杯多少", "keys": ["answer"], "all": ["110"]},
+      {"user": "了解", "keys": ["general"]},
+      {"user": "我再考慮看看", "keys": ["general"]},
+      {"user": "/pending", "pending_none": ["了解", "考慮"]}
+    ]},
+    {"id": "H08", "title": "連續無關 → 轉人工", "turns": [
+      {"user": "幫我寫一段 Python", "keys": ["off_topic"]},
+      {"user": "明天會下雨嗎", "keys": ["off_topic"]},
+      {"user": "誰是美國總統", "keys": ["handoff"]}
+    ]},
+    {"id": "H11", "title": "打招呼、開場白，再問公休日", "turns": [
+      {"user": "哈囉～", "keys": ["general"]},
+      {"user": "我想問個問題", "keys": ["general"]},
+      {"user": "你們禮拜幾公休", "keys": ["answer"], "any": ["週一", "星期一", "禮拜一"]}
+    ]},
+    {"id": "H12", "title": "口語的一句預約（大人小孩分開講、半點）", "turns": [
+      {"user": "後天晚上八點半 3大2小 想訂位", "keys": ["ask_name"]},
+      {"user": "小林", "keys": ["ask_phone"]},
+      {"user": "0921000111", "keys": ["booking_done"], "all": ["{{today:+2:MM-DD}}", "20:30", "5", "小林"]}
+    ]},
+    {"id": "H13", "title": "要找真人 → 轉人工後抱怨慢 → 不回覆", "turns": [
+      {"user": "我要找客服人員", "keys": ["handoff"]},
+      {"user": "怎麼這麼慢啦", "keys": ["silent"]}
+    ]}
+  ]
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+import "base.proto";
+
+// ResultDistributionOption 牌型機率項
+message ResultDistributionOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 牌型
+    ResultType Result = 3;
+
+    // 權重
+    int32 Weight = 4;
+}

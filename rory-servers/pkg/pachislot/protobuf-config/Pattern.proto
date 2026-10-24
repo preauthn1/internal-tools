@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+// PatternOption 設定組合
+message PatternOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 模式 群組編號
+    int32 ModeGroupID = 3;
+
+    // 一般遊戲 牌型機率 群組編號
+    int32 NGResultGroupID = 4;
+
+    // 遊戲模式 群組編號
+    int32 ModuleGroupID = 5;
+
+    // RT解除 群組編號
+    int32 RTReleaseGroupID = 6;
+}

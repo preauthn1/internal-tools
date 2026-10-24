@@ -1,0 +1,27 @@
+Time: 300
+ReTryCount: 3
+ReTryInterval: 3
+NotifyWebHook: "https://example.invalid/webhook/1ef22373-712e-43fb-ab7e-f7e1bcd2d4d6@e16cc667-9473-4fc9-9b30-211cdec6647e/IncomingWebhook/4510de7368f94c4da550b1ecbbeee565/2ff7fe78-470a-42b6-959e-91c21bdedeca"
+GetIp: "http://example.invalid/client/Getip"
+#輪詢連線大聽, 當一條成功即可.
+Serverlist:
+#  - SiteId : 2
+#    Url: "http://example.invalid/ServerNode/Transfer?data=%s"
+  - SiteId : 2
+    Url: "http://example.invalid/ServerNode/Transfer?data=%s"
+  - SiteId : 2
+    Url: "http://0.0.0.0/ServerNode/Transfer?data=%s"
+  - SiteId : 2
+    Url: "http://example.invalid/ServerNode/Transfer?data=%s"
+  - SiteId : 2
+    Url: "http://example.invalid/ServerNode/Transfer?data=%s"
+  - SiteId : 2
+    Url: "http://example.invalid/ServerNode/Transfer?data=%s"
+  - SiteId : 2
+    Url: "http://example.invalid/ServerNode/Transfer?data=%s"
+  #- SiteId : 999999999
+  #  Url: "http://example.invalid/ServerNode/AppleReview?data=%s"
+CheckGame:
+  Enable: 0 #是否指定遊戲入口. 0為所有游戲 1指定遊戲
+  GameId: 21
+  Port: 12801 #tfconfig提供轉發進入遊戲的port

@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\jjbx.exe analysis --proto D:\Project\777Project\GameServerConfig\slotconfig\protodata -c D:\Project\777Project\GameServerConfig\slotconfig\jjbx_1\config -l  -r -t 1000000

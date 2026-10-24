@@ -1,0 +1,38 @@
+
+{
+    "get_started":"今すぐ始める",
+    "there_is_already_an_account":"既にアカウントが存在しています",
+    "restore_the_wallet":"ウォレットを復元",
+    "wallet_activation":"ウォレットのアクティベーション",
+    "email_verification":"メール認証",
+    "description_email_verification":"当社はお客様アカウントのセキュリティを第一に考え、秘密鍵付きのデバイスのみを受け入れます。新しいデバイスでログインするたびに、使用前に認証を求めるメッセージが表示されます。",
+    "description_verification_code":"確認コードが登録メールアドレスに送信されました。次の6桁の確認コードを確認して入力してください",
+    "description_email_verification_complete":"暗号通貨を入庫するか、他の機能から使用開始することができます。次回新しいデバイスでログインするときは、指示に従って、メールアドレスを使ってログインを認証してください。",
+    "please_enter_your_email":"メールアドレスを入力してください",
+
+    "wallet_restore_success":"ウォレットの復元に成功しました",
+    "wallet_activation_success":"取引の処理をしています",
+
+    "establishing_account":"アカウント作成",
+    "deposit": "預金 ",
+    "withdraw": "引出",
+    "transaction_history": "取引履歴",
+    "logout": "ログアウト",
+
+    "deposit_address":"預金先アドレス",
+    "deposit_history":"入金履歴",
+
+    "remaining_balance":"資産残高",
+    "withdrawal_amount":"引出額",
+    "withdrawal_address":"引出先アドレス",
+    "fee":"料金",
+    "withdrwal_history":"引出履歴",
+
+    "next":"次",
+    "confirm":"確認",
+    "processing":"処理しています",
+
+    "withdraw_to": "へ引出:",
+    "from": "から:",
+    "transaction_hash": "取引ハッシュ"
+}

@@ -1,0 +1,47 @@
+﻿<Project Sdk="example.invalid.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>c92edb11-7301-4cff-b398-2ab86960ba17</UserSecretsId>
+    <AssemblyName>target.API.ExternalVendor</AssemblyName>
+    <RootNamespace>target.API.ExternalVendor</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\_Discard\Funky\**" />
+    <Compile Remove="Controllers\_Discard\VPlay\**" />
+    <Content Remove="Controllers\_Discard\Funky\**" />
+    <Content Remove="Controllers\_Discard\VPlay\**" />
+    <EmbeddedResource Remove="Controllers\_Discard\Funky\**" />
+    <EmbeddedResource Remove="Controllers\_Discard\VPlay\**" />
+    <None Remove="Controllers\_Discard\Funky\**" />
+    <None Remove="Controllers\_Discard\VPlay\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.0.0-rc4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\target.BL\target.BL.csproj" />
+    <ProjectReference Include="..\target.DA\target.DA.csproj" />
+    <ProjectReference Include="..\target.Models\target.Models.csproj" />
+    <ProjectReference Include="..\target.Utility\target.Utility.csproj" />
+    <ProjectReference Include="..\target.Web.Modules\target.Web.Modules.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AppData\" />
+    <Folder Include="Controllers\_Discard\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AppData\請不要刪掉此檔案.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+
+</Project>

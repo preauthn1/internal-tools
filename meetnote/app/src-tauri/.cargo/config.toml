@@ -1,0 +1,20 @@
+# Windows only: link the C runtime statically (MT).
+# The prebuilt sherpa-onnx library (sherpa-onnx-*-win-x64-static-MT-Release-lib) is built with /MT, while
+# whisper.cpp (CMake) and the Rust crates default to /MD. Mixing them fails with LNK2038
+# ("RuntimeLibrary mismatch: MD_DynamicRelease vs MT_StaticRelease"). Measured on Windows 11, MSVC 14.44:
+# without this the release link fails, with it voice_check.exe links (see app/WINDOWS.md item 1).
+# A side benefit: users don't need the VC++ redistributable.
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+# +crt-static alone is enough for release builds but not for debug builds (tauri dev): after a clean
+# rebuild of whisper-rs-sys the debug objects were still MD_DynamicRelease (5 x LNK2038), with
+# CMAKE_BUILD_TYPE=RelWithDebInfo. Why is not known. whisper-rs-sys forwards every CMAKE_* variable to
+# CMake, and CMAKE_MSVC_RUNTIME_LIBRARY (needs policy CMP0091 NEW) fixes it for every build type;
+# the debug link then succeeds. whisper-rs-sys does not track these variables: after changing them,
+# run `cargo clean -p whisper-rs-sys`.
+# Cargo's [env] can't be limited to one target, so other platforms also pass them to CMake, which
+# ignores them (not verified on macOS).
+[env]
+CMAKE_POLICY_DEFAULT_CMP0091 = "NEW"
+CMAKE_MSVC_RUNTIME_LIBRARY = "MultiThreaded"

@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\xgpd.exe analysis --proto D:\Project\777Project\GameServerConfig\slotconfig\protodata -c D:\Project\777Project\GameServerConfig\slotconfig\xgpd_1\config -t 100000

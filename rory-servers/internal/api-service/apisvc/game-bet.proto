@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package apisvc;
+
+// 下注相關服務
+service GameBetService {
+  // 下注扣錢
+  rpc PlaceBet(PlaceBetReq) returns (PlaceBetRes);
+}
+
+message PlaceBetReq {
+  // 驗證
+  string AccessToken = 1;
+  // 服務器 ID
+  int32 ServerID = 2;
+  // Trade ID
+  int64 TradeID = 3;
+  // 下注金額(分數)
+  int64 BetAmount = 4;
+  // IP 位置
+  string IPAddress = 5;
+  // 備註
+  string Memo = 6;
+}
+
+message PlaceBetRes {
+  // 下注後金額(分數)
+  int64 AfterAmount = 1;
+  // 交易序號
+  string TransactionNo = 2;
+}

@@ -1,0 +1,28 @@
+FROM example.invalid/dotnet/core/sdk:3.1-bionic AS build
+WORKDIR app
+
+# copy csproj and restore as distinct layers
+COPY target.Console.Only.sln .
+COPY target.Models/*.csproj ./target.Models/
+COPY target.DA/*.csproj ./target.DA/
+COPY target.BL/*.csproj ./target.BL/
+COPY target.Utility/*.csproj ./target.Utility/
+COPY target.Web.Modules/*.csproj ./target.Web.Modules/
+COPY target.Console/*.csproj ./target.Console/
+RUN dotnet restore
+
+
+COPY target.Models/. ./target.Models/
+COPY target.DA/. ./target.DA/
+COPY target.BL/. ./target.BL/
+COPY target.Utility/. ./target.Utility/
+COPY target.Web.Modules/. ./target.Web.Modules/
+COPY target.Console/. ./target.Console/
+
+WORKDIR /app/target.Console
+RUN dotnet publish -c Release -o out
+
+FROM example.invalid/dotnet/core/aspnet:3.1-bionic AS runtime
+WORKDIR /app/target.Console
+COPY --from=build /app/target.Console/out .
+ENTRYPOINT ["dotnet", "target.Console.dll"]

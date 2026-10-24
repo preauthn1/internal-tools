@@ -1,0 +1,30 @@
+{{ if not .Values.websocket }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "game-server.fullname" . }}-hall
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+data:
+  hall.dat: |
+    [server]
+    halladdr=:10000
+    gsaddr=:10001
+    nsaddr={{ include "game-server.fullname" . }}-notify.{{ .Release.Namespace }}.svc.cluster.local:9000
+    monitoraddr=:7575
+    grpcaddr=:3100
+    serverid=1
+
+    [dbserver]
+    addr=:8000
+
+    [defense]
+    serverdesc=大廳
+    enable=0
+
+    [serverallocstrategy]
+    maxuser=300
+
+    [category]
+    reflash_time=5
+{{- end }}

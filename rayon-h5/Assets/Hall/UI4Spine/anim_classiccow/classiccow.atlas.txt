@@ -1,0 +1,62 @@
+
+classiccow.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 62
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 197, 2
+  size: 90, 112
+  orig: 90, 112
+  offset: 0, 0
+  index: -1
+card
+  rotate: false
+  xy: 311, 17
+  size: 66, 75
+  orig: 66, 75
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 379, 21
+  size: 92, 103
+  orig: 92, 103
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 197, 94
+  size: 158, 160
+  orig: 158, 160
+  offset: 0, 0
+  index: -1
+star01
+  rotate: true
+  xy: 448, 151
+  size: 103, 53
+  orig: 103, 53
+  offset: 0, 0
+  index: -1
+star02
+  rotate: false
+  xy: 2, 2
+  size: 97, 58
+  orig: 97, 58
+  offset: 0, 0
+  index: -1
+star03
+  rotate: false
+  xy: 357, 126
+  size: 89, 128
+  orig: 89, 128
+  offset: 0, 0
+  index: -1

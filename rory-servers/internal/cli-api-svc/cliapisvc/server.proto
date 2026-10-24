@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package cliapisvc;
+
+import "common.proto";
+
+service Log {
+    rpc Tail (LogRequest) returns (stream LogResponse);
+}
+
+message LogRequest {
+    bool Verbose = 1;
+    bool Force = 2;
+    LogState Setting = 3;
+}
+
+message LogResponse {
+    bytes message = 1;
+}
+
+service CLI {
+    rpc ServerVer(Empty) returns (Version);
+    rpc ClientVer(Empty) returns (CVersion);
+    rpc SetClientVer(CVersion) returns (Empty);
+    rpc Shotdown(ShotdownRequest) returns (Empty);
+    rpc LogStatus(Empty) returns (LogState);
+    rpc SetLog(LogState) returns (Empty);
+    rpc GetPlayerSummary(Empty) returns (PlayerSummary);
+    rpc QueryPlayer(QueryCondition) returns (Player);
+    rpc KickPlayer(QueryCondition) returns (Empty);
+    rpc ListPlayer(QueryCondition) returns (PlayerList);
+    rpc GetRobotSummary(Empty) returns (RobotSummary);
+    rpc QueryRobot(QueryCondition) returns (Robot);
+    rpc ListRobot(QueryCondition) returns (RobotList);
+    rpc RoomInfo(Empty) returns (Room);
+    rpc TableInfo(QueryCondition) returns (Table);
+}
+
+message Version {
+    string Version = 1;
+    string BuildName = 2;
+    string BuildTime = 3;
+    string Hash = 4;
+}
+
+message CVersion {
+    string IOS = 1;
+    string Android = 2;
+}
+
+message ShotdownRequest {
+    string Message = 1;
+    string Delay = 2;
+}
+
+message LogState {
+    bool Enable = 1;
+    bool Lite = 2;
+    int32 Level = 3;
+}
+
+message PlayerSummary {
+    int64 PlayerCount = 1;
+    int64 UserCount = 2;
+    int64 GuestCount = 3;
+}
+
+message PlayerList {
+    repeated Player Players = 1;
+}
+
+message Player {
+    int32 PlayerID = 1;
+    ConnectionInfo Conn = 2;
+    string PlayerName = 3;
+    int64 PlayerScore = 4;
+    int64 PlayerUpdateScore = 5;
+    int64 PlayerBetAmount = 6;
+    int64 PlayerPayoutAmount = 7;
+    int64 PlayerFlowAmount = 8;
+    int64 PlayerTaxAmount = 9;
+    int32 Table = 10;
+    int32 Seat = 11;
+    string State = 12;
+    int32 Type = 13;
+}
+
+message ConnectionInfo {
+    string IP = 1;
+    int32 Port = 2;
+    string CreateTime = 3;
+}
+
+message RobotSummary {
+    int64 RobotCount = 1;
+    int64 GamingCount = 2;
+    int64 FreeCount = 3;
+}
+
+message RobotList {
+    repeated Robot Robots = 1;
+}
+
+message Robot {
+    int32 Level = 1;
+    Player Player = 2;
+}
+
+message Room {
+    int32 ID = 1;
+    string Name = 2;
+    int32 GameID = 3;
+    string GameName = 4;
+    int32 Flag = 5;
+    repeated Table Tables = 6;
+}
+
+message Table {
+    int32 ID = 1;
+    bool Gaming = 2;
+    repeated Player Players = 3;
+    string GameSummary = 4;
+}

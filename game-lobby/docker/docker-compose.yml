@@ -1,0 +1,115 @@
+name: developr-exam
+
+services:
+  app:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: exam-app
+    restart: unless-stopped
+    volumes:
+      - ../src:/var/www
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - exam
+
+  nginx:
+    image: nginx:alpine
+    container_name: exam-nginx
+    restart: unless-stopped
+    ports:
+      - "${NGINX_PORT:-8080}:80"
+    volumes:
+      - ../src:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+    networks:
+      - exam
+
+  mysql:
+    image: mysql:8.0
+    container_name: exam-mysql
+    restart: unless-stopped
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: [REDACTED]
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: [REDACTED]
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - exam
+
+  redis:
+    image: redis:7-alpine
+    container_name: exam-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - exam
+
+  scheduler:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: exam-scheduler
+    restart: unless-stopped
+    command: php artisan schedule:work
+    volumes:
+      - ../src:/var/www
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - exam
+
+  # 前端開發用 Vite dev server（HMR）。放在 dev profile，預設不啟動——
+  # 平時走 `npm run build` 的靜態資產；需要熱重載時才 `docker compose --profile dev up -d node`。
+  node:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: exam-node
+    profiles: ["dev"]
+    working_dir: /var/www
+    # 用 app image（含 node + php artisan），Wayfinder 產生路由時才有 artisan 可呼叫
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    ports:
+      - "${VITE_PORT:-5173}:5173"
+    volumes:
+      - ../src:/var/www
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - exam
+
+volumes:
+  mysql-data:
+  redis-data:
+
+networks:
+  exam:
+    driver: bridge

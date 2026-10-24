@@ -1,0 +1,111 @@
+
+win_lose_tie.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+b_dragon
+  rotate: false
+  xy: 2, 2
+  size: 378, 378
+  orig: 378, 378
+  offset: 0, 0
+  index: -1
+b_tie
+  rotate: false
+  xy: 712, 1189
+  size: 378, 378
+  orig: 378, 378
+  offset: 0, 0
+  index: -1
+b_tiger
+  rotate: false
+  xy: 527, 809
+  size: 378, 378
+  orig: 378, 378
+  offset: 0, 0
+  index: -1
+flash_all
+  rotate: false
+  xy: 2, 1341
+  size: 708, 672
+  orig: 708, 672
+  offset: 0, 0
+  index: -1
+outer_dragon
+  rotate: false
+  xy: 2, 382
+  size: 426, 432
+  orig: 426, 432
+  offset: 0, 0
+  index: -1
+outer_tie
+  rotate: false
+  xy: 1163, 1581
+  size: 426, 432
+  orig: 426, 432
+  offset: 0, 0
+  index: -1
+outer_tiger
+  rotate: false
+  xy: 1591, 1581
+  size: 426, 432
+  orig: 426, 432
+  offset: 0, 0
+  index: -1
+ray_all
+  rotate: false
+  xy: 712, 1569
+  size: 449, 444
+  orig: 449, 444
+  offset: 0, 0
+  index: -1
+shadow_all
+  rotate: false
+  xy: 2, 816
+  size: 523, 523
+  orig: 523, 523
+  offset: 0, 0
+  index: -1
+shine_dragon
+  rotate: false
+  xy: 1230, 1321
+  size: 260, 121
+  orig: 260, 121
+  offset: 0, 0
+  index: -1
+shine_tie
+  rotate: false
+  xy: 1757, 1459
+  size: 254, 120
+  orig: 254, 120
+  offset: 0, 0
+  index: -1
+shine_tiger
+  rotate: false
+  xy: 1496, 1458
+  size: 259, 121
+  orig: 259, 121
+  offset: 0, 0
+  index: -1
+text_dragon
+  rotate: true
+  xy: 907, 918
+  size: 269, 136
+  orig: 269, 136
+  offset: 0, 0
+  index: -1
+text_tie
+  rotate: false
+  xy: 1230, 1444
+  size: 264, 135
+  orig: 264, 135
+  offset: 0, 0
+  index: -1
+text_tiger
+  rotate: true
+  xy: 1092, 1299
+  size: 268, 136
+  orig: 268, 136
+  offset: 0, 0
+  index: -1

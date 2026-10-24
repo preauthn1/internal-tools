@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<style>
+
+    .myBtn {
+        display: inline-block;
+        width: 120px;
+        padding: 7px;
+        margin-right: 5px;
+    }
+</style>
+
+<div class="" style="text-align:left;max-width:1200px;margin:auto;padding:25px;">
+
+
+    <div>
+        <b>
+            <h3>
+                Excel轉換小工具 (to json nested)
+            </h3>
+        </b>
+
+        <div>
+            <a href="https://example.invalid/spreadsheets/d/1DQlCWspgpc_bv9IwFRs8NxYbcrOIlR7rbA3vrh6gyL4/edit#gid=0" target="_blank">
+                google sheet連結
+            </a>
+        </div>
+    </div>
+
+    <hr />
+
+
+    <div id="app">
+
+        <div>
+            <textarea id="myExcelText" placeholder="請將excel貼至此" style="width:80%;height:120px;"></textarea>
+        </div>
+
+
+        <button v-on:click="postExcel" style="width:150px;padding:5px;margin-top:15px;">送出</button>
+
+        <input type="hidden" id="testing-code" v-model="textForCopy">
+
+        <hr />
+
+        <div>
+
+            <button class="myBtn" v-for="(item, index) in langs" v-on:click="copyText(item)">{{item}}</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@section Scripts
+{
+    <script src="https://example.invalid/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src=" https://example.invalid/ajax/libs/vue/2.6.11/vue.js"></script>
+
+
+    <script>
+
+
+        //allLangs
+
+        $(function () {
+
+
+
+
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                textForCopy: 'tttest55777',
+                langs: [],
+                values: null,
+                message: 'Hello Vue!'
+            },
+            methods: {
+
+
+                copyText(key) {
+
+                    console.log(key);
+
+                    let myValue = this.values[key];
+                    let text = JSON.stringify(myValue , null,  "\r\n");
+                    this.textForCopy = text;
+
+
+                    Vue.nextTick(function () {
+
+                        let testingCodeToCopy = document.querySelector('#testing-code')
+                        testingCodeToCopy.setAttribute('type', 'text')    // 不是 hidden 才能複製
+                        testingCodeToCopy.select()
+
+                        try {
+                            var successful = document.execCommand('copy');                           
+                        } catch (err) {
+                            alert('Oops, unable to copy');
+                        }
+
+                        /* unselect the range */
+                        testingCodeToCopy.setAttribute('type', 'hidden')
+                        window.getSelection().removeAllRanges()
+
+
+
+                    })
+
+
+
+
+
+                },
+
+                postExcel() {
+
+                    let myText = $("#myExcelText").val();
+                    let $vue = this;
+
+                    $.ajax({
+                        cache: false,
+                        dataType: "json",
+                        data: myText,
+                        url: '/excel_to_json_nested',
+                        type: 'POST',
+                        success: function (res) {
+
+                            $vue.langs = res.allLangs;
+                            $vue.values = res.values;
+
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+
+
+                }
+            }
+        })
+
+
+    </script>
+
+}

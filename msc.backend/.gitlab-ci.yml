@@ -1,0 +1,204 @@
+variables:
+  SLACK_TOKEN: [REDACTED]"
+  SLACK_BOT_NAME: "gitlab_ci_機器人"  
+  SLACK_CHANNEL: "backend_jenkins"  
+  SLACK_CHANNEL_K8S: "backend_release_k8s"  
+  SLACK_API_URL: "https://example.invalid/api/chat.postMessage"  
+
+stages:
+  - build
+  - test
+  - build-docker
+  - deploy-to-enviroment
+  - send-slack-notify-when-fail
+
+#確定可以建置成功
+Test Build:
+  stage: build
+  tags:
+    - dotnet
+  only:
+    - master
+    - test_ci_script
+    - UAT
+    - QA
+  image: example.invalid/dotnet/core/sdk:3.1-bionic
+  artifacts:
+    name: release
+    expire_in: 60 min
+    paths:
+      - release
+  script:
+    - dotnet restore MSC.ALL.sln
+    - dotnet build MSC.ALL.sln
+    - mkdir -p ${CI_PROJECT_DIR}/release
+    - cd ${CI_PROJECT_DIR}/MSC.API.AdminSys
+    - dotnet publish -c Release -o ${CI_PROJECT_DIR}/release/MSC.API.AdminSys
+    - cd ${CI_PROJECT_DIR}/MSC.API.Point
+    - dotnet publish -c Release -o ${CI_PROJECT_DIR}/release/MSC.API.Point
+    - cd ${CI_PROJECT_DIR}/MSC.API.Vendor
+    - dotnet publish -c Release -o ${CI_PROJECT_DIR}/release/MSC.API.Vendor
+    - cd ${CI_PROJECT_DIR}/MSC.Web.AdminSys
+    - dotnet publish -c Release -o ${CI_PROJECT_DIR}/release/MSC.Web.AdminSys
+    - cd ${CI_PROJECT_DIR}/MSC.Web.Point
+    - dotnet publish -c Release -o ${CI_PROJECT_DIR}/release/MSC.Web.Point
+
+Test:
+  stage: test
+  tags:
+    - dotnet
+  only:
+    - master
+  image: example.invalid/dotnet/core/sdk:3.1-bionic
+  script:
+    - dotnet test MSC.Testing/MSC.Testing.csproj
+
+
+# build docker 共用設定 
+.build-docker:
+  stage: build-docker
+  dependencies:
+    - Test Build
+  tags:
+    - dotnet
+  image: docker:latest
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+  services:
+    - docker:18.09.7-dind
+  only:
+    - UAT
+    - QA
+    - master
+  before_script:
+    - docker info
+    - docker login -u "admin" -p "admin123" https://example.invalid
+  script:
+    - IMG_NAME=$(echo "${APP_NAME}" | tr '[:upper:]' '[:lower:]')
+    #- docker pull example.invalid/target/msc/${IMG_NAME}
+    - docker build -f DockerFiles/Dockerfile --build-arg APP_NAME=${APP_NAME} --build-arg SHA1=${CI_COMMIT_SHA:0:8} --build-arg PIPE_ID=${CI_PIPELINE_ID} -t example.invalid/msc/${IMG_NAME} .
+    - docker tag example.invalid/msc/${IMG_NAME} example.invalid/msc/${IMG_NAME}:${CI_PIPELINE_ID}
+    - docker push example.invalid/msc/${IMG_NAME}
+    - docker push example.invalid/msc/${IMG_NAME}:${CI_PIPELINE_ID}
+  when: manual
+
+#建置成docker_image
+API AdminSys Build:
+  extends: .build-docker
+  variables:
+    APP_NAME: MSC.API.AdminSys
+
+API Point Build:
+  extends: .build-docker
+  variables:
+    APP_NAME: MSC.API.Point
+
+API Vendor Build:
+  extends: .build-docker
+  variables:
+    APP_NAME: MSC.API.Vendor
+
+Web AdminSys Build:
+  extends: .build-docker
+  variables:
+    APP_NAME: MSC.Web.AdminSys
+
+Web Point Build:
+  extends: .build-docker
+  variables:
+    APP_NAME: MSC.Web.Point
+
+#觸發k8s部屬
+.deploy-to-enviroment:
+  stage: deploy-to-enviroment
+  image: alpine/helm
+  tags:
+    - dotnet
+  only:
+    - master   
+  script:
+    - echo "Deploy test start ..."
+    - helm upgrade msc-${APP_NAME} ./helm-charts/msc -f ./helm-charts/msc/${DEPLOY_VALUES_FILE} --install --namespace ${DEPLOY_NS} 
+      --set image.repository=${APP_IMAGE}
+      --set image.tag=${CI_PIPELINE_ID}
+      --set service.port=${APP_PORT}
+      --set app.name=${APP_NAME}
+    - echo "Deploy test completed!"
+
+DP-D API AdminSys:
+  needs:
+    - API AdminSys Build
+  dependencies:
+    - API AdminSys Build
+  extends: .deploy-to-enviroment
+  variables:
+    APP_NAME: api-adminsys
+    APP_IMAGE: example.invalid/msc/msc.api.adminsys
+    APP_PORT: 80
+    DEPLOY_NS: msc-dev
+    DEPLOY_VALUES_FILE: values-dev.yaml
+
+DP-D API Point:
+  needs:
+    - API Point Build
+  dependencies:
+    - API Point Build
+  extends: .deploy-to-enviroment
+  variables:
+    APP_NAME: api-point
+    APP_IMAGE: example.invalid/msc/msc.api.point
+    APP_PORT: 80
+    DEPLOY_NS: msc-dev
+    DEPLOY_VALUES_FILE: values-dev.yaml
+
+DP-D API Vendor:
+  needs:
+    - API Vendor Build
+  dependencies:
+    - API Vendor Build
+  extends: .deploy-to-enviroment
+  variables:
+    APP_NAME: api-vendor
+    APP_IMAGE: example.invalid/msc/msc.api.vendor
+    APP_PORT: 80
+    DEPLOY_NS: msc-dev
+    DEPLOY_VALUES_FILE: values-dev.yaml
+
+DP-D Web AdminSys:
+  needs:
+    - Web AdminSys Build
+  dependencies:
+    - Web AdminSys Build
+  extends: .deploy-to-enviroment
+  variables:
+    APP_NAME: web-adminsys
+    APP_IMAGE: example.invalid/msc/msc.web.adminsys
+    APP_PORT: 80
+    DEPLOY_NS: msc-dev
+    DEPLOY_VALUES_FILE: values-dev.yaml
+
+DP-D Web Point:
+  needs:
+    - Web Point Build
+  dependencies:
+    - Web Point Build
+  extends: .deploy-to-enviroment
+  variables:
+    APP_NAME: web-point
+    APP_IMAGE: example.invalid/msc/msc.web.point
+    APP_PORT: 80
+    DEPLOY_NS: msc-dev
+    DEPLOY_VALUES_FILE: values-dev.yaml
+           
+
+#若中途失敗，發送slack通知
+step-send-slack-notify:
+  stage: send-slack-notify-when-fail
+  tags:
+    - dotnet
+  script:  
+    - var_msg="pipeline 建置失敗 $CI_PROJECT_URL/pipelines/$CI_PIPELINE_ID ($CI_COMMIT_REF_NAME) " 
+    - curl -H "Content-Type:application/x-www-form-urlencoded" -X POST --data "token=[REDACTED]" "$SLACK_API_URL"  
+  when: on_failure    
+      
+    

@@ -1,0 +1,226 @@
+﻿
+
+<div id="process_info" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" v-if="detailInfo != null && detailInfo.stepRequestLink != null">
+            <div class="modal-header">
+
+
+                <h4 class="modal-title" id="myModalLabel">
+                    @t.Text(i18nKeys.Common_Button_DetailInfo)
+                </h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                <div class="clearboth"></div>
+              
+            </div>
+            <div class="modal-body">
+
+                <div style="text-align:center;">
+
+                    <h4 style="color:#666;">
+                        {{detailInfo.merchantRequestID}}
+                    </h4>
+
+                    <div style="color:#AAA;margin-bottom:25px;">
+                        @t.Text(i18nKeys.Common_Label_MerchantRequestID)
+                    </div>
+                </div>
+
+                <div class="wrap-flex">
+                    <div class="wrap-flex-card">
+                        <div class="content">
+                            <div class="border-card">
+                                <div class="info-card">
+                                    <div class="card-top-text">@t.Text(i18nKeys.Common_Label_Step_LinkRequest)</div>
+                                    <div class="card-content">  {{to_display_time_or_empty(detailInfo.stepRequestLink , 'lastTime')}}</div>
+                                    <div class="card-status-info">
+                                        <i class="pe-7s-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-flex-item-1">
+                        <div class="content">
+                            <i class="pe-7s-right-arrow"></i>
+                        </div>
+                    </div>
+                    <div :class="'wrap-flex-card ' + style_to_opcity50_when_null(detailInfo.stepCardConsume) ">
+                        <div class="content">
+                            <div class="border-card">
+                                <div class="info-card">
+                                    <div class="card-top-text">@t.Text(i18nKeys.Common_Label_Step_CompleteCardInput)</div>
+                                    <div class="card-content">  {{to_display_time_or_empty(detailInfo.stepCardConsume , 'lastTime')}}</div>
+                                    <div class="card-status-info">
+                                        <i v-if="!detailInfo.stepCardConsume" class="pe-7s-attention"></i>
+                                        <i v-if="detailInfo.stepCardConsume" class="pe-7s-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-flex-item-1">
+                        <div class="content">
+                            <i class="pe-7s-right-arrow"></i>
+                        </div>
+                    </div>
+                    <div :class="'wrap-flex-card ' + style_to_opcity50_when_null(detailInfo.stepCardConsume) ">
+                        <div class="content">
+                            <div class="border-card">
+                                <div class="info-card">
+                                    <div class="card-top-text">@t.Text(i18nKeys.Common_Label_Step_MerchantNotify)</div>
+                                    <div class="card-content">  {{to_display_time_or_empty(detailInfo.stepNotify , 'lastTime')}}</div>
+                                    <div class="card-status-info">
+
+
+                                        <div v-if="detailInfo.stepNotify">
+
+                                            <i v-if="detailInfo.stepNotify.isSuccess" class="pe-7s-check"></i>
+                                            <i v-if="!detailInfo.stepNotify.isSuccess" class="pe-7s-attention"></i>
+
+                                        </div>
+
+                                        <i v-if="!detailInfo.stepNotify" class="pe-7s-close-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                @*<div v-if="detailInfo.stepCardConsume && detailInfo.stepCardConsume != null">
+
+
+                    <div style="padding:0px 50px;margin-top:30px;color:#AAA;">
+
+
+                        <div>
+
+                            <div class="wrap-flex">
+
+                                <div class="flex-4">
+
+                                    <div class="">
+                                        輸入卡號額度
+                                    </div>
+
+                                    <div class="inputInfoText">
+                                        {{detailInfo.pointAmount}}
+                                    </div>
+                                </div>
+
+                                <div class="flex-4">
+
+                                    <div class="">
+                                        輸入卡號
+                                    </div>
+
+                                    <div class="inputInfoText">
+                                        {{detailInfo.cardNo}}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>*@
+
+
+
+                <div style="margin-top: 35px;padding:25px;">
+
+                   
+
+                    <div class="row form-info">
+
+
+                        <div class="col-md-6">
+                            <div>
+                                <label> @t.Text(i18nKeys.Common_Label_MerchantID)</label>
+                                {{detailInfo.merchantID}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div>
+                                <label> @t.Text(i18nKeys.Common_Label_Merchant)</label>
+                                {{detailInfo.merchantName}}
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div>
+                                <label> @t.Text(i18nKeys.Common_Label_MemberName)</label>
+                                {{detailInfo.memberCode}}
+                            </div>
+                        </div>
+                        <div class="col-md-6" v-if="detailInfo.stepCardConsume && detailInfo.stepCardConsume != null">
+
+                            <div>
+                                <label> @t.Text(i18nKeys.Common_Label_CardNo)</label>
+                                {{detailInfo.cardNo}}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" v-if="detailInfo.stepCardConsume && detailInfo.stepCardConsume != null">
+
+                            <div>
+                                <label> @t.Text(i18nKeys.Common_Label_Point)</label>
+                                {{detailInfo.pointAmount | toMoneyDisplayFormat}}
+                            </div>
+                        </div>
+
+
+
+                        <div class="clearboth"></div>
+
+                        <div class="col-md-12">
+
+                            <div>
+                                <label>返回網址</label>
+
+                                <div class="info-text-copy">
+                                    {{detailInfo.returnUrl}}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div>
+                                <label>回調網址</label>
+
+                                <div class="info-text-copy">
+                                    {{detailInfo.notifyUrl}}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="clearboth"></div>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"> @t.Text(i18nKeys.Common_Button_Close)</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+[package]
+name = "meetnote"
+version = "0.1.0"
+description = "會議錄音轉逐字稿與會議記錄"
+authors = ["user@example.invalid"]
+edition = "2024"
+
+# See more keys and their definitions at https://example.invalid/cargo/reference/manifest.html
+
+[lib]
+# The `_lib` suffix may seem redundant but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This seems to be only an issue on Windows, see https://example.invalid/rust-lang/cargo/issues/8519
+name = "meetnote_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "protocol-asset"] }
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+whisper-rs = "0.16"
+symphonia = { version = "0.6", features = ["all-codecs", "all-formats"] }
+rubato = "5"
+rusqlite = { version = "0.40.2", features = ["bundled"] }
+chrono = { version = "0.4.45", default-features = false, features = ["clock", "serde"] }
+tauri-plugin-dialog = "2"
+keyring = "4"
+cpal = "0.18.2"
+hound = "3"
+# Speaker embeddings (voice.rs); links a prebuilt static sherpa-onnx + onnxruntime, no dylibs to ship.
+sherpa-onnx = "1.13"
+futures-util = { version = "0.3.34", default-features = false }
+sha2 = "0.11.1"
+tokio = { version = "1.53.3", features = ["fs", "io-util", "time"] }
+reqwest = { version = "0.13", features = ["stream"] }
+
+
+# Read the optimization guideline for more details: https://example.invalid/concept/size/#cargo-configuration
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
+
+# whisper.cpp, the audio decoder and the resampler are far too slow unoptimized; keep only our own
+# crate in debug mode during development.
+[profile.dev.package."*"]
+opt-level = 3
+
+[dev-dependencies]
+tokio = { version = "1.53.3", features = ["macros", "rt"] }
+
+# GPU for whisper.cpp on Windows through Vulkan (works on NVIDIA, AMD and Intel). Needs the Vulkan SDK
+# (VULKAN_SDK set) at build time and a Vulkan driver at run time. Speed is measured in spike/FINDINGS.md.
+[target.'cfg(windows)'.dependencies]
+whisper-rs = { version = "0.16", features = ["vulkan"] }
+
+# Saving the minutes as PDF straight to a file (no print dialog), via WebKit's print operation.
+# Same versions Tauri's webview (wry) uses.
+[target.'cfg(target_os = "macos")'.dependencies]
+# Metal GPU for whisper.cpp is macOS only. Windows builds CPU-only for now; the GPU backend (CUDA or
+# Vulkan) is decided after measuring speed there (see app/WINDOWS.md item 3).
+whisper-rs = { version = "0.16", features = ["metal"] }
+objc2 = "0.6"
+objc2-foundation = { version = "0.3", features = ["NSDictionary", "NSString", "NSURL"] }
+objc2-app-kit = { version = "0.3", features = ["NSPrintInfo", "NSPrintOperation", "NSResponder", "NSView", "NSWindow"] }
+objc2-web-kit = { version = "0.3", features = ["WKWebView"] }

@@ -1,0 +1,359 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+
+    bool isViewLogPermission = PermissionHelper.PermissionExist(AdminPermissionTokenEnum.Record_CardConsumeMerchantNotifyQueue_ViewExternalLogs);
+    bool isManualNotifyPermission = PermissionHelper.PermissionExist(AdminPermissionTokenEnum.Record_CardConsumeMerchantNotifyQueue_ManualNotify);
+
+}
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+    </h4>
+
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+
+            <div class="col-md-3">
+
+                <label for="cardNo" class="">@t.Text(i18nKeys.Common_Label_CardNo)</label>
+                <input type="text" name="cardNo" id="cardNo" placeholder="@t.Text(i18nKeys.Common_Label_CardNo)" class="form-control" v-model="dataTable.searchForm.cardNo">
+
+            </div>
+
+
+            <div class="col-md-3">
+                <label for="cardNo" class="">  @t.Text(i18nKeys.Common_Label_MerchantRequestID)</label>
+                <input type="text" name="merchantRequestID" id="merchantRequestID" placeholder="@t.Text(i18nKeys.Common_Label_MerchantRequestID)" class="form-control" v-model="dataTable.searchForm.merchantRequestID">
+            </div>
+
+
+            <div class="col-md-3">
+                <label for="createtime" class="">@t.Text(i18nKeys.Common_Label_CreateTime)</label>
+                <input type="text" name="createtime" id="createtime" placeholder="@t.Text(i18nKeys.Common_Msg_FilterTimeRange)" class="form-control" v-model="dataTable.searchForm.createTime_displayText">
+            </div>
+
+
+            <div class="col-md-3">
+
+                @Html.Partial("_PartialQuickDatepicker")
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label for="" class="">@t.Text(i18nKeys.Common_Label_Merchant)</label>
+
+
+                <select class="form-control" v-model="dataTable.searchForm.merchantID">
+                    <option value="">@t.Text(i18nKeys.Common_Label_FilterAll)</option>
+                    <option v-for="(item , index) in dropdown.merchants" :value="item.value">
+                        {{item.text}}
+                    </option>
+                </select>
+
+            </div>
+
+
+
+            <div class="col-md-3">
+                <label for="cardNo" class="">  @t.Text(i18nKeys.Common_Label_SystemOrderNo)</label>
+                <input type="text" name="referenceOrderNo" id="referenceOrderNo" placeholder="@t.Text(i18nKeys.Common_Label_SystemOrderNo)" class="form-control" v-model="dataTable.searchForm.referenceOrderNo">
+            </div>
+
+            <div class="col-md-3">
+                <div class="search-btn-row">
+                    <button class="btn btn-alternate" v-on:click="getList(1)"> @t.Text(i18nKeys.Common_Button_Search)</button>
+                    <button class="btn btn-secondary" v-on:click="resetForm"> @t.Text(i18nKeys.Common_Button_Reset)</button>
+                </div>
+            </div>
+
+            <div style="clear:both;"></div>
+
+        </div>
+
+
+
+    </div>
+
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+
+    <div>
+        @Html.Partial("_MerchantRequestProcessInfo")
+    </div>
+
+
+    <div>
+        @Html.Partial("_ExternalApiRequestLog")
+    </div>
+
+
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+
+
+        $(function () {
+
+
+            $("#myModal").modal("show");
+
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+
+                external_logs: [],
+                detailInfo: {},
+                dataTable: {
+
+                    getData: function () {
+                        app.getList();
+                    },
+                    searchForm: {
+                        cardNo: '',
+                        referenceOrderNo: '',
+                        merchantID: '',
+                        memberCode: '',
+                        merchantRequestID: '',
+                        createTime_displayText: '',
+                        createTimeBegin: '',
+                        createTimeEnd: ''
+                    },
+                    pagination: {
+                        items : [],
+                        pageSize: 10,
+                        orderByColumn: "Id",
+                    },
+                    columns:
+                        [
+                            @*{
+                                text: "@t.Text(i18nKeys.Common_Label_SystemOrderNo)／@t.Text(i18nKeys.Common_Label_MerchantRequestID)", column: "referenceOrderNo", "html": function (row) {
+                                    var div = "";
+                                    div += String.format("<div class='color-g'><b>{0}</b></div>", row.referenceOrderNo);
+                                    div += String.format("<div>{0}</div>", row.merchantRequestID);
+
+                                    return div;
+                                }
+                            },*@
+
+                            { text: "@t.Text(i18nKeys.Common_Label_SystemOrderNo)", column: "referenceOrderNo" },
+                            { text: "@t.Text(i18nKeys.Common_Label_MerchantRequestID)", column: "merchantRequestID" },
+
+
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_CardNo)", column: "cardNo", "html":
+                                    function (row) {
+                                        let link = "/Card/List?cardNo=" + row.cardNo;
+                                        return row.cardNo;
+                                    }
+                            },
+                            { text: "@t.Text(i18nKeys.Common_Label_Merchant)", column: "merchantName" },
+                            { text: "@t.Text(i18nKeys.Common_Label_MemberName)", column: "memberCode", isPopupText: true },
+                            { text: "@t.Text(i18nKeys.Common_Label_Status)", column: "statusText", "html": function (row) { return String.format("<span class='notify_status_{0}'>{1}</span>", row.status, row.statusText); } },
+                            { text: "@t.Text(i18nKeys.Common_Label_RetryTimes)", column: "retryTimes" },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_CreateTime)／@t.Text(i18nKeys.Common_Label_UpdateTime)", column: "createTime", "html": function (row) {
+
+                                    var div = "";
+                                    div += String.format("<div>{0}</div>", format_helper.to_display_time(row.createTime));
+                                    div += String.format("<div>{0}</div>", format_helper.to_display_time(row.updateTime));
+
+                                    return div;
+                                }
+                            },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_OperateFunction)", column: "text", width: "15%", templates:
+                                    [
+                                        constant.template.detail,
+                                        '@(isManualNotifyPermission ? "triggerNotify" : "")',
+                                        '@(isViewLogPermission ? "externalLogs" : "")'
+                                    ]
+                            },
+                        ]
+                }
+
+            },
+
+            methods: {
+
+
+                click_dataTable(btn_type, row_data) {
+
+
+                    switch (btn_type) {
+                        case constant.template.detail:
+                            this.showDetail(row_data);
+                            break;
+
+                        case constant.template.triggerNotify:
+                            this.triggetNotify(row_data);
+                            break;
+
+                        case constant.template.externalLogs:
+                            this.showExternalLogs(row_data);
+                            break;
+
+                        default:
+                            alert('undefined! ' + btn_type);
+                    }
+
+                },
+
+
+                triggetNotify(row_data) {
+
+                    if (confirm("是否对单号【" + row_data.referenceOrderNo + "】重新发出通知")) {
+
+                        var postBody =
+                        {
+                            merchantID: row_data.merchantID,
+                            merchantRequestID: row_data.merchantRequestID
+                        };
+
+                        ajaxHelper.post(window.API_DOMAIN + '/trigger/success-notify', postBody)
+                            .then((res) => {
+                                alert('通知已送出!');
+                                console.log(vm.data);
+                            })
+                            .catch((error) => {
+
+                                alert(error.data.message);
+                                console.error(error)
+                            })
+                            .finally(() => {
+
+                            });
+                    }
+
+                },
+
+
+                showExternalLogs(row_data) {
+
+                    let vm = this;
+
+                    var param = String.format("group={0}", row_data.referenceOrderNo);
+                    ajaxHelper.get(window.API_DOMAIN + '/records/external-request-logs?' + param)
+                        .then((res) => {
+
+                            vm.external_logs = res.data.data.items;
+
+                        })
+                        .catch((error) => { console.log(error) })
+                        .finally(() => { /* 不論失敗成功皆會執行 */ });
+
+
+                    console.log(vm.external_logs);
+                    $("#ex_logs_modal").modal("show");
+                },
+
+
+
+                showDetail(row_data) {
+
+                    console.log(row_data);
+
+                    this.getDetail(row_data);
+                    $("#process_info").modal("show");
+                },
+
+
+                opacityClassStyle(item) {
+
+                    if (!item || item == null) {
+                        return " opcity50 ";
+                    };
+
+                    return "";
+                },
+
+
+                getDetail(row) {
+
+                    let vm = this;
+
+                    var param = String.format("MerchantRequestID={0}&MerchantID={1}", row.merchantRequestID, row.merchantID);
+                    ajaxHelper.get(window.API_DOMAIN + '/records/process-detail?' + param)
+                        .then((res) => {
+
+                            vm.detailInfo = res.data.data;
+
+                        })
+                        .catch((error) => { console.log(error) })
+                        .finally(() => { /* 不論失敗成功皆會執行 */ });
+
+                },
+
+
+
+                getList(targetPageIndex) {
+
+                    let vm = this;
+
+                    //如果有指定頁數
+                    if (targetPageIndex) {
+                        this.dataTable.pagination.pageIndex = 1;
+                    }
+
+                    var queryString = form_helper.getSearchFormQueryString(this.dataTable);
+
+                    ajaxHelper.get(window.API_DOMAIN + '/records/merchant-notify-queue' + queryString)
+                        .then((res) => {
+                            vm.dataTable.pagination = res.data.data;
+                        })
+                        .catch((error) => { console.log(error) })
+                        .finally(() => { /* 不論失敗成功皆會執行 */ });
+
+                }
+
+            },
+
+            mounted() {
+
+                this.getDropdownMerchants();
+
+                let vm = this;
+
+                date_picker.datetime_range_empty(
+                    {
+                        vue_instance: vm.dataTable.searchForm,
+                        element_ID: "#createtime",
+                        vue_prop_begin: "createTimeBegin",
+                        vue_prop_end: "createTimeEnd",
+                        vue_prop_text: "createTime_displayText"
+                    });
+
+                this.dataTable.searchForm.createTimeBegin = "@AdminSysHelper.GetRecently7Days().Begin";
+                this.dataTable.searchForm.createTimeEnd = "@AdminSysHelper.GetRecently7Days().End";
+                this.dataTable.searchForm.createTime_displayText = this.dataTable.searchForm.createTimeBegin + " - " + this.dataTable.searchForm.createTimeEnd;
+
+                this.getList();
+
+            }
+        })
+
+
+    </script>
+
+}

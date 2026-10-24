@@ -1,0 +1,65 @@
+﻿@using Lck.GoogleApi;
+
+@model List<ExcelConvertToClass>
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <div>
+        using System;
+    </div>
+
+    <div>
+        namespace target.Models.CultureText
+    </div>
+
+
+    <div>
+        {
+    </div>
+
+
+    <div style="padding-left:20px;">
+
+
+
+        @foreach (var item in Model)
+        {
+
+            <div>
+
+
+                public class @item.ClassName
+
+
+            </div>
+
+
+            <div>
+                {
+
+                @foreach (var prop in item.PropertyValues)
+                {
+                    <div style="padding-left:20px;">
+
+                        public const string @prop.PropertyText = "@prop.PropertyValue";
+
+                    </div>
+                }
+
+            </div>
+
+
+            <div>
+                }
+            </div>
+        }
+
+
+    </div>
+    <div>
+        }
+    </div>
+
+
+}

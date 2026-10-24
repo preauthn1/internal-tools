@@ -1,0 +1,225 @@
+﻿/*
+ * Tencent is pleased to support the open source community by making xLua available.
+ * Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://example.invalid/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+*/
+
+//配置的详细介绍请看Doc下《XLua的配置.doc》
+using Spine;
+using Spine.Unity;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class CustomGenConfig
+{
+    [XLua.LuaCallCSharp]
+    public static List<System.Type> LuaCallCSharp = new List<System.Type>()
+    {
+                typeof(System.Action),
+                typeof(System.Action<bool>),
+                typeof(System.Action<float>),
+                typeof(System.Action<int,int,byte[]>),
+                typeof(System.Action<ConnectState>),
+                typeof(System.Action<string>),
+                typeof(System.ComponentModel.Component),
+                typeof(System.Guid),
+                typeof(System.Object),
+                typeof(System.Reflection.Missing),
+                typeof(System.Type),
+
+                typeof(UnityEngine.Animation),
+                typeof(UnityEngine.AnimationClip),
+                typeof(UnityEngine.AnimationCurve),
+                typeof(UnityEngine.Animator),
+                typeof(UnityEngine.Application),
+                typeof(UnityEngine.AsyncOperation),
+                typeof(UnityEngine.AudioClip),
+                typeof(UnityEngine.AudioSource),
+                typeof(UnityEngine.Behaviour),
+                typeof(UnityEngine.Bounds),
+                typeof(UnityEngine.Camera),
+                typeof(UnityEngine.Camera.MonoOrStereoscopicEye),
+                typeof(UnityEngine.Camera.StereoscopicEye),
+                typeof(UnityEngine.Color),
+                typeof(UnityEngine.Component),
+                typeof(UnityEngine.Debug),
+                typeof(UnityEngine.Events.UnityEvent),
+                typeof(UnityEngine.Events.UnityEventBase),
+                typeof(UnityEngine.EventSystems.UIBehaviour),
+                typeof(UnityEngine.GameObject),
+                typeof(UnityEngine.Input),
+                typeof(UnityEngine.Keyframe),
+                typeof(UnityEngine.LineRenderer),
+                typeof(UnityEngine.Mathf),
+                typeof(UnityEngine.MonoBehaviour),
+                typeof(UnityEngine.Object),
+                typeof(UnityEngine.ParticleSystem),
+                typeof(UnityEngine.PlayerPrefs),
+                typeof(UnityEngine.Quaternion),
+                typeof(UnityEngine.Random),
+                typeof(UnityEngine.Ray),
+                typeof(UnityEngine.Ray2D),
+                typeof(UnityEngine.RaycastHit2D),
+                typeof(UnityEngine.Rect),
+                typeof(UnityEngine.RectTransform),
+                typeof(UnityEngine.RectTransform.Axis),
+                typeof(UnityEngine.RectTransform.Edge),
+                typeof(UnityEngine.Renderer),
+                typeof(UnityEngine.Resources),
+                typeof(UnityEngine.RuntimePlatform),
+                typeof(UnityEngine.Screen),
+                typeof(UnityEngine.SceneManagement.SceneManager),
+                typeof(UnityEngine.SkinnedMeshRenderer),
+                typeof(UnityEngine.SystemInfo),
+                typeof(UnityEngine.TextAsset),
+                typeof(UnityEngine.TextMesh),
+                typeof(UnityEngine.Time),
+                typeof(UnityEngine.Transform),
+                typeof(UnityEngine.UI.Button),
+                typeof(UnityEngine.UI.Button.ButtonClickedEvent),
+                typeof(UnityEngine.UI.Graphic),
+                typeof(UnityEngine.UI.Image),
+                typeof(UnityEngine.UI.Image.FillMethod),
+                typeof(UnityEngine.UI.Image.Origin180),
+                typeof(UnityEngine.UI.Image.Origin360),
+                typeof(UnityEngine.UI.Image.Origin90),
+                typeof(UnityEngine.UI.Image.OriginHorizontal),
+                typeof(UnityEngine.UI.Image.OriginVertical),
+                typeof(UnityEngine.UI.Image.Type),
+                typeof(UnityEngine.UI.LayoutUtility),
+                typeof(UnityEngine.UI.MaskableGraphic),
+                typeof(UnityEngine.UI.MaskableGraphic.CullStateChangedEvent),
+                typeof(UnityEngine.UI.Selectable),
+                typeof(UnityEngine.UI.Selectable.Transition),
+                typeof(UnityEngine.UI.SpriteState),
+                typeof(UnityEngine.UI.Text),
+                typeof(UnityEngine.UI.Dropdown),
+                typeof(UnityEngine.UI.Dropdown.OptionData),
+                typeof(UnityEngine.Networking.DownloadHandlerAudioClip),
+                typeof(UnityEngine.Networking.DownloadHandlerBuffer),
+                typeof(UnityEngine.Networking.DownloadHandlerTexture),
+
+                typeof(UnityEngine.Vector2),
+                typeof(UnityEngine.Vector3),
+                typeof(UnityEngine.Vector4),
+                typeof(UnityEngine.WWW),
+
+                typeof(AppDefine),
+                typeof(AppManager),
+                typeof(AssetBundleManager),
+                typeof(DOTweenExtend),
+                typeof(ExtendDefine),
+                typeof(GameManager),
+                typeof(HeartBeatManager),
+                typeof(HotUpdate.HotUpdateManager),
+                typeof(List<int>),
+                typeof(LoadingDataUIData),
+                typeof(LuaBehaviour),
+                typeof(FrameWork.ObjectPoolManager),
+                typeof(Main),
+                typeof(MessageBoxResult),
+                typeof(MessageBoxStyle),
+                typeof(NetworkManager),
+                typeof(PrefsUtility),
+                typeof(ScrollPage),
+                typeof(Singleton<AppManager>),
+                typeof(Singleton<AssetBundleManager>),
+                typeof(Singleton<GameManager>),
+                typeof(Singleton<HeartBeatManager>),
+                typeof(Singleton<HotUpdate.HotUpdateManager>),
+                typeof(Singleton<NetworkManager>),
+                typeof(Singleton<SoundManager>),
+                typeof(Singleton<TimeManager>),
+                typeof(Singleton<UISpriteManager>),
+                typeof(SocketClientMobile),
+                typeof(FrameWork.Random),
+                typeof(ConnectState),
+                typeof(SoundManager),
+                typeof(TimeManager),
+                typeof(UIBubblePrompt),
+                typeof(UILoading),
+                typeof(UILoadingData),
+                typeof(UIMessageBox),
+                typeof(UINetworkMessage),
+                typeof(UISpriteManager),
+                typeof(UIUpdateGame),
+                typeof(Utility),
+                typeof(WindowBase),
+                typeof(LuaCoroutine),
+                typeof(WindowManager),
+                typeof(WindowManager.WindowPool),
+                typeof(WindowNode),
+                typeof(WindowNodeInitParam),
+                typeof(SkeletonGraphic),
+                typeof(SkeletonData),
+                typeof(Skeleton),
+                typeof(Spine.AnimationState),
+
+                 //MOGEN
+                typeof(Dictionary<string, GameObject>),
+                typeof(List<int>),
+
+            };
+
+    //C#静态调用Lua的配置（包括事件的原型），仅可以配delegate，interface
+    [XLua.CSharpCallLua]
+    public static List<System.Type> CSharpCallLua = new List<System.Type>() {
+                typeof(System.Action),
+                typeof(System.Func<double, double, double>),
+                typeof(System.Action<string>),
+                typeof(System.Action<object>),
+                typeof(System.Action<bool>),
+                typeof(System.Action<double>),
+                typeof(System.Action<float>),
+                typeof(UnityEngine.Events.UnityAction),
+                typeof(UnityEngine.Events.UnityAction<string>),
+                typeof(UnityEngine.Events.UnityAction<float>),
+                typeof(UnityEngine.Events.UnityAction<bool>),
+                typeof(System.Collections.IEnumerator),
+                typeof(System.Action<Collision2D>),
+                typeof(System.Action<Collider2D>),
+                typeof(System.Action<WindowNode>),
+                typeof(System.Action<UnityEngine.AudioClip, string>),
+                typeof(System.Action<int, int>),
+                typeof(System.Action<int>),
+                typeof(System.Action<int,int, byte[]>),
+                typeof(System.Action<int,string, bool>),
+                typeof(System.Action<int,string, bool,int>),
+                typeof(UnityEngine.GameObject),
+                typeof(System.Action<MessageBoxResult>),
+                typeof(System.Func<NetMessage,bool>),
+                typeof(System.Func<bool>),
+            };
+
+    //黑名单
+    [XLua.BlackList]
+    public static List<List<string>> BlackList = new List<List<string>>()  {
+                new List<string>(){"UnityEngine.WWW", "movie"},
+                new List<string>(){"UnityEngine.Texture2D", "alphaIsTransparency"},
+                new List<string>(){"UnityEngine.Security", "GetChainOfTrustValue"},
+                new List<string>(){"UnityEngine.CanvasRenderer", "onRequestRebuild"},
+
+                new List<string>(){ "UnityEngine.Input", "IsJoystickPreconfigured", "System.String"},
+                new List<string>(){ "UnityEngine.UI.Graphic", "OnRebuildRequested"},
+                new List<string>(){ "UnityEngine.UI.Text", "OnRebuildRequested"},
+
+                new List<string>(){"UnityEngine.Light", "areaSize"},
+                new List<string>(){"UnityEngine.AnimatorOverrideController", "PerformOverrideClipListCleanup"},
+    #if !UNITY_WEBPLAYER
+                new List<string>(){"UnityEngine.Application", "ExternalEval"},
+    #endif
+                new List<string>(){"UnityEngine.GameObject", "networkView"}, //4.6.2 not support
+                new List<string>(){"UnityEngine.Component", "networkView"},  //4.6.2 not support
+                new List<string>(){"example.invalid.FileInfo", "GetAccessControl", "System.Security.AccessControl.AccessControlSections"},
+                new List<string>(){"example.invalid.FileInfo", "SetAccessControl", "System.Security.AccessControl.FileSecurity"},
+                new List<string>(){"example.invalid.DirectoryInfo", "GetAccessControl", "System.Security.AccessControl.AccessControlSections"},
+                new List<string>(){"example.invalid.DirectoryInfo", "SetAccessControl", "System.Security.AccessControl.DirectorySecurity"},
+                new List<string>(){"example.invalid.DirectoryInfo", "CreateSubdirectory", "System.String", "System.Security.AccessControl.DirectorySecurity"},
+                new List<string>(){"example.invalid.DirectoryInfo", "Create", "System.Security.AccessControl.DirectorySecurity"},
+                new List<string>(){"UnityEngine.MonoBehaviour", "runInEditMode"},
+                new List<string>(){"System.Type", "IsSZArray"},
+            };
+}
+

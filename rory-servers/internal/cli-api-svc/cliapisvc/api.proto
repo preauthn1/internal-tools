@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cliapisvc;
+
+import "common.proto";
+
+service APIService {
+    rpc Status (Empty) returns (APIStatus);
+    rpc Output (Empty) returns (Empty);
+}
+
+message APIStatus {
+    string IPOS = 1;
+    string Avg = 2;
+    int32 Size = 3;
+    string Min = 4;
+    string Max = 5;
+    bool Debug = 6;
+}

@@ -1,0 +1,19 @@
+FROM example.invalid/dotnet/core/aspnet:3.1 AS runtime
+ARG APP_NAME
+ARG SHA1
+ARG PIPE_ID
+
+ENV APP_NAME ${APP_NAME}
+ENV Git_SHA1 ${SHA1}
+ENV Pipeline_ID ${PIPE_ID}
+
+EXPOSE 3107/tcp
+
+RUN apt-get update;
+RUN apt-get install libfontconfig1 -y
+RUN apt-get install libgdiplus -y
+
+WORKDIR /app
+COPY release/${APP_NAME} .
+
+CMD ["bash", "-c", "dotnet ${APP_NAME}.dll"]

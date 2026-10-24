@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\dhzw.exe analysis --proto D:\Project\777Project\GameServerConfig\slotconfig\protodata -c D:\Project\777Project\GameServerConfig\slotconfig\dhzw_1\config -r -t 1000000

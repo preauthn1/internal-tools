@@ -1,0 +1,29 @@
+#執行環境 standard 只有 'nodejs10' & 'nodejs12' 可以選
+  runtime: nodejs12
+ 
+  #每個instance的類別 各類的差別請參考圖2
+  instance_class: F2
+ 
+  #這個設定要參考 圖2 的 Supported Scaling Types 來做設定
+  #不過大致上可以分 F開頭的 用 automatic scaling
+  #B開頭的可以用 manual_scaling & basic_scaling
+  #max_instances 可以設定最大的instance數量
+  automatic_scaling:
+    max_instances: 5
+ 
+  #這裡可以設定如何處理 url pattern
+  #App Engine 可以根據不同的 pattern來執行不同的 application
+  #當然還有靜態的檔案 ((CSS 圖片 JavaScript之類的
+  #我就不解釋這部份了 文件裡面都有寫
+  #附上網址  https://example.invalid/appengine/docs/standard/nodejs/config/appref?hl=zh_TW
+  handlers:
+   - url: /
+     static_files: build/index.html
+     upload: build/index.html
+ 
+   - url: /(.*)
+     static_files: build/\1
+     upload: build/(.*)
+ 
+  #進入點  可以說是佈署完要啟動的 command
+  entrypoint: "npm run remote:start"

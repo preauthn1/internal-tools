@@ -1,0 +1,201 @@
+﻿@{
+    ViewData["Title"] = "內部小工具";
+}
+
+
+<div id="app">
+    <h4>
+        外部連結
+    </h4>
+
+
+    <hr />
+
+
+    <div>
+
+        <h5>
+            一鍵按鈕
+        </h5>
+
+
+        <button class="btn btn-success" v-on:click="syncAllPermission">
+            同步權限(API需更新程式)
+        </button>
+
+        <button class="btn btn-primary" v-on:click="forceLogoutAll">
+            強制登出所有帳號
+        </button>
+
+        <button class="btn btn-red2" v-on:click="removeAllCache">
+            清除所有cache
+        </button>
+
+        <button class="btn btn-secondary" v-on:click="removeIPForbiddenCache">
+            清除Cache(Ip被禁止)
+        </button>
+    </div>
+
+
+
+    <div style="margin-top:35px;">
+
+        <h5>Debug資訊</h5>
+
+        <div>
+            @RuntimeHelper.MyVersion
+        </div>
+    </div>
+
+
+    <div style="margin-top:35px;">
+
+        <h5>
+            Excel相關
+        </h5>
+
+        <div style="margin-top:7px">
+            <a target="_blank" href="https://example.invalid/spreadsheets/d/1VON95mqmCQGum9FeO9qwRvv7EbdR9sNy0CVnc0e9mvg/edit?usp=sharing">GoogleSheet多語系管理</a>
+        </div>
+
+        <div style="margin-top:7px">
+            <a target="_blank" href="/CultureTextConvert/Culture_To_ExcelForamt">產生excel格式提供複製</a>
+        </div>
+
+        <div style="margin-top:7px">
+            <a target="_blank" href="/CultureTextConvert/Culture_To_Class">產生class複製到版控上</a>
+        </div>
+
+    </div>
+
+
+    <div style="margin-top:35px;">
+
+        <h5>
+            其他
+        </h5>
+
+
+        <div style="margin-top:7px">
+            <a target="_blank" href="/EnumsHelper/ConvertToExcelFormat?enumName=">enums轉成excel</a>
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+@section Scripts{
+
+
+    <script>
+
+        $(function () {
+
+
+        })
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+              
+            },
+
+            methods: {                             
+
+                syncAllPermission(targetPageIndex) {                 
+
+                    let url = window.API_DOMAIN + '/users/role/auto-assign-permissions';
+                    ajaxHelper.post(url)
+                        .then((res) => {
+                            if (res.data.code == 0)
+                            {
+                                alert('success');
+                            }
+                        })
+                        .catch((error) => {
+                            alert('似乎失敗出現錯誤了');
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+
+                },
+
+
+                forceLogoutAll() {
+
+                    let url = window.API_DOMAIN + '/auth/force-logout-all';
+                    ajaxHelper.post(url)
+                        .then((res) => {
+                            if (res.data.code == 0) {
+                                alert('success');
+                            }
+                        })
+                        .catch((error) => {
+                            alert('似乎失敗出現錯誤了');
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                },
+
+
+                removeAllCache() {
+
+                    let url = window.API_DOMAIN + '/internal/cache-flush-all';
+                    ajaxHelper.post(url)
+                        .then((res) => {
+                            if (res.data.code == 0) {
+                                alert('success');
+                            }
+                        })
+                        .catch((error) => {
+
+                            alert('似乎失敗出現錯誤了');
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                },
+
+                removeIPForbiddenCache() {
+
+                    let url = window.API_DOMAIN + '/internal/cache-remove-ipForbidden';
+                    ajaxHelper.post(url)
+                        .then((res) => {
+                            if (res.data.code == 0) {
+                                alert('success');
+                            }
+                        })
+                        .catch((error) => {
+
+                            alert('似乎失敗出現錯誤了');
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                }
+            },
+
+
+            mounted() {
+
+
+            }
+        })
+
+
+    </script>
+
+}

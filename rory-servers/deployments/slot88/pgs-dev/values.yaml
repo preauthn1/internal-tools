@@ -1,0 +1,26 @@
+forward: 
+  port: 10090
+  scheme: ws
+  auth:
+    endpoint: http://example.invalid/third-party/slot88/md5
+    cer: 851b-222e5f24024b
+  logger:
+    level: debug
+  money:
+    transfor: dollar  # score/dollar (default: score)
+  ingress:
+    enabled: true
+    annotations:
+      example.invalid/ingress.class: nginx
+      example.invalid/proxy-body-size: "0"
+      example.invalid/ssl-redirect: "false"
+      # example.invalid/ingress.class: nginx
+      # example.invalid/tls-acme: "true"
+    hosts:
+      - host: example.invalid
+        paths: [/]
+    tls: 
+      - secretName: docker-registry-tls-certificate
+        hosts:
+          - example.invalid
+

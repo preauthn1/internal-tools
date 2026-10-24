@@ -1,0 +1,74 @@
+{
+  "gitlab_url": "http://example.invalid:1688",
+  "token_env": "GITLAB_BOT_TOKEN",
+  "token_file": "~/.config/gitlab-issue-loop/token",
+  "bot_username": "rory-ai",
+  "git_name": "Rory 的 AI 分身",
+  "git_email": "user@example.invalid",
+  "ssh_key": "~/.ssh/aichatbot_bot",
+  "model": "opus",
+  "max_fix_rounds": 2,
+  "max_turns": 300,
+  "agent_timeout": 3600,
+  "request_review_from_author": true,
+  "projects": [
+    {
+      "path": "Rory/aichatbot",
+      "ssh_url": "ssh://user@example.invalid:1022/Rory/aichatbot.git",
+      "test_cmd": "python3 eval/verify.py --checks-only",
+      "test_timeout": 1200,
+      "agent_bash": [
+        "Bash(swiftc:*)",
+        "Bash(swift eval/:*)",
+        "Bash(python3 eval/check_overlap.py:*)",
+        "Bash(python3 eval/run_flows.py:*)",
+        "Bash(BOT_INTENT_EVAL=*)",
+        "Bash(BOT_TESTSET=*)",
+        "Bash(swift build:*)",
+        "Bash(go:*)",
+        "Bash(gofmt:*)",
+        "Bash(ls:*)",
+        "Bash(cat:*)",
+        "Bash(head:*)",
+        "Bash(tail:*)",
+        "Bash(wc:*)",
+        "Bash(which:*)",
+        "Bash(mkdir:*)",
+        "Bash(sed:*)",
+        "Bash(swift run:*)",
+        "Bash(swift test:*)",
+        "Bash(docker:*)",
+        "Bash(npx @devcontainers/cli:*)",
+        "Bash(GOTOOLCHAIN=*)",
+        "Bash(BOT_*)",
+        "Bash(NO_EXAMPLES=*)",
+        "Bash(.build/*)",
+        "Bash(./.build/*)",
+        "Bash(pnpm:*)",
+        "Bash(corepack:*)",
+        "Bash(COREPACK_ENABLE_DOWNLOAD_PROMPT=*)",
+        "Bash(python3 eval/verify.py:*)",
+        "Bash(cd:*)",
+        "Bash(grep:*)"
+      ],
+      "deny_tools_extra": [
+        "Edit(eval/run_flows.py)",
+        "Edit(loop/**)",
+        "Read(eval/holdout/**)",
+        "Edit(eval/holdout/**)",
+        "Bash(python3 eval/verify.py --holdout:*)",
+        "Read(~/.config/gitlab-issue-loop/**)",
+        "Read(//Users/*/.config/gitlab-issue-loop/**)"
+      ]
+    }
+  ],
+  "notify": {
+    "telegram_token_file": "~/.config/gitlab-issue-loop/telegram-token",
+    "chat_id": "<你的 Telegram chat id>"
+  },
+  "watchdog": {
+    "urls": {
+      "model-server": "http://0.0.0.0:8765/version"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+import "base.proto";
+
+// Module 模組設定
+message Module {
+    // 流水號
+    int32 ID = 1;
+    
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 牌型機率表群組ID
+    int32 ResultProbGroupID = 3;
+
+    // 遊戲類型
+    Scenario Type = 4;
+
+    // 數量
+    int32 Count = 5;
+
+    // 消耗
+    int32 Cost = 6;
+}

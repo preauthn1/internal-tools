@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+// ResultType 牌型
+enum ResultType {
+    // Empty
+    Empty = 0;
+
+    // 沒有中獎
+    None = 1;
+
+    // 純槓
+    FeatureNone = 2;
+
+    // JAC槓
+    JACNone = 3;
+
+    // 藍7連線
+    BlueSevenLink = 10;
+
+    // 紅7連線
+    RedSevenLink = 11;
+
+    // Bar連線
+    BarLink = 12;
+
+    // 銅鐘連線
+    BellLink = 13;
+
+    // 西瓜連線
+    WaterMelonLink = 14;
+
+    // 櫻桃連線
+    BerryLink = 15;
+
+    // Replay連線
+    ReplayLink = 16;
+    
+    // 雙7(藍7紅7混合)連線
+    DoubleSevenLink = 17;
+
+    // 藍7 前兩格連線，第三格出現但沒連線
+    BlueSevenMiss = 20;
+
+    // 紅7 前兩格連線，第三格出現但沒連線
+    RedSevenMiss = 21;
+
+    // Bar 前兩格連線，第三格出現但沒連線
+    BarMiss = 22;
+
+    // 銅鐘 前兩格連線，第三格出現但沒連線
+    BellMiss = 23;
+
+    // 西瓜 前兩格連線，第三格出現但沒連線
+    WaterMelonMiss = 24;
+
+    // 櫻桃 前兩格連線，第三格出現但沒連線
+    BerryMiss = 25;
+
+    // Replay 前兩格連線，第三格出現但沒連線
+    ReplayMiss = 26;
+
+    // 雙7(藍7紅7混合) 前兩格連線，第三格出現但沒連線
+    DoubleSevenMiss = 27;
+
+    // 需要解除RT 骰出後要依照當前大獎是 RB / BB，對應到 ReleaseRTonBB / ReleaseRTonRB
+    ReleaseRT = 100;
+
+    // 需要解除RT 當前大獎為BB
+    ReleaseRTonBB = 101;
+
+    // 需要解除RT 當前大獎為RB
+    ReleaseRTonRB = 102;
+
+    // Bonus確定
+    BonusSure = 200;
+
+    // 櫻桃出現在左邊任意位置
+    BerryLeftAny = 10000;
+}
+
+// Scenario 情境
+enum Scenario {
+    // Normal Game
+    NG = 0;
+
+    // Regular Bonus
+    RB = 1;
+
+    // Big Bonus
+    BB = 2;
+
+    // JAC
+    JAC = 3;
+
+    // ALL Scenario
+    ALL = 4;
+}
+
+// ModeType 模式類型
+enum ModeType {
+    // 未指定
+    Unassigned = 0;
+
+    // A模式
+    A = 1;
+    
+    // B模式
+    B = 2;
+
+    // 天國模式
+    Heaven = 3;
+}
+
+// Symbol 符號
+enum Symbol {
+    // 藍7 p1
+    BlueSeven = 0;
+
+    // 紅7 p2
+    RedSeven = 1;
+
+    // Bar p3
+    Bar = 2;
+
+    // 銅鐘 p4
+    Bell = 3;
+
+    // 西瓜 p5
+    WaterMelon = 4;
+
+    // 櫻桃 p6
+    Berry = 5;
+
+    // Replay p7
+    Replay = 6;
+}

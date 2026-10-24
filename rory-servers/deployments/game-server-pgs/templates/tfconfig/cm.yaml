@@ -1,0 +1,24 @@
+{{- $fullname := include "game-server.fullname" . }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullname }}-tfconfig
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+data:
+  tfconfig.dat: |
+    [tfconfig]
+    port=8080
+    statusqueryip=0.0.0.0,0.0.0.0,*,
+    submitcheckcode=abcdef
+  portrouter.xml: |
+    <?xml version="1.0" encoding="utf-8"?>
+    <items>
+      <item key="10000" value="{{ $fullname }}-hall.{{ .Release.Namespace }}.svc.cluster.local:10000" />
+      {{ $release := .Release }}
+      {{- range $name, $game := .Values.game }}
+      {{- range $i, $room := .room }}
+      <item key="{{ int .serverid }}" value="{{ $fullname }}-game-{{ $name }}-{{ int $room.serverid }}.{{ $release.Namespace }}.svc.cluster.local:3000" />
+      {{- end }}
+      {{- end }}
+    </items>

@@ -1,0 +1,13 @@
+HTTrack3.49-2+htsswf+htsjava launched on Tue, 10 Nov 2020 10:25:44 at https://example.invalid/chess.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -example.invalid/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "zh_TW, en, *" https://example.invalid/chess.html -O1 "C:\Users\eks\Desktop\ae888" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -example.invalid/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+10:26:14	Warning: 	Link https://example.invalid/cdn-cgi/l/email-protection not scanned (follow robots meta tag)
+10:26:23	Error: 	"Not Found" (404) at link https://example.invalid/template/apple-touch-icon.png (from https://example.invalid/template/)
+
+HTTrack Website Copier/3.49-2 mirror complete in 39 seconds : 152 links scanned, 150 files written (10656114 bytes overall) [9982796 bytes received at 255969 bytes/sec], 1140900 bytes transferred using HTTP compression in 32 files, ratio 28%, 30.4 requests per connection
+(1 errors, 1 warnings, 0 messages)

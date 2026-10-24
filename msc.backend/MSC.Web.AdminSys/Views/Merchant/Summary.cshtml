@@ -1,0 +1,242 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+    </h4>
+
+
+
+    <div class="row search-form" v-if="isShowSelectMerchant">
+
+        <div class="col-md-3">
+
+            <label for="" class="">@t.Text(i18nKeys.Common_Label_Merchant)</label>
+
+            <select class="form-control" v-model="selectMerchantID">
+                <option v-for="(item , index) in dropdown.merchants" :value="item.value">
+                    {{item.text}}
+                </option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="search-btn-row">
+                <button class="btn btn-alternate" v-on:click="getSummaryInfo()"> @t.Text(i18nKeys.Common_Button_Search)</button>
+            </div>
+
+
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+
+    </div>
+
+
+    <div class="card search-form-card" style="width: 1000px;" v-cloak>
+
+
+        <div class="row">
+
+
+            <div class="col-md-12">
+                <div class="text-c" style="margin-top:25px;">
+
+
+                    <div style="border-radius: 50%; border: solid 3px #CCC; width: 100px; height: 100px; display: inline-block;">
+                        <img class="rounded-circle" src="~/img/bot-avatars.jpg" style="width:100%;height: 100%;" />
+                    </div>
+
+                    <div style="font-size:16px;">
+                        <b>
+                            {{summaryInfo.merchantName}}
+                        </b>
+                    </div>
+
+                    <div style="color:#AAA;">
+                        {{summaryInfo.merchantID}}
+                    </div>
+
+
+                    <div style="padding: 0% 35%;">
+                        <hr />
+                    </div>
+
+                    <div class="wallet-text">
+                        {{summaryInfo.walletBalance | toMoneyDisplayFormat}}
+                    </div>
+
+                    <div style="color: #AAA;margin-top: -5px;">
+                        商戶資金 ({{summaryInfo.currency}})
+                    </div>
+
+                    <div style="padding: 0% 10%;">
+                        <hr />
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="row">
+
+
+
+                    <!--<div class="col-md-6" style="padding: 5px 30px;">
+
+
+                        <div>
+                            <div class="form-label"><label>今日存款單數</label></div>
+                            <div class="summary-info-column">
+                                尚未统计-->
+                    @*{{summaryInfo.todayDepositCardCount}}*@
+                    <!--</div>
+                    </div>
+
+                    <div>
+                        <div class="form-label"><label>今日存款总额</label></div>
+                        <div class="summary-info-column">
+                            尚未统计-->
+                    @*{{summaryInfo.todayDepositAmounts | toMoneyDisplayFormat}}*@
+                    <!--</div>
+                        </div>
+
+                    </div>-->
+
+
+                    <div class="col-md-6" style="padding: 5px 30px;">
+
+
+                        <div>
+                            <div class="form-label"><label>商戶狀態</label></div>
+                            <div class="summary-info-column">
+                                {{summaryInfo.statusText}}
+                            </div>
+                        </div>
+
+
+
+                        <div>
+                            <div class="form-label"><label>分配域名</label></div>
+                            <div class="summary-info-column">
+                                {{summaryInfo.assignDomain}}
+                            </div>
+                        </div>
+
+
+
+                        <div>
+                            <div class="form-label"><label>可用卡號額度</label></div>
+                            <div class="summary-info-column">
+
+                                <span class="cardPointItem" v-for="(eachData , index) in summaryInfo.availableAmounts">{{eachData}}</span>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+            <div style="clear:both;"></div>
+
+
+        </div>
+
+        <div style="padding-bottom: 50px;">
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+        $(function () {
+
+
+        })
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+
+
+                summaryInfo: {},
+                isShowSelectMerchant: false,
+                selectMerchantID: '',
+
+            },
+
+            methods: {
+
+
+                getSummaryInfo() {
+
+                    let vm = this;
+                    let url = window.API_DOMAIN + '/report/merchant/' + vm.selectMerchantID   + '/summary';
+                    ajaxHelper.get(url)
+                        .then((res) => {
+                            vm.summaryInfo = res.data.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+
+                }
+
+            },
+
+
+            mounted() {
+
+                let vm = this;
+                this.getDropdownMerchants().then(() => {
+
+                    vm.isShowSelectMerchant = vm.dropdown.merchants.length > 1;
+                    vm.selectMerchantID = vm.dropdown.merchants[0].value;
+                    vm.getSummaryInfo();
+                });
+
+
+            }
+        })
+
+
+    </script>
+
+}
+
+

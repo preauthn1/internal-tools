@@ -1,0 +1,41 @@
+
+cellphone.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arrow
+  rotate: false
+  xy: 185, 190
+  size: 153, 59
+  orig: 153, 59
+  offset: 0, 0
+  index: -1
+board
+  rotate: false
+  xy: 2, 36
+  size: 181, 213
+  orig: 181, 213
+  offset: 0, 0
+  index: -1
+cell
+  rotate: false
+  xy: 185, 75
+  size: 74, 113
+  orig: 74, 113
+  offset: 0, 0
+  index: -1
+text01
+  rotate: false
+  xy: 340, 202
+  size: 42, 47
+  orig: 42, 47
+  offset: 0, 0
+  index: -1
+text02
+  rotate: false
+  xy: 2, 2
+  size: 149, 32
+  orig: 149, 32
+  offset: 0, 0
+  index: -1

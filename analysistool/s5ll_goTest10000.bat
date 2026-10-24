@@ -1,0 +1,2 @@
+D:\Project\GameServerConfig\analysisTool\s5ll.exe analysis --proto D:\Project\KubeEnvironment\game-server\protodata\s5ll --config D:\Project\GameServerConfig\slotconfig\s5ll_1\config --bet-money 100 --select-idx 2 --times 100000
+pause

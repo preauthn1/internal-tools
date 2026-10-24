@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+// GameConfig 遊戲設定
+message GameConfig {
+    // 流水號
+    int32 ID = 1;
+
+    // 名稱
+    string Name = 2;
+
+    // 使用的賠線群組
+    int32 PayLineGroupID = 3;
+
+    // 使用的賠付表群組
+    int32 PayTableGroupID = 4;
+
+    // 使用的Pattern群組
+    int32 PatternGroupID = 5;
+
+    // 使用的排列帶群組
+    int32 ReelStripsGroupID = 6;
+}

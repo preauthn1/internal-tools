@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();   
+}
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+    </h4>
+
+    <hr />
+
+    <div style="max-width:450px;">
+        <div style="max-width:450px;">
+            <form class="">
+
+                <div class="position-relative form-group">
+                    <label for="expectCount" class="">@t.Text(i18nKeys.Common_Label_GenerateCount)</label>
+                    <input name="expectCount" id="expectCount" placeholder="" type="number" class="form-control" v-model="editForm.expectCount" maxlength="10">
+                </div>
+
+                <div class="position-relative form-group">
+                    <label for="point" class="">@t.Text(i18nKeys.Common_Label_Point)</label>
+                    <input name="point" id="point" placeholder="e.g. 150" type="number" class="form-control" v-model="editForm.point" maxlength="7">
+                </div>
+
+                <div class="position-relative form-group">
+                    <label for="point" class="">幣別</label>
+                    <select class="form-control" v-model="editForm.currency">
+                        <option value="">
+                            @t.Text(i18nKeys.Common_Label_Please_Select)
+                        </option>
+                        <option v-for="(item , index) in dropdown.currency" :value="item.value">
+                            {{item.text}}
+                        </option>
+                    </select>
+                </div>
+
+
+                <div class="position-relative form-group">
+                    <label for="memo" class="">@t.Text(i18nKeys.Common_Label_Memo)</label>
+                    <input name="memo" id="memo" placeholder="" type="text" class="form-control" v-model="editForm.memo" maxlength="50">
+                </div>
+
+                <button type="button" class="mt-1 btn btn-red2" style="width:150px;" v-on:click="startGenerate" v-bind:disabled="isDisabledSubmit">
+                    @t.Text(i18nKeys.Common_Button_StartGenerate)
+                </button>
+
+
+                <div class="hintMsg">
+                    <i class="pe-7s-info">
+                    </i>
+                    @t.Text(i18nKeys.Common_Msg_MaybeWaitingForWhile)
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+
+                isDisabledSubmit: false,
+                editForm: {
+                    currency: '',
+                    expectCount: '',
+                    point: '',
+                    memo : ''
+                }
+            },
+            methods: {
+
+                startGenerate() {
+
+                    if (this.editForm.expectCount == '' || this.editForm.point == '') {
+                        alert('請確認表單已正確輸入完整內容');
+                        return;
+                    }
+
+                    if (this.editForm.expectCount > 100000) {
+                        alert('(dev環境)請勿輸入超過10萬以上');
+                        return;
+                    }
+
+                    let vm = this;
+
+                    this.isDisabledSubmit = true;
+
+                    vm.showMask();
+
+                    let url = window.API_DOMAIN + '/cards/batch-gen';
+                    ajaxHelper.post(url, this.editForm)
+                        .then((res) => {
+                            this.successAlert();
+                            console.log(vm.data);
+                        })
+                        .catch((error) => {
+                            alert(error.data.message);
+                            console.error(error)
+                        })
+                        .finally(() => {
+                            vm.editForm.point = '';
+                            vm.hideMask();
+                            vm.isDisabledSubmit = false;
+                        });
+
+                }
+
+            },
+
+            mounted() {
+
+                this.getDropdownCurrency();
+                this.editForm.memo = '@DateTimeHelper.GetCurrentTime(8).ToString("yyyyMMdd") 产生';
+            }
+        })
+
+
+    </script>
+
+}
+
+
+<style>
+
+
+</style>

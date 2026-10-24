@@ -1,0 +1,139 @@
+
+anim_bgirl.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backhair
+  rotate: false
+  xy: 2, 122
+  size: 214, 373
+  orig: 214, 373
+  offset: 0, 0
+  index: -1
+backhat
+  rotate: false
+  xy: 218, 355
+  size: 338, 140
+  orig: 338, 140
+  offset: 0, 0
+  index: -1
+backskirt
+  rotate: false
+  xy: 229, 9
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+bag
+  rotate: true
+  xy: 139, 3
+  size: 117, 88
+  orig: 117, 88
+  offset: 0, 0
+  index: -1
+bag_strap
+  rotate: true
+  xy: 981, 418
+  size: 77, 39
+  orig: 77, 39
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 837, 412
+  size: 83, 142
+  orig: 83, 142
+  offset: 0, 0
+  index: -1
+closedeye
+  rotate: true
+  xy: 320, 64
+  size: 86, 49
+  orig: 86, 49
+  offset: 0, 0
+  index: -1
+hair_front
+  rotate: true
+  xy: 2, 2
+  size: 118, 135
+  orig: 118, 135
+  offset: 0, 0
+  index: -1
+hat
+  rotate: false
+  xy: 218, 219
+  size: 299, 134
+  orig: 299, 134
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 711, 370
+  size: 124, 125
+  orig: 124, 125
+  offset: 0, 0
+  index: -1
+lefthand
+  rotate: true
+  xy: 957, 306
+  size: 104, 65
+  orig: 104, 65
+  offset: 0, 0
+  index: -1
+leftleg
+  rotate: true
+  xy: 218, 152
+  size: 65, 165
+  orig: 65, 165
+  offset: 0, 0
+  index: -1
+mouth_closed
+  rotate: true
+  xy: 371, 128
+  size: 22, 12
+  orig: 22, 12
+  offset: 0, 0
+  index: -1
+mouth_open
+  rotate: false
+  xy: 320, 38
+  size: 25, 24
+  orig: 25, 24
+  offset: 0, 0
+  index: -1
+openeye
+  rotate: true
+  xy: 519, 267
+  size: 86, 49
+  orig: 86, 49
+  offset: 0, 0
+  index: -1
+right leg
+  rotate: false
+  xy: 229, 37
+  size: 89, 113
+  orig: 89, 113
+  offset: 0, 0
+  index: -1
+righthand
+  rotate: false
+  xy: 385, 140
+  size: 135, 77
+  orig: 135, 77
+  offset: 0, 0
+  index: -1
+skirt
+  rotate: false
+  xy: 837, 345
+  size: 118, 65
+  orig: 118, 65
+  offset: 0, 0
+  index: -1
+whale
+  rotate: true
+  xy: 558, 357
+  size: 138, 151
+  orig: 138, 151
+  offset: 0, 0
+  index: -1

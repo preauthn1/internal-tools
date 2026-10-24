@@ -1,0 +1,12 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 07 Dec 2020 16:18:53 at https://example.invalid/entertainment-game/?utm_source=newsoyohead&utm_medium=newsoyo&utm_campaign=entertainment +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -example.invalid/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "zh_TW, en, *" https://example.invalid/entertainment-game/?utm_source=newsoyohead&utm_medium=newsoyo&utm_campaign=entertainment -O1 "C:\Users\eks\Desktop\marscaed" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -example.invalid/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+16:19:12	Error: 	"Bad Request" (400) at link https://example.invalid/gtm.js?id= (from https://example.invalid/entertainment-game/?utm_source=newsoyohead&utm_medium=newsoyo&utm_campaign=entertainment)
+
+HTTrack Website Copier/3.49-2 mirror complete in 11 minutes 36 seconds : 851 links scanned, 849 files written (34328400 bytes overall) [31450726 bytes received at 45187 bytes/sec], 33349700 bytes transferred using HTTP compression in 825 files, ratio 90%, 13.5 requests per connection
+(1 errors, 0 warnings, 0 messages)

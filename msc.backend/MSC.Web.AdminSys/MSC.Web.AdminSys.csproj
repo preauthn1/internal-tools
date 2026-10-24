@@ -1,0 +1,37 @@
+﻿<Project Sdk="example.invalid.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>0b640749-65ed-4da6-9c67-08049e6d8127</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.48.0.2037" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>  
+    <Content Include="AppData\**">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>	
+  </ItemGroup>
+
+  <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Azure_toProduction.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MSC.BL\MSC.BL.csproj" />
+    <ProjectReference Include="..\MSC.DA\MSC.DA.csproj" />
+    <ProjectReference Include="..\MSC.Models\MSC.Models.csproj" />
+    <ProjectReference Include="..\MSC.Utility\MSC.Utility.csproj" />
+    <ProjectReference Include="..\MSC.Web.Modules\MSC.Web.Modules.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AppData\" />
+  </ItemGroup>
+
+
+
+</Project>

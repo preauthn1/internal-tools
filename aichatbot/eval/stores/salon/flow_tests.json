@@ -1,0 +1,99 @@
+{
+ "說明": "第二家測試商家（霧光髮廊，美髮沙龍，#66）的流程題，格式同 eval/flow_tests.json，寫的是「沙龍應該怎麼回」，不是「現在怎麼回」。預約要問服務項目（ask_service）、不問人數：config.json 的預約欄位（#67）關掉人數、加了服務項目（必填）和指定設計師（選填）。不能和森日茶屋的題組、案例庫、沙龍自己的案例重複（eval/check_overlap.py）。",
+ "conversations": [
+  {
+   "id": "S01",
+   "title": "打招呼與身分",
+   "turns": [
+    {"user": "嗨嗨，午安", "keys": ["general"]},
+    {"user": "請問你是哪位", "keys": ["identity"], "all": ["霧光髮廊"]}
+   ]
+  },
+  {
+   "id": "S02",
+   "title": "問價格再問指定設計師",
+   "turns": [
+    {"user": "女生剪髮加洗多少", "keys": ["answer"], "all": ["800"]},
+    {"user": "那指定小葵要加錢嗎", "keys": ["answer"], "any": ["不加", "不用", "不另外", "沒有加", "免加"]}
+   ]
+  },
+  {
+   "id": "S03",
+   "title": "完整預約：問服務項目，不問人數",
+   "turns": [
+    {"user": "我想約 {{date:+2:M/D}} 下午三點", "keys": ["ask_service"]},
+    {"user": "剪髮加護髮", "keys": ["ask_name"]},
+    {"user": "林小姐", "keys": ["ask_phone"]},
+    {"user": "0911222333", "keys": ["booking_done"], "all": ["{{date:+2:MM-DD}}", "15:00", "剪髮", "林"]},
+    {"user": "/pending", "pending_any": ["預約申請"]}
+   ]
+  },
+  {
+   "id": "S04",
+   "title": "預約時已經說了服務項目，直接問姓名",
+   "turns": [
+    {"user": "幫我約 {{date:+3:M/D}} 早上十一點染髮", "keys": ["ask_name"]},
+    {"user": "陳先生", "keys": ["ask_phone"]},
+    {"user": "0922333457", "keys": ["booking_done"], "all": ["染髮", "11:00"]}
+   ]
+  },
+  {
+   "id": "S05",
+   "title": "預約途中問價格，再取消",
+   "turns": [
+    {"user": "想預約燙髮", "keys": ["ask_date"]},
+    {"user": "{{date:+4:M/D}}", "keys": ["ask_time"]},
+    {"user": "溫塑燙多少錢", "keys": ["answer"], "any": ["3200"]},
+    {"user": "下午一點", "keys": ["ask_name"]},
+    {"user": "還是不要好了", "keys": ["booking_cancel"]}
+   ]
+  },
+  {
+   "id": "S06",
+   "title": "資料沒有的服務轉人工，之後追問不回覆",
+   "turns": [
+    {"user": "可以順便幫我修鬢角嗎", "keys": ["handoff"]},
+    {"user": "有人看到了嗎", "keys": ["silent"]},
+    {"user": "/pending", "pending_any": ["鬢角"]}
+   ]
+  },
+  {
+   "id": "S07",
+   "title": "抱怨染髮掉色",
+   "turns": [
+    {"user": "上次染的顏色兩週就掉光了", "keys": ["complaint", "handoff"]}
+   ]
+  },
+  {
+   "id": "S08",
+   "title": "英文顧客問價格",
+   "turns": [
+    {"user": "How much is a women's haircut?", "keys": ["answer"], "all": ["800"], "lang": "en"},
+    {"user": "Where can I park my car near the salon?", "keys": ["answer"], "lang": "en"}
+   ]
+  },
+  {
+   "id": "S09",
+   "title": "問設計師空檔（資料沒有）要轉人工，不能編",
+   "turns": [
+    {"user": "Mia 明天下午有空嗎", "keys": ["handoff"], "none": ["有空", "可以喔"]},
+    {"user": "/pending", "pending_any": ["Mia"]}
+   ]
+  },
+  {
+   "id": "S10",
+   "title": "想直接跟設計師講",
+   "turns": [
+    {"user": "我想直接跟設計師講", "keys": ["handoff"]},
+    {"user": "還在嗎", "keys": ["silent"]}
+   ]
+  },
+  {
+   "id": "S11",
+   "title": "指定店長加價（分類曾被 Apple 安全過濾擋下，#68）：答得出來或轉人工，不能回看不懂",
+   "turns": [
+    {"user": "指定店長要加錢嗎", "keys": ["answer", "handoff"], "none": ["不加", "不用", "不另外", "免加"]}
+   ]
+  }
+ ]
+}

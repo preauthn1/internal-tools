@@ -1,0 +1,175 @@
+{{- $root := . }}
+{{- $fullname := include "game-server.fullname" . }}
+{{- $proxyip := "" }}
+{{- if .Values.tfserver.ingress.enabled -}}
+  {{- range .Values.tfserver.ingress.hosts }}
+    {{- $proxyip = .host }}
+  {{- end }}
+{{- end }}
+
+{{- $apiver := .Values.defaultVersion | default "latest" }}
+{{- $gamever := .Values.defaultVersion | default "latest" }}
+
+{{- range $name, $game := .Values.game }}
+
+{{- if $root.Values.versions }}
+  {{- if $root.Values.versions.common }}
+    {{- if $root.Values.versions.common.apiserver }}
+    {{- $apiver = $root.Values.versions.common.apiserver }}
+    {{- end }}
+  {{- end }}
+  {{- if $root.Values.versions.game }}
+    {{- if index $root.Values.versions.game $name }}
+    {{- $gamever = index $root.Values.versions.game $name }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- range $i, $room := .room }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullname }}-game-{{ $name }}-{{ int $room.serverid }}
+  labels:
+    {{- with $root }}
+    {{- include "game-server.labels" . | nindent 4 }}
+    {{- end }}
+data:
+  {{- range $filename, $config := .configs}}
+  {{ $filename }}: {{ . | quote}}
+  {{- end }}
+  serverinfo.dat: |
+    [server]
+    proxyip={{ $proxyip }}
+    serveraddr=:3000
+    grpcaddr=:3100
+    dbserveraddr=:8000
+    apiaddr=:8001
+    nsserveraddr={{ $fullname }}-notify.{{ $root.Release.Namespace }}.svc.cluster.local:9000
+    hallsvraddr={{ $fullname }}-hall.{{ $root.Release.Namespace }}.svc.cluster.local:10001
+
+    [gameserver]
+    servername={{ $game.name }}_{{ int $room.serverid }}
+    serverid={{ int .serverid }}
+    hostandbackup=0
+
+    [defense]
+    serverdesc={{ $name }}-{{ int $room.serverid }}
+    enable=0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullname }}-game-{{ $name }}-{{ int $room.serverid }}
+  labels:
+    {{- with $root }}
+    {{- include "game-server.labels" . | nindent 4 }}
+    {{- end }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: {{ $name }}-{{ int $room.serverid }}
+      protocol: TCP
+      port: 3000
+  selector:
+    app: gameserver
+    game: {{ $name }}
+    room: {{ $i | quote }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullname }}-game-{{ $name }}-{{ int $room.serverid }}
+  labels:
+    {{- with $root }}
+    {{- include "game-server.labels" . | nindent 4 }}
+    {{- end }}
+  annotations:
+    example.invalid/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gameserver
+      game: {{ $name }}
+      room: {{ $i | quote }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      name: {{ $fullname }}-game-{{ $name }}-{{ int $room.serverid }}
+      labels:
+        app: gameserver
+        game: {{ $name }}
+        room: {{ $i | quote }}
+        {{- with $root }}
+        {{- include "game-server.labels" . | nindent 8 }}
+        {{- end }}
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: game-config
+          configMap:
+            name: {{ $fullname }}-game-{{ $name }}-{{ int $room.serverid }}
+        {{- if $root.Values.api }}
+        - name: api-config
+          configMap:
+            name: {{ $fullname }}-api
+        {{- end }}
+        {{- if .proto }}
+        - name: protodata
+          configMap:
+            name: {{ $fullname }}-proto-{{ .proto }}
+        {{- end }}
+        - name: storage
+          emptyDir: {}
+        - name: tz-config
+          hostPath: 
+            path: /usr/share/zoneinfo/{{ $root.Values.timezone | default "UTC" }}
+      containers:
+        {{- if $root.Values.api }}
+        - name: api
+          image: example.invalid/apiserver:{{ $apiver | default "latest" }}
+          imagePullPolicy: Always
+          ports:
+            - name: apiserver
+              containerPort: 8000
+              protocol: TCP
+          volumeMounts:
+            - name: api-config
+              mountPath: /app/config
+              readOnly: true
+            - name: tz-config
+              mountPath: /etc/localtime
+              readOnly: true
+        {{- end }}
+        - name: game
+          image: example.invalid/gameserver/{{ $name }}:{{ $gamever | default "latest" }}
+          imagePullPolicy: Always
+          env:
+          - name: APP_GROUP
+            value: {{ $game.group }}
+          ports:
+            - name: game-tcp
+              containerPort: 3000
+              protocol: TCP
+          volumeMounts:
+            - name: game-config
+              mountPath: /app/config
+              readOnly: true
+            - name: tz-config
+              mountPath: /etc/localtime
+              readOnly: true
+            {{- if .proto }}
+            - name: protodata
+              mountPath: /app/protodata
+              readOnly: true
+            {{- end }}
+---
+{{- end }}
+{{- end }}

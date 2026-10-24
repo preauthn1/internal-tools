@@ -1,0 +1,203 @@
+﻿@{
+    ViewData["Title"] = t.Text(i18nKeys.Common_Web_CardInput_Title);
+    int allowAmount = (int)ViewBag.AllowAmount;
+    string ReturnUrl = ViewBag.ReturnUrl;
+    string debug = "";
+
+    WebSiteBrandingTypeEnum branding = (WebSiteBrandingTypeEnum)SettingHelper.WebApplicationSetting.BrandingType;
+    List<ShoppingStoreViewModel> list = ViewBag.ShoppingStore;
+    CardInputPageSettingViewModel layoutSetting = ViewBag.PageLayoutSettings;
+
+    string ShoppingIframeUrl = ViewBag.ShoppingIframeUrl;
+}
+
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <h1>
+                    @t.Text(i18nKeys.Common_Web_Prompt)
+                </h1>
+
+
+                <span id="errorMsg"></span>
+
+                <div>
+                    <button type="button" class="" data-dismiss="modal">
+                        @t.Text(i18nKeys.Common_Web_GotIt)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="input-card-panel">
+
+    <div class="form-group">
+
+
+        @if (allowAmount > 0)
+        {
+            <div class="point-hint">
+                <span class="point-text">
+                    ．
+                </span>
+                <span>
+                    <b>
+                        Points: @allowAmount
+                    </b>
+                </span>
+
+            </div>
+        }
+
+
+        <div class="text-l">
+            <label for="exampleInputEmail1">
+                @t.Text(i18nKeys.Common_Web_SerialNumber)
+            </label>
+        </div>
+
+        <div class="card-no-group">
+
+
+            <div class="row">
+
+                <div class="col-3">
+                    <input type="text" id="card_1" name="cardNo" class="form-control" size=4 placeholder="4938" onKeyup="autotab(this, document.getElementById('card_2'))" maxlength=4>-
+                </div>
+                <div class="col-3">
+
+                    <input type="text" id="card_2" name="cardNo" class="form-control" size=4 placeholder="4938" onKeyup="autotab(this, document.getElementById('card_3'))" maxlength=4>-
+                </div>
+                <div class="col-3">
+                    <input type="text" id="card_3" name="cardNo" class="form-control" size=4 placeholder="4938" onKeyup="autotab(this, document.getElementById('card_4'))" maxlength=4>-
+                </div>
+                <div class="col-3">
+                    <input type="text" id="card_4" name="cardNo" class="form-control" placeholder="4938" size=4 maxlength=4>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="msg_cardNo" class="errorMsg hide">
+
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-exclamation-triangle" fill="currentColor" xmlns="http://example.invalid/2000/svg">
+                <path fill-rule="evenodd" d="M7.938 2.016a.146.146 0 0 0-.054.057L1.027 13.74a.176.176 0 0 0-.002.183c.0.0.0.0.0.0.0.0.034.017.066.017h13.713a.12.12 0 0 0 .066-.017.163.163 0 0 0 .055-.06.176.176 0 0 0-.003-.183L8.12 2.073a.146.146 0 0 0-.054-.057A.13.13 0 0 0 8.002 2a.13.13 0 0 0-.064.016zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+            </svg>
+            <span></span>
+        </div>
+
+        <div class="text-l">
+            <label for="exampleInputEmail1">
+                @t.Text(i18nKeys.Common_Web_VerifyCode)
+            </label>
+        </div>
+
+        <input type="text" class="form-control" id="cardPassword" placeholder="" maxlength="16" value="">
+
+        <div id="msg_cardPassword" class="errorMsg hide">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-exclamation-triangle" fill="currentColor" xmlns="http://example.invalid/2000/svg">
+                <path fill-rule="evenodd" d="M7.938 2.016a.146.146 0 0 0-.054.057L1.027 13.74a.176.176 0 0 0-.002.183c.0.0.0.0.0.0.0.0.034.017.066.017h13.713a.12.12 0 0 0 .066-.017.163.163 0 0 0 .055-.06.176.176 0 0 0-.003-.183L8.12 2.073a.146.146 0 0 0-.054-.057A.13.13 0 0 0 8.002 2a.13.13 0 0 0-.064.016zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+            </svg>
+            <span></span>
+        </div>
+
+        <input type="hidden" id="Token" value="@ViewBag.Token">
+
+        <input type="hidden" id="Device" value="@ViewBag.Device">
+
+
+        <span class="errorMsg"></span>
+
+        <div style="margin-top:40px;" class="text-c">
+            <button id="submit" type="button" class="submit_btn">
+                @t.Text(i18nKeys.Common_Web_Confirm)
+            </button>
+
+            <img id="load_img" src="~/img/load_2.gif" style="width:30px;display:none;" />
+        </div>
+
+
+        @if (layoutSetting.IsBackButtonVisible && !string.IsNullOrWhiteSpace(ReturnUrl))
+        {
+            <div style="text-align:center;padding:20px;">
+                <a href="@ReturnUrl" style="text-decoration:underline;color:#777;">
+                    @t.Text(i18nKeys.Common_Web_ReturnToPlatform)
+                </a>
+            </div>
+
+        }
+
+    </div>
+
+
+
+    @if (layoutSetting.WebSiteBrandingType == (int)WebSiteBrandingTypeEnum.OGC)
+    {
+        <div class="our-vendors">
+
+            <hr />
+
+            @if (!string.IsNullOrWhiteSpace(ShoppingIframeUrl))
+            {
+                <h3>
+                    <b>
+                        合作商家，点击前往购买点卡
+                    </b>
+                </h3>
+
+                <div class="iframe-container" >
+                    <iframe src="https://example.invalid/main/shoppings.html" frameborder="0" scrolling="no">
+                    </iframe>
+                </div>
+            }
+
+
+            <div style="text-align:right;">
+                <a href="https://example.invalid/" style="text-decoration: underline;color: #7c7e7f;" target="_blank">
+                    OG Credits 官方网站
+                </a>
+            </div>
+        </div>
+
+    }
+
+
+
+
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+
+        $(function () {
+
+            initialHelper.initializeInputPage('@ViewBag.MSCRequestID');
+
+            point_input.setLang('@HeaderValueHelper.GetCurrentLanguageCode()');
+        })
+
+        function autotab(current, to) {
+
+            if (current.getAttribute && current.value.length==current.getAttribute("maxlength")) {
+                 to.focus()
+            }
+        }
+
+    </script>
+
+
+}

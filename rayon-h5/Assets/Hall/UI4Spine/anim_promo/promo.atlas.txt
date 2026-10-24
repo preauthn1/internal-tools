@@ -1,0 +1,125 @@
+
+promo.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+00
+  rotate: false
+  xy: 2, 6
+  size: 64, 15
+  orig: 64, 15
+  offset: 0, 0
+  index: -1
+02
+  rotate: true
+  xy: 203, 19
+  size: 64, 15
+  orig: 64, 15
+  offset: 0, 0
+  index: -1
+04
+  rotate: false
+  xy: 203, 2
+  size: 64, 15
+  orig: 64, 15
+  offset: 0, 0
+  index: -1
+06
+  rotate: true
+  xy: 220, 19
+  size: 64, 15
+  orig: 64, 15
+  offset: 0, 0
+  index: -1
+08
+  rotate: true
+  xy: 223, 94
+  size: 64, 15
+  orig: 64, 15
+  offset: 0, 0
+  index: -1
+10
+  rotate: false
+  xy: 240, 146
+  size: 64, 15
+  orig: 64, 15
+  offset: 0, 0
+  index: -1
+backred
+  rotate: false
+  xy: 2, 160
+  size: 229, 94
+  orig: 229, 94
+  offset: 0, 0
+  index: -1
+f00
+  rotate: false
+  xy: 306, 147
+  size: 64, 14
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+f02
+  rotate: false
+  xy: 240, 130
+  size: 64, 14
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+f04
+  rotate: false
+  xy: 306, 131
+  size: 64, 14
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+f06
+  rotate: false
+  xy: 240, 114
+  size: 64, 14
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+f08
+  rotate: false
+  xy: 306, 115
+  size: 64, 14
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 133, 16
+  size: 68, 67
+  orig: 68, 67
+  offset: 0, 0
+  index: -1
+pot
+  rotate: false
+  xy: 133, 85
+  size: 88, 73
+  orig: 88, 73
+  offset: 0, 0
+  index: -1
+red_envolope
+  rotate: false
+  xy: 2, 23
+  size: 129, 135
+  orig: 129, 135
+  offset: 0, 0
+  index: -1
+text01
+  rotate: false
+  xy: 233, 204
+  size: 212, 50
+  orig: 212, 50
+  offset: 0, 0
+  index: -1
+text02
+  rotate: false
+  xy: 233, 163
+  size: 180, 39
+  orig: 180, 39
+  offset: 0, 0
+  index: -1

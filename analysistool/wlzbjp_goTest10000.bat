@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\wlzbjp.exe analysis --proto D:\Project\777Project\GameServerConfig\slotconfig\protodata -c D:\Project\777Project\GameServerConfig\slotconfig\wlzbjp_1\config -r -t 1000000

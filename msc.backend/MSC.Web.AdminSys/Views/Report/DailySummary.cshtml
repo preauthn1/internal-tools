@@ -1,0 +1,266 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+    </h4>
+
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+
+            <div class="col-md-3">
+
+                <label for="" class="">@t.Text(i18nKeys.Common_Label_Merchant)</label>
+
+
+                <select class="form-control" v-model="dataTable.searchForm.merchantID">
+                    <option v-for="(item , index) in dropdown.merchantsWithCurrency" :value="item.value">
+                        {{item.text}}
+                    </option>
+                </select>
+
+            </div>
+
+
+
+
+            <div class="col-md-3">
+                <label for="beginDate" class="">@t.Text(i18nKeys.Common_Label_CreateTime)</label>
+                <input type="text" name="beginDate" id="beginDate" placeholder="@t.Text(i18nKeys.Common_Msg_FilterTimeRange)" class="form-control" v-model="dataTable.searchForm.dateRange_displayText">
+            </div>
+
+
+            <div class="col-md-3">
+
+                @Html.Partial("_PartialQuickDatepicker")
+
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="search-btn-row">
+                    <button class="btn btn-alternate" v-on:click="getList(1)"> @t.Text(i18nKeys.Common_Button_Search)</button>
+
+                    <button class="btn btn-focus" v-on:click="exportExcel">  @t.Text(i18nKeys.Common_Button_Excel)</button>
+                </div>
+            </div>
+
+            <div style="clear:both;"></div>
+
+        </div>
+
+
+
+    </div>
+
+
+    <div style="color: #8e68cb; padding: 5px 10px;">
+        <i class="pe-7s-info"></i>
+        此数据有 30分钟延迟
+    </div>
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+
+
+        $(function () {
+
+
+
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+
+                external_logs: [],
+                detailInfo: {},
+                dataTable: {
+
+                    getData: function () {
+                        app.getList();
+                    },
+                    searchForm: {
+                        merchantID: '',
+                        dateRange_displayText: '',
+                        beginDate: '',
+                        endDate: '',
+                        timeZone: '@AdminSysHelper.GetDefaultTimeZone()'
+                    },
+                    pagination: {
+                        items: [],
+                        pageSize: 10,
+                        orderByColumn: "Id",
+                    },
+                    data: [],
+                    summaryInfo: {},
+                    summaryColumns: ['totalOrderCount', 'totalSuccessCardCount', 'depositCompletedRatio', 'totalPoint' ],
+                    columns:
+                        [
+                            { text: "日期", column: "date" , width: "10%" },
+                            { text: "@t.Text(i18nKeys.Common_Label_Merchant)", column: "merchantName", width: "10%" },
+                            { text: "@t.Text(i18nKeys.Common_Label_Currency)", column: "currency", width: "5%" },
+                            { text: "總訂單數", column: "totalOrderCount", align: "r" },
+                            { text: "訂單完成數", column: "totalSuccessCardCount", align: "r" },
+                            { text: "訂單完成率", column: "depositCompletedRatio", align: "r", isMoneyFormat: true },
+                            { text: "總金額(點數)", column: "totalPoint", align: "r", isMoneyFormat: true },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_OperateFunction)", column: "text", width: "15%", align: "r",  templates:
+                                    [
+
+                                    ]
+                            },
+                        ]
+                }
+
+            },
+
+            methods: {
+
+                click_dataTable(btn_type, row_data) {
+
+                    switch (btn_type) {
+                        case constant.template.detail:
+                            alert('test');
+                            break;
+
+                        default:
+                            alert('undefined! ' + btn_type);
+                    }
+
+                },
+
+
+                getList(targetPageIndex) {
+
+                    let vm = this;
+
+                    //如果有指定頁數
+                    if (targetPageIndex) {
+                        this.dataTable.pagination.pageIndex = 1;
+                    }
+
+                    var queryString = form_helper.getSearchFormQueryString(this.dataTable);
+
+                    let url = window.API_DOMAIN + '/report/stat/merchant-daily-summary' + queryString;
+
+                    ajaxHelper.get(url)
+                        .then((res) => {
+
+                            vm.dataTable.pagination = res.data.data;
+                            console.log(vm.dataTable.pagination);
+
+                        })
+                        .catch((error) => { console.log(error) })
+                        .finally(() => { });
+
+                },
+
+                exportExcel() {
+
+                    let vm = this;
+
+                    var queryString = form_helper.getSearchFormAndSpecificPageSize(this.dataTable, 10000, this.dataTable.pagination.orderByColumn);
+
+                    let headers = this.dataTable.columns.map(x => { return x.text; });
+
+                    //最後一欄不需要
+                    arrayHelper.removeLastArrayItem(headers);
+
+                    let url = window.API_DOMAIN + '/report/stat/merchant-daily-summary' + queryString;
+
+                    ajaxHelper.get(url)
+                        .then((res) => {
+
+                            let converExcelRows = vm.convertToExcelColumns(res.data.data.items);
+                            common.exportExcel({
+                                headers: headers,
+                                rows: converExcelRows,
+                                fileName: "export_Report_MerchantStatistic.xlsx"
+                            })
+                        })
+                        .catch((error) => {
+
+                            console.log(error);
+                            alert('error');
+
+                        })
+                        .finally(() => { /* 不論失敗成功皆會執行 */ });
+
+                },
+
+                convertToExcelColumns(list) {
+
+                    let requiredColumns = this.dataTable.columns.map(x => { return x.column; });
+
+                    let converList = list.map(item => {
+
+                        let convert = {};
+
+                        requiredColumns.forEach(column => {
+                            convert[column] = item[column];
+                        })
+
+                        convert.depositCompletedRatio = item.depositCompletedRatio.toFixed(2);
+                        return convert;
+                    });
+
+                    return converList;
+                }
+
+
+            },
+
+            mounted() {
+
+
+                let vm = this;
+
+                date_picker.datetime_range_empty(
+                    {
+                        vue_instance: vm.dataTable.searchForm,
+                        format: "YYYY-MM-DD",
+                        element_ID: "#beginDate",
+                        vue_prop_begin: "beginDate",
+                        vue_prop_end: "endDate",
+                        vue_prop_text: "dateRange_displayText"
+                    });
+
+                this.dataTable.searchForm.beginDate = "@AdminSysHelper.GetThisMonthToTomorrow().Begin";
+                this.dataTable.searchForm.endDate = "@AdminSysHelper.GetThisMonthToTomorrow().End";
+                this.dataTable.searchForm.dateRange_displayText = this.dataTable.searchForm.beginDate + " - " + this.dataTable.searchForm.endDate;
+
+                this.getDropdownMerchantsWithCurrency().then(() => {
+                    this.dataTable.searchForm.merchantID = this.dropdown.merchantsWithCurrency[0].value;
+                    this.getList();
+                })
+
+
+            }
+        })
+
+
+    </script>
+
+}

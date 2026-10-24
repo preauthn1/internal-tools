@@ -1,0 +1,8 @@
+composer.autoloader_path: "%project_root%/_release/vendor/autoload.php"
+class_to_file.project_root: "%project_root%/_release/"
+#php.bin: /usr/bin/php
+#php.version: 7.3
+indexer.enabled_watchers: ["file_system"]
+indexer.include_patterns:
+  - "%project_root%/_release/**/*.php"
+  - "%project_root%/_release/vendor/laravel/**/*.php"

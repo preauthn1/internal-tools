@@ -1,0 +1,412 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+
+        <a class="none" href="@Url.Content("/Card/GenerateCardNo")">
+
+            <button class="btn btn-red2">+ @t.Text(i18nKeys.Common_Button_GenerateCard)</button>
+
+        </a>
+
+    </h4>
+
+
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+
+            <div class="col-md-3">
+                <label for="cardNo" class="">
+                    @t.Text(i18nKeys.Common_Label_CardNo)
+                </label>
+                <input type="text" name="cardNo" id="cardNo" placeholder="@t.Text(i18nKeys.Common_Label_CardNo)" class="form-control" v-model="dataTable.searchForm.cardNo">
+
+            </div>
+
+
+            <div class="col-md-3">
+                <label for="cardNo" class=""> @t.Text(i18nKeys.Common_Label_Memo)</label>
+                <input type="text" name="cardNo" id="cardNo" placeholder="@t.Text(i18nKeys.Common_Label_Memo)" class="form-control" v-model="dataTable.searchForm.memo">
+            </div>
+
+
+
+            <div class="col-md-3">
+                <label for="createtime" class=""> @t.Text(i18nKeys.Common_Label_CreateTime)</label>
+                <input type="text" name="createtime" id="createtime" placeholder="@t.Text(i18nKeys.Common_Msg_FilterTimeRange)" class="form-control" v-model="dataTable.searchForm.createTime_displayText">
+            </div>
+
+
+            <div class="col-md-3">
+
+                @Html.Partial("_PartialQuickDatepicker")
+
+            </div>
+
+
+            <div class="col-md-3">
+                <label for="cardStatus" class=""> @t.Text(i18nKeys.Common_Label_Status)</label>
+                <select class="form-control" v-model="dataTable.searchForm.cardStatus">
+                    <option value="">--全部--</option>
+                    <option value="1">未使用</option>
+                    <option value="7">已使用</option>
+                    <option value="999">已銷毀</option>
+                </select>
+            </div>
+
+
+            <div class="col-md-3">
+                <label for="cardStatus" class=""> @t.Text(i18nKeys.Common_Label_Point)</label>
+                <input type="text" name="point" id="point" placeholder="@t.Text(i18nKeys.Common_Label_Point)" class="form-control" v-model="dataTable.searchForm.point">
+            </div>
+
+
+
+            <div class="col-md-6">
+                <div class="search-btn-row">
+                    <button class="btn btn-alternate" v-on:click="getList(1)">  @t.Text(i18nKeys.Common_Button_Search)</button>
+                    <button class="btn btn-secondary" v-on:click="resetForm">  @t.Text(i18nKeys.Common_Button_Reset)</button>
+                    <button class="btn btn-focus" v-on:click="exportExcel">  @t.Text(i18nKeys.Common_Button_Excel)</button>
+                    <button class="btn btn-focus" v-on:click="exportExcelCardNo">  @t.Text(i18nKeys.Common_Button_Excel) (@(t.Text(i18nKeys.Common_Label_CardNo))) </button>
+
+                </div>
+            </div>
+
+
+            <div style="clear:both;"></div>
+
+            @*<div>
+                    {{ dataTable.searchForm}}
+                </div>*@
+
+        </div>
+
+
+
+    </div>
+
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+    <div id="confirm_destroy_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+        <div class="modal-dialog modal-lg" role="document" style="width: 600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">
+                        是否確定銷毀此卡號?
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="clearboth"></div>
+
+                </div>
+                <div class="modal-body editForm">
+
+                    <div>@Html.RenderDisabledInput(t.Text(i18nKeys.Common_Label_CardNo), "destroyCard.cardNo")</div>
+                    <div>@Html.RenderDisabledInput(t.Text(i18nKeys.Common_Label_Point), "destroyCard.point")</div>
+                    <div>@Html.RenderDisabledInput(t.Text(i18nKeys.Common_Label_Memo), "destroyCard.memo")</div>
+                    <div>@Html.RenderTextArea("填寫原因", "destroyCard.operateMemo")</div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">@t.Text(i18nKeys.Common_Button_Close)</button>
+                    <button type="button" class="btn btn-red2" v-on:click="executeDestroyCard()">@t.Text(i18nKeys.Common_Button_Save)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+
+        $(function () {
+
+
+        })
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+                destroyCard: {
+
+                    cardNo: "666",
+                    operateMemo : ""
+                },
+                apiUrlCards : window.API_DOMAIN + '/cards',
+                dataTable: {
+
+                    getData: function () {
+                        app.getList();
+                    },
+                    searchForm: {
+                        cardNo: '',
+                        memo: '',
+                        createTime_displayText: '',
+                        createTimeBegin: '',
+                        createTimeEnd: '',
+                        cardStatus: ''
+                    },
+                    pagination: {
+                        items: [],
+                        pageSize: 10,
+                        orderByColumn: "createTime",
+                    },
+                    columns:
+                        [
+                            { text: "@t.Text(i18nKeys.Common_Label_CardNo)", column: "cardNo", width: "13%", isCopyText: true },
+                            { text: "@t.Text(i18nKeys.Common_Label_VerifyCode)", column: "cardPassword", width: "13%", isCopyText: true },
+                            { text: "幣別", column: "currency", align: "c", width: "5%"},
+                            { text: "@t.Text(i18nKeys.Common_Label_Point)", column: "point", align: "r", width: "7%" },
+                            { text: "@t.Text(i18nKeys.Common_Label_Memo)", column: "memo", align: "r", isCopyText: true, width: "25%" },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_Status)", column: "cardStatusText", align: "c", width: "10%" ,  "html": function (row)
+                                {
+                                    if (row.cardStatus == 7)
+                                    {
+                                        var url = String.format("/Record/CardConsumeRecordList?cardNo={0}", row.cardNo);
+                                        return htmlHelper.to_anchor(url, row.cardStatusText);
+                                    }
+
+                                    return String.format("<span class='cardStatusText_{0}'>{1}</span>", row.cardStatus , row.cardStatusText);
+                                }
+                            },
+                            { text: "@t.Text(i18nKeys.Common_Label_CreateTime)", column: "createTime", "html": function (row) { return format_helper.to_display_time(row.createTime); } },
+                            { text: "@t.Text(i18nKeys.Common_Label_CreateBy)", column: "createBy" },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_OperateFunction)", column: "text", templates: [
+
+                                    constant.template.destroyCard,
+                                ]
+                            }
+                        ]
+                }
+
+            },
+
+            methods: {
+
+                click_dataTable(btn_type, row_data) {
+
+                    switch (btn_type) {
+                        case constant.template.destroyCard:
+                            this.showConfirmDestroyModal(row_data);
+                            break;
+
+                        default:
+                            alert('undefined! ' + btn_type);
+                    }
+                },
+
+                showConfirmDestroyModal(row) {
+
+                    this.destroyCard = row;
+                    this.destroyCard.operateMemo = '';
+
+                    $("#confirm_destroy_modal").modal("show");
+                    return;
+
+                },
+
+                executeDestroyCard() {
+
+                    let vm = this;
+                    let url = window.API_DOMAIN + '/cards/destroy';
+                    let data =
+                    {
+                        cardNoList: [this.destroyCard.cardNo],
+                        memo: this.destroyCard.operateMemo
+                    };
+
+                    vm.showMask();
+                    ajaxHelper.post(url, data)
+                        .then((res) => {
+                            //alert(res.data.data.resultMessage);
+                            this.successAlert();
+                            this.closeAllModal();
+                            this.getList();
+                        })
+                        .catch((error) => {
+                            alert(error.data.message);
+                        })
+                        .finally(() => {
+                            vm.hideMask();
+                        });
+                },
+
+
+
+                getList(targetPageIndex) {
+
+                    let vm = this;
+
+                    //如果有指定頁數
+                    if (targetPageIndex) {
+                        this.dataTable.pagination.pageIndex = targetPageIndex;
+                    }
+
+                    var queryString = form_helper.getSearchFormQueryString(this.dataTable);
+
+                    ajaxHelper.get(this.apiUrlCards + queryString)
+                        .then((res) => {
+                            vm.dataTable.pagination = res.data.data;
+                        })
+                        .catch((error) => { console.error(error) })
+                        .finally(() => { /* 不論失敗成功皆會執行 */ });
+
+                },
+
+
+                exportExcel() {
+
+                    let vm = this;
+                    vm.showMask();
+
+                    var queryString = form_helper.getSearchFormAndSpecificPageSize(this.dataTable, 10000, this.dataTable.pagination.orderByColumn);
+
+                    let headers = this.dataTable.columns.map(x => { return x.text; });
+
+
+                    console.log(headers);
+
+
+                    //最後一欄不需要
+                    arrayHelper.removeLastArrayItem(headers);
+
+                    ajaxHelper.get(this.apiUrlCards + queryString)
+                        .then((res) => {
+
+                            let converExcelRows = vm.convertToExcelColumns(res.data.data.items);
+                            common.exportExcel({
+                                headers: headers,
+                                rows: converExcelRows,
+                                fileName: "export_cardNo.xlsx"
+                            })
+
+                            this.writeOperateLog('@((int)UserOperateTypeEnum.ExportCardNumber)');
+                        })
+                        .catch((error) => { console.error(error) })
+                        .finally(() => {
+
+                            vm.hideMask();
+
+                        });
+
+                },
+
+
+                exportExcelCardNo() {
+
+                    let vm = this;
+                    vm.showMask();
+
+                    var queryString = form_helper.getSearchFormAndSpecificPageSize(this.dataTable, 10000, this.dataTable.pagination.orderByColumn);
+
+                    let headers = [
+                        "@t.Text(i18nKeys.Common_Label_CardNo)",
+                        "@t.Text(i18nKeys.Common_Label_VerifyCode)",
+                        "@t.Text(i18nKeys.Common_Label_Point)" ,
+                        "@t.Text(i18nKeys.Common_Label_Status)"
+                    ];
+
+                    ajaxHelper.get(this.apiUrlCards + queryString)
+                        .then((res) => {
+
+                            let converExcelRows = vm.convertToExcelColumns(res.data.data.items);
+                            converExcelRows = converExcelRows.map(item => {
+                                return {
+                                    cardNo: item.cardNo,
+                                    cardPassword: [REDACTED],
+                                    point: item.point,
+                                    cardStatusText: item.cardStatusText,
+                                };
+                            });
+
+                            common.exportExcel({
+                                headers: headers,
+                                rows: converExcelRows,
+                                fileName: "export_cardNo.xlsx"
+                            })
+
+                            this.writeOperateLog('@((int)UserOperateTypeEnum.ExportCardNumber)');
+                        })
+                        .catch((error) => { console.error(error) })
+                        .finally(() => {
+
+                            vm.hideMask();
+
+                        });
+
+                },
+
+
+                convertToExcelColumns(list) {
+
+                    let converList = list.map(item => {
+
+                        let convert =
+                        {
+                            cardNo: item.cardNo,
+                            cardPassword: [REDACTED],
+                            currency: item.currency,
+                            point: item.point,
+                            memo: item.memo,
+                            cardStatusText: item.cardStatusText,
+                            createTime: format_helper.to_display_time(item.createTime),
+                            createBy: item.createBy,
+                        };
+
+                        return convert;
+                    });
+
+                    return converList;
+                },
+
+                setInitailValueFromQueryString() {
+
+                    this.dataTable.searchForm.cardNo = this.get_query_string('cardNo');
+                }
+
+            },
+
+            mounted() {
+
+                this.setInitailValueFromQueryString();
+
+                this.getList();
+
+                let vm = this;
+
+                date_picker.datetime_range_empty(
+                    {
+                        vue_instance: vm.dataTable.searchForm,
+                        element_ID: "#createtime",
+                        vue_prop_begin: "createTimeBegin",
+                        vue_prop_end: "createTimeEnd",
+                        vue_prop_text: "createTime_displayText"
+                    });
+            }
+        })
+
+
+    </script>
+
+}

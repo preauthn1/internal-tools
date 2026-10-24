@@ -1,0 +1,188 @@
+
+anim_recharge.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+00
+  rotate: false
+  xy: 2, 660
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+01
+  rotate: false
+  xy: 2, 508
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+02
+  rotate: false
+  xy: 2, 356
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+03
+  rotate: false
+  xy: 2, 204
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+04
+  rotate: false
+  xy: 2, 52
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+05
+  rotate: false
+  xy: 324, 790
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+06
+  rotate: false
+  xy: 604, 790
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+07
+  rotate: false
+  xy: 884, 790
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+08
+  rotate: false
+  xy: 1164, 790
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+09
+  rotate: false
+  xy: 1444, 790
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+10
+  rotate: false
+  xy: 1724, 790
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+11
+  rotate: false
+  xy: 282, 638
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+12
+  rotate: false
+  xy: 282, 486
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+13
+  rotate: false
+  xy: 562, 638
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+14
+  rotate: false
+  xy: 282, 334
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+15
+  rotate: false
+  xy: 562, 486
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+16
+  rotate: false
+  xy: 842, 638
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+17
+  rotate: false
+  xy: 282, 182
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+18
+  rotate: false
+  xy: 562, 334
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+19
+  rotate: false
+  xy: 842, 486
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+20
+  rotate: false
+  xy: 1122, 638
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+21
+  rotate: false
+  xy: 562, 182
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+22
+  rotate: false
+  xy: 842, 334
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+23
+  rotate: false
+  xy: 1122, 486
+  size: 278, 150
+  orig: 278, 150
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 812
+  size: 320, 128
+  orig: 320, 128
+  offset: 0, 0
+  index: -1
+store
+  rotate: false
+  xy: 2, 2
+  size: 84, 48
+  orig: 84, 48
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,150 @@
+{{ define "token/gen.html" }}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Generate Token</title>
+        <link rel="stylesheet" href="https://example.invalid/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            #overlay {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            #overlay .mask {
+                background-color: #555;
+                opacity: 0.3;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                position: absolute;
+                z-index: 10;
+            }
+
+            #overlay .spinner {
+                transform: translate(-50%,-50%);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <header></header>
+        <div class="container pt-5" id="app">
+            <div id="overlay" class="position-fixed" v-show="loading">
+                <div class="mask"></div>
+                <div class="spinner">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <h1 class="border-bottom">Generate Token</h1>
+            <form>
+                <h3>User Info</h3>
+                <div class="form-group">
+                    <label for="uid">UserID</label>
+                    <input type="number" class="form-control" id="uid" placeholder="Please Enter UserID" v-model="user.id">
+                </div>
+                <!-- <div class="form-group">
+                    <label for="uhdtype">UserHDType</label>
+                    <input type="number" class="form-control" id="uhdtype" placeholder="Please Enter UserHDType" v-model="user.hdtype">
+                </div>
+                <div class="form-group">
+                    <label for="uhdcode">UserHDCode</label>
+                    <input type="text" class="form-control" id="uhdcode" placeholder="Please Enter UserHDCode" v-model="user.hdcode">
+                </div>
+                <div class="form-group">
+                    <label for="ucer">UserCer</label>
+                    <input type="text" class="form-control" id="ucer" placeholder="Please Enter UserCer" v-model="user.cer">
+                </div> -->
+
+                <h3>Server Info</h3>
+                <div class="form-group">
+                    <label for="gid">GameID</label>
+                    <input type="number" class="form-control" id="ucer" placeholder="Please Enter GameID" v-model="server.gid">
+                </div>
+                <div class="form-group">
+                    <label for="sid">ServerID</label>
+                    <input type="number" class="form-control" id="sid" placeholder="Please Enter ServerID" v-model="server.sid">
+                </div>
+                <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">Submit</button>
+            </form>
+            
+            <div class="pt-4">
+                <div class="alert alert-success" v-show="token">Token: ${ token }</div>
+                <div class="alert alert-danger" v-show="error">Error: ${ error }</div>
+            </div>
+        </div>
+        <script src="https://example.invalid/npm/vue/dist/vue.js"></script>
+        <script src="https://example.invalid/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                delimiters: ["${", "}"],
+                data: {
+                    loading: false,
+                    user: {
+                        id: null,
+                        // hdtype: null,
+                        // hdcode: null,
+                        // cer: null,
+                    },
+                    server: {
+                        gid: null,
+                        sid: null,
+                    },
+                    token: [REDACTED],
+                    error: null,
+                },
+                methods: {
+                    submit: function() {
+
+                        var u = {} 
+                        u.playerID = parseInt(this.user.id)
+                        // u.UserHDType = parseInt(this.user.hdtype)
+                        // u.UserHDCode = this.user.hdcode
+                        // u.UserCer = this.user.cer
+
+                        var s = {}
+                        
+                        s.gameID = parseInt(this.server.gid)
+                        s.serverID = parseInt(this.server.sid)
+
+                        console.debug(u, s)
+                        this.token = [REDACTED]
+                        this.error = null
+
+                        $.ajax({
+                            url: "/token/gen",
+                            type: "POST",
+                            dataType: "json",
+                            contentType: "application/json;charset=utf-8",
+                            data: JSON.stringify({playerInfo:u, serverInfo:s}),
+                            success: function(res){
+                                app.token = [REDACTED]
+                            },
+                            error: function(xhr, status, err) {
+                                app.error = xhr.responseJSON.message
+                            },
+                        })
+                    },
+                },
+                mounted: function() {
+                    $(document).ajaxStart(function(){
+                        app.loading = true
+                    })
+
+                    $(document).ajaxStop(function(){
+                        app.loading = false
+                    })
+                }
+            })
+        </script>
+    </body>
+</html>
+{{ end }}

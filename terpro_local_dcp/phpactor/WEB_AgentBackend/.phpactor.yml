@@ -1,0 +1,7 @@
+composer.autoloader_path: "%project_root%/_release/components/autoload.php"
+class_to_file.project_root: "%project_root%/_release/"
+#php.bin: /usr/bin/php7.3
+#php.version: 7.3
+indexer.enabled_watchers: ["file_system"]
+indexer.include_patterns: ["/_release/**/*.php"]
+indexer.stub_paths: ["%project_root%/_release/function.php"]

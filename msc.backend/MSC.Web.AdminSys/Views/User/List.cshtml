@@ -1,0 +1,492 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+
+        <button class="btn btn-red2 " v-on:click="showCreateModal">+ @t.Text(i18nKeys.Common_Button_Create)</button>
+    </h4>
+
+
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+
+            <div class="col-md-3">
+                <label for="username" class="">@t.Text(i18nKeys.Common_Label_UserName)</label>
+                <input type="text" autocomplete="off|false|anythingelse" placeholder="@t.Text(i18nKeys.Common_Label_UserName)" class="form-control" :disabled="disabledInitial" v-model="dataTable.searchForm.username">
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="search-btn-row">
+                    <button class="btn btn-alternate" v-on:click="getList(1)"> @t.Text(i18nKeys.Common_Button_Search)</button>
+                    <button class="btn btn-secondary" v-on:click="resetForm"> @t.Text(i18nKeys.Common_Button_Reset)</button>
+                </div>
+            </div>
+
+
+            <div style="clear:both;"></div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <div id="create_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+        <div class="modal-dialog modal-lg" role="document" style="width: 600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">
+                        <span v-if="editForm.isEdit">@t.Text(i18nKeys.Common_Button_Edit)</span>
+                        <span v-if="!editForm.isEdit">@t.Text(i18nKeys.Common_Button_Create)</span>
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    <div class="clearboth"></div>
+
+                </div>
+                <div class="modal-body editForm">
+
+                    <div>@Html.RenderInput(t.Text(i18nKeys.Common_Label_Account), "editForm.username")</div>
+                    <div>@Html.RenderInput(t.Text(i18nKeys.Common_Label_DisplayName), "editForm.displayName")</div>
+                    <div>@Html.RenderInput(t.Text(i18nKeys.Common_Label_Memo), "editForm.memo")</div>
+                    <div>
+                        @Html.RenderDropdown(t.Text(i18nKeys.Common_Label_RoleName), "editForm.roleID", "dropdown.roles")
+                    </div>
+
+                    <div>
+                        @Html.RenderDropdown(t.Text(i18nKeys.Common_Label_MerchantID), "editForm.merchantID", "dropdown.merchants")
+                    </div>
+
+                    <div>
+                        <div class="form-label"><label>@t.Text(i18nKeys.Common_Label_NewPassword)</label></div>
+                        <div class="">
+                            <input type="password" class="form-control" v-model="editForm.password" placeholder="" />
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="form-label"><label>@t.Text(i18nKeys.Common_Label_ConfirmPassword)</label></div>
+                        <div class="">
+                            <input type="password" class="form-control" v-model="editForm.confirmPassword" placeholder="" />
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">@t.Text(i18nKeys.Common_Button_Close)</button>
+                    <button type="button" class="btn btn-red2" v-on:click="saveCreate()">@t.Text(i18nKeys.Common_Button_Save)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="updatePasswordPopup" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+        <div class="modal-dialog modal-lg" role="document" style="width: 600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改密碼
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="clearboth"></div>
+
+                </div>
+
+                <div class="modal-body editForm">
+
+                    <div>
+                        <div class="form-label"><label>@t.Text(i18nKeys.Common_Label_Account)</label></div>
+                        <div class="">
+                            <input type="text" class="form-control" v-model="updatePasswordForm.userName" placeholder="" disabled="disabled" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-label"><label>@t.Text(i18nKeys.Common_Label_NewPassword)</label></div>
+                        <div class="">
+                            <input type="password" class="form-control" v-model="updatePasswordForm.newPassword" placeholder="" />
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="form-label"><label>@t.Text(i18nKeys.Common_Label_ConfirmPassword)</label></div>
+                        <div class="">
+                            <input type="password" class="form-control" v-model="updatePasswordForm.confirmPassword" placeholder="" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">@t.Text(i18nKeys.Common_Button_Close)</button>
+                    <button type="button" class="btn btn-red2" v-on:click="updatePassword()">@t.Text(i18nKeys.Common_Button_Save)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+
+
+
+    <div id="edit_user_merchants_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+        <div class="modal-dialog modal-lg" role="document" style="width: 600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">
+
+                        用戶可查看商戶設置
+
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    <div class="clearboth"></div>
+
+                </div>
+                <div class="modal-body editForm">
+
+
+                    <div v-for="(item,index) in userMerchants" style="margin-bottom:10px;">
+
+                        <div class="custom-checkbox custom-control">
+                            <input type="checkbox" :id="'checkbox_' + item.merchantID" class="custom-control-input" v-model="item.isEnable">     
+                            <label :for="'checkbox_' + item.merchantID" class="custom-control-label" >                              
+                                 {{item.merchantID}}｜{{item.merchantName}}                               
+                            </label>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" v-on:click="saveUserMerchantMapping">@t.Text(i18nKeys.Common_Button_Save)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+
+        $(function () {
+
+
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+
+                disabledInitial: true, //chrome紀錄帳號密碼 一直自動填入... 很煩人
+                detailInfo: {},
+
+                userMerchantCurrentUser : '',
+                userMerchants : [],
+
+                editForm:
+                {
+
+                },
+
+                updatePasswordForm:
+                {
+                    userName : ''
+                },
+
+                dataTable: {
+
+                    getData: function () {
+                        app.getList();
+                    },
+                    searchForm: {
+                        username: '',
+                    },
+                    pagination: {
+                        items: [],
+                        pageSize: 10,
+                        orderByColumn: "",
+                    },
+                    columns:
+                        [
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_UserName)", column: "userName",  width: "7%",  "html": function (row) {
+
+                                    let html = String.format("<div title='{0}'>{1}</div>", row.userID, row.userName);
+                                    return html;
+                                }
+                            },
+                            { text: "@t.Text(i18nKeys.Common_Label_DisplayName)", column: "displayName", width: "7%",  },
+                            { text: "@t.Text(i18nKeys.Common_Label_Memo)", column: "memo", width: "10%",  },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_Merchant)", column: "availableMerchantCount",  width: "7%", "html": function (row) {
+
+                                    let html = String.format("<span class='link-text' onclick='callVueFunctionByName(\"{0}\", {1})'>{2}</span>",
+                                        'showUserMerchantModal',
+                                        row.userID,
+                                        row.availableMerchantCount); 
+
+                                    return html;
+                                }
+                            },
+                            { text: "@t.Text(i18nKeys.Common_Label_Status)", column: "statusText" ,  },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_RoleName)", column: "roleName" ,
+                                "html": function (row) {
+
+                                    let url = "/Role/Permissions?roleID=" + row.roleID;
+                                    return String.format("<a href='{0}' target='_blank'>{1}</a>" , url ,  row.roleName);
+                                }
+                            },
+                            { text: "需安全登入", column: "isAuthLoginEnable", "html": function (row) { return row.isAuthLoginEnable ? "v" : ""; }, align: "c" },
+                            { text: "绑定谷歌验证", column: "isBindGoogleAuth"  , "html": function (row) { return row.isBindGoogleAuth ? "v" : ""; } , align : "c" },                          
+                            { text: "@t.Text(i18nKeys.Common_Label_UpdateTime)", column: "updateTime", "html": function (row) { return format_helper.to_display_time(row.createTime); } },
+
+                            { text: "@t.Text(i18nKeys.Common_Label_UpdateBy)", column: "updateBy" },
+
+
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_OperateFunction)", column: "text", width: "10%", templates: [
+
+                                    constant.template.updatePassword,
+                                ]
+                            }
+                        ]
+                }
+
+            },
+
+            methods: {
+
+
+                click_dataTable(btn_type, row_data) {
+
+                    switch (btn_type) {
+                        case constant.template.detail:
+                            this.showDetail(row_data);
+                            break;
+
+                        case constant.template.updatePassword:
+                            [REDACTED];
+                            break;
+
+                        default:
+                            alert('undefined! ' + btn_type);
+                    }
+
+                },
+
+
+                showCreateModal(row) {
+
+                    $("#create_modal").modal("show");
+                    this.editForm = {};
+                    this.editForm.roleID = '';
+                    this.editForm.merchantID = '';
+                    this.editForm.isEdit = false;
+                },
+
+
+                showUpdatePassword(row) {
+
+                    $("#updatePasswordPopup").modal("show");
+                    this.updatePasswordForm = {};
+                    this.updatePasswordForm.userName = row.userName;
+                    this.updatePasswordForm.targetUserID = row.userID;
+
+                },
+
+
+                closeAllModal() {
+                    $("#updatePasswordPopup").modal("hide");
+                    $("#create_modal").modal("hide");
+                    $("#edit_user_merchants_modal").modal("hide");
+                },
+
+                saveCreate() {
+
+                    let apiUrl = window.API_DOMAIN + '/users';
+
+                    ajaxHelper.post(apiUrl, this.editForm)
+                        .then((res) => {
+                            this.successAlert();
+                            this.getList();
+                            this.closeAllModal();
+                        })
+                        .catch((error) => {
+                            alert(error.data.message);
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                },
+
+                updatePassword() {
+
+                    let apiUrl = window.API_DOMAIN + '/users/password';
+
+                    ajaxHelper.put(apiUrl, this.updatePasswordForm)
+                        .then((res) => {
+                            this.successAlert();
+                            this.closeAllModal();
+                        })
+                        .catch((error) => {
+
+                            alert(error.data.message);
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+
+                },
+
+
+                showUserMerchantModal(userID) {
+
+                    $("#edit_user_merchants_modal").modal('show');
+                    this.getUserMerchants(userID);
+
+                },
+
+                getUserMerchants(userID) {
+
+                    this.userMerchantCurrentUser = userID;
+                    let apiUrl = window.API_DOMAIN + '/users/merchant-mapping/' + userID;
+
+                    ajaxHelper.get(apiUrl)
+                        .then((res) => {
+                            this.userMerchants = res.data.data.items;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                },
+
+                saveUserMerchantMapping() {
+
+                    var enableMerchants = this.userMerchants.filter((item) => {
+                            return item.isEnable
+                        })
+                        .map((item) => {
+                            return item.merchantID;
+                        });
+
+                    let body =
+                    {
+                        userID: this.userMerchantCurrentUser,
+                        MerchantIDs: enableMerchants
+                    };
+
+                    let apiUrl = window.API_DOMAIN + '/users/merchant-mapping';
+                    ajaxHelper.post(apiUrl, body)
+                        .then((res) => {
+                            this.successAlert();
+                            this.closeAllModal();
+                            this.getList();
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+                },
+
+
+                getList(targetPageIndex) {
+
+                    let vm = this;
+
+                    //如果有指定頁數
+                    if (targetPageIndex) {
+                        this.dataTable.pagination.pageIndex = 1;
+                    }
+
+                    var queryString = form_helper.getSearchFormQueryString(this.dataTable);
+
+                    let apiUrl = window.API_DOMAIN + '/users';
+
+                    ajaxHelper.get(apiUrl + queryString)
+                        .then((res) => {
+                            vm.dataTable.pagination = res.data.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+
+                },
+
+
+
+            },
+
+            mounted() {
+
+                this.getDropdownMerchants();
+                this.getDropdownRoles();
+                this.getList();
+                this.dataTable.searchForm.username = '';
+
+
+                let vm = this;
+                setTimeout(() => {
+
+                    vm.disabledInitial = false;
+                    vm.dataTable.searchForm.username = ' ';
+                    vm.dataTable.searchForm.username = '';
+
+                } , 500)
+
+            }
+        })
+
+
+    </script>
+
+}

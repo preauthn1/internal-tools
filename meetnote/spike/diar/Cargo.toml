@@ -1,0 +1,8 @@
+[package]
+name = "diar"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+hound = "3"
+sherpa-onnx = "1.13"

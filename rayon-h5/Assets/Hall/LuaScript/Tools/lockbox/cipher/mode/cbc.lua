@@ -1,0 +1,184 @@
+local Array = require("Tools/lockbox/util/array");
+local Stream = require("Tools/lockbox/util/stream");
+local Queue = require("Tools/lockbox/util/queue");
+
+local String = require("string");
+local Bit = require("Tools/lockbox/util/bit");
+
+local CBC = {};
+
+CBC.Cipher = function()
+
+	local public = {};
+
+	local key;
+	local blockCipher;
+	local padding;
+	local inputQueue;
+	local outputQueue;
+	local iv;
+
+	public.setKey = function(keyBytes)
+		key = keyBytes;
+		return public;
+	end
+
+	public.setBlockCipher = function(cipher)
+		blockCipher = cipher;
+		return public;
+	end
+
+	public.setPadding = function(paddingMode)
+		padding = paddingMode;
+		return public;
+	end
+
+	public.init = function()
+		inputQueue = Queue();
+		outputQueue = Queue();
+		iv = nil;
+		return public;
+	end
+
+	public.update = function(messageStream)
+		local byte = messageStream();
+		while (byte ~= nil) do
+			inputQueue.push(byte);
+			if(inputQueue.size() >= blockCipher.blockSize) then
+				local block = Array.readFromQueue(inputQueue,blockCipher.blockSize);
+
+				if(iv == nil) then
+					iv = block;
+				else
+					local out = Array.XOR(iv,block);
+					out = blockCipher.encrypt(key,out);
+					Array.writeToQueue(outputQueue,out);
+					iv = out;
+				end
+			end
+			byte = messageStream();
+		end
+		return public;
+	end
+
+	public.finish = function()
+		paddingStream = padding(blockCipher.blockSize,inputQueue.getHead());
+		public.update(paddingStream);
+
+		return public;
+	end
+
+	public.getOutputQueue = function()
+		return outputQueue;
+	end
+
+	public.asHex = function()
+		return Stream.toHex(outputQueue.pop);
+	end
+
+	public.asBytes = function()
+		return Stream.toArray(outputQueue.pop);
+	end
+
+	return public;
+
+end
+
+
+CBC.Decipher = function()
+
+	local public = {};
+
+	local key;
+	local blockCipher;
+	local padding;
+	local inputQueue;
+	local outputQueue;
+	local iv;
+
+	public.setKey = function(keyBytes)
+		key = keyBytes;
+		return public;
+	end
+
+	public.setBlockCipher = function(cipher)
+		blockCipher = cipher;
+		return public;
+	end
+
+	public.setPadding = function(paddingMode)
+		padding = paddingMode;
+		return public;
+	end
+
+	public.init = function()
+		inputQueue = Queue();
+		outputQueue = Queue();
+		iv = nil;
+		return public;
+	end
+
+	public.update = function(messageStream)
+		local byte = messageStream();
+		while (byte ~= nil) do
+			inputQueue.push(byte);
+			if(inputQueue.size() >= blockCipher.blockSize) then
+				local block = Array.readFromQueue(inputQueue,blockCipher.blockSize);
+
+				if(iv == nil) then
+					iv = block;
+				else
+					local out = block;
+					out = blockCipher.decrypt(key,out);
+					out = Array.XOR(iv,out);
+					Array.writeToQueue(outputQueue,out);
+					iv = block;
+				end
+			end
+			byte = messageStream();
+		end
+		return public;
+	end
+
+	public.finish = function()
+		-- 修改 https://example.invalid/p/c49b9768a6e9
+		local data=Stream.toArray(outputQueue.pop)
+        local paddingByte=data[#data]
+
+        local realLength=#data-paddingByte--如果有padding,计算去除padding后的长度
+        local padded=true
+        for i=#data,realLength+1,-1 do
+            if(data[i]~=paddingByte) then
+                padded=false
+            end
+        end
+        --print("realLength is "..realLength)
+        local paddedBytes=Array.slice(data,1,realLength)
+        
+        if padded then
+            Array.writeToQueue(outputQueue,paddedBytes)
+        end
+		--paddingStream = padding(blockCipher.blockSize,inputQueue.getHead());
+		--public.update(paddingStream);
+
+		return public;
+	end
+
+	public.getOutputQueue = function()
+		return outputQueue;
+	end
+
+	public.asHex = function()
+		return Stream.toHex(outputQueue.pop);
+	end
+
+	public.asBytes = function()
+		return Stream.toArray(outputQueue.pop);
+	end
+
+	return public;
+
+end
+
+return CBC;
+

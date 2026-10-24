@@ -1,0 +1,25 @@
+{{- $fullname := include "game-server.fullname" . }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullname }}-tfserver
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+data:
+  tfserver.dat: |
+    [centerserver]
+    reporturl=:8080/submit?code=abcdef&cn=%d          // 状态提交地址
+    portmapurl=:8080/config 			                    // 端口映射规则地址
+    reportinterval=10										              // 上报状态时间间隔
+    refreshportmapinterval=300								        // 端口映射加载时间间隔
+    checktfportinterval=350								            // 转发端口检查时间间隔
+    reportip=0                                        // 建立通道時是否由TFSV上報連線來源IP, 0=不上報,由Client主動上報, 1=上報,由TFSV上報連線來源IP
+    needcheckkey=1                                    // 開關是否檢查連線合法性TOKEN
+    needcheckkeysourceip=0.0.0.0,0.0.0.0/24  // 需要驗證key的來源埠號
+    connwatchinterval=60                              // 每 n 秒偵測一次連線數量
+    connwatchexceeded=50                              // 每一分鐘超過50個連線數量的波動
+    alertbotapi=0.0.0.0/sendmessage.ashx?bottoken=[REDACTED]  // telegram通報群組
+    {{- if .Values.websocket }}
+    websocketserverport={{ .Values.websocket.port }}
+    {{- end }}
+    grpcaddr=:3100

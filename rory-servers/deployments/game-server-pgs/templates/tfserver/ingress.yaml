@@ -1,0 +1,37 @@
+{{- if .Values.tfserver.ingress.enabled -}}
+{{- $fullName := include "game-server.fullname" . -}}
+{{- $svcPort := .Values.tfserver.port -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+  {{- with .Values.tfserver.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.tfserver.ingress.tls }}
+  tls:
+    {{- range .Values.tfserver.ingress.tls }}
+    - hosts:
+      {{- range .hosts }}
+        - {{ . | quote }}
+      {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.tfserver.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ . }}
+            backend:
+              serviceName: {{ $fullName }}-tfserver
+              servicePort: {{ $svcPort }}
+          {{- end }}
+    {{- end }}
+{{- end }}

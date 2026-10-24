@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>API 測試工具</title>
+    <script src="https://example.invalid/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://example.invalid/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script>
+      window.MonacoEnvironment = {
+        getWorkerUrl: function () {
+          return (
+            "data:text/javascript;charset=utf-8," +
+            encodeURIComponent(`
+            self.MonacoEnvironment = {
+              baseUrl: 'https://example.invalid/monaco-editor@0.34.1/min/'
+            };
+            importScripts('https://example.invalid/monaco-editor@0.34.1/min/vs/base/worker/workerMain.js');
+          `)
+          );
+        },
+      };
+    </script>
+    <script src="https://example.invalid/monaco-editor@0.34.1/min/vs/loader.js"></script>
+    <script src="script.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #121212;
+        color: #ffffff;
+      }
+      #editor {
+        width: 100%;
+        height: 300px;
+        border: 1px solid #333333;
+        margin-top: 10px;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        margin-top: 10px;
+        background-color: #1e1e1e;
+        color: #ffffff;
+        border: 1px solid #333333;
+        border-radius: 5px;
+        padding: 10px;
+      }
+      select,
+      button,
+      label {
+        margin-top: 10px;
+        padding: 5px;
+        background-color: #1e1e1e;
+        color: #ffffff;
+        border: 1px solid #333333;
+        border-radius: 5px;
+      }
+      #customConfig {
+        display: none;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>加密 / 解密工具</h1>
+    <select id="configSelector">
+      <option value="default">Default</option>
+      <option value="tpower">TPower</option>
+      <option value="custom">自定義</option>
+    </select>
+    <label> <input type="checkbox" id="autoCopyToggle" /> 自動複製 </label>
+    <div style="display: none" id="customConfig">
+      <label>MD5: <input type="text" id="custom_md5" value="" /></label>
+      <label>AES: <input type="text" id="custom_aes" value="" /></label>
+      <label>IV: <input type="text" id="custom_iv" value="" /></label>
+    </div>
+    <div id="editor"></div>
+    <textarea id="resultOutput"></textarea>
+    <button id="copyButton">複製</button>
+    <p id="status"></p>
+  </body>
+</html>

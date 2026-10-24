@@ -1,0 +1,139 @@
+
+bonus_tree.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Comp 1_00000
+  rotate: false
+  xy: 2, 237
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00002
+  rotate: false
+  xy: 805, 841
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00004
+  rotate: false
+  xy: 2, 85
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00006
+  rotate: false
+  xy: 204, 237
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00008
+  rotate: false
+  xy: 805, 689
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00010
+  rotate: false
+  xy: 1007, 841
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00012
+  rotate: false
+  xy: 204, 85
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00014
+  rotate: false
+  xy: 406, 237
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00016
+  rotate: false
+  xy: 805, 537
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00018
+  rotate: false
+  xy: 1007, 689
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00020
+  rotate: false
+  xy: 1209, 841
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00022
+  rotate: false
+  xy: 406, 85
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00024
+  rotate: true
+  xy: 608, 187
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00026
+  rotate: false
+  xy: 1007, 537
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00028
+  rotate: false
+  xy: 1209, 689
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+Comp 1_00030
+  rotate: false
+  xy: 1411, 841
+  size: 200, 150
+  orig: 200, 150
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 389
+  size: 801, 602
+  orig: 801, 602
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 805, 402
+  size: 136, 133
+  orig: 136, 133
+  offset: 0, 0
+  index: -1
+panel
+  rotate: true
+  xy: 2, 2
+  size: 81, 251
+  orig: 81, 251
+  offset: 0, 0
+  index: -1

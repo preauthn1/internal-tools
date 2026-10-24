@@ -1,0 +1,59 @@
+﻿
+@{
+    var menus = PermissionHelper.GetMyPermissions();
+
+    string currentPath = Context.Request.Path;
+
+    var match = menus.SelectMany(x => x.Childs).FirstOrDefault(x => x.Url == currentPath);
+
+    string currentChildToken = [REDACTED] == null ? "XXXX" : match.Token;
+    string currentRootToken = [REDACTED] == null ? "" : match.ParentToken;
+
+    string envText = SettingHelper.AdminSysWebsiteSetting.HeaderEnvText;
+
+}
+
+<div class="app-sidebar sidebar-shadow bg-dark  sidebar-text-light">
+
+    <div class="scrollbar-sidebar ps">
+        <div class="app-sidebar__inner">
+            <ul class="vertical-nav-menu metismenu" style="padding-top: 5px;">
+
+                @foreach (var item in menus)
+                {
+                    bool isExpand = currentRootToken == item.Token;
+
+                    <li class="@(isExpand ? "mm-active" : "")">
+                        <a href="#" aria-expanded="true">
+                            <i class=" @item.Icon "></i>
+                            @item.Name
+
+                            <i class="fas fa-chevron-down metismenu-state-icon caret-left"></i>
+
+                            @*<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>*@
+                        </a>
+
+                        <ul class="mm-collapse @(isExpand ? "mm-show" : "")">
+
+                            @foreach (var child in item.Childs)
+                            {
+                                <li>
+                                    <a href="@child.Url" class="@( child.Token == currentChildToken  ? "mm-active" : "")">
+                                        <i class="metismenu-icon"></i>
+                                        @child.Name
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </li>
+
+                }
+
+            </ul>
+
+
+        </div>
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+    </div>
+</div>

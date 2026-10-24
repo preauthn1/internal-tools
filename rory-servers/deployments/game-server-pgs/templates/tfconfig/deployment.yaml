@@ -1,0 +1,73 @@
+{{ $cfgver := .Values.defaultVersion | default "latest" }}
+{{- if .Values.versions }}
+  {{- if .Values.versions.common }}
+    {{- if .Values.versions.common.tfconfig }}
+    {{- $cfgver = .Values.versions.common.tfconfig }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "game-server.fullname" . }}-tfconfig
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+  annotations:
+    example.invalid/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tfconfig
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      name: {{ include "game-server.fullname" . }}-tfconfig
+      labels:
+        app: tfconfig
+        {{- include "game-server.labels" . | nindent 8 }}
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: tfconfig-config
+          configMap:
+            name: {{ include "game-server.fullname" . }}-tfconfig
+            items:
+              - key: tfconfig.dat
+                path: tfconfig.dat
+        - name: tfconfig-portrouter
+          configMap:
+            name: {{ include "game-server.fullname" . }}-tfconfig
+            items:
+              - key: portrouter.xml
+                path: portrouter.xml
+        - name: storage
+          emptyDir: {}
+        - name: tz-config
+          hostPath: 
+            path: /usr/share/zoneinfo/{{ .Values.timezone | default "UTC" }}
+      containers:
+        - name: tfconfig
+          image: example.invalid/tfconfig:{{ $cfgver | default "latest" }}
+          imagePullPolicy: Always
+          ports:
+            - name: tfconfig
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: tfconfig-config
+              mountPath: /app/config
+              readOnly: true
+            - name: tfconfig-portrouter
+              mountPath: /app/portrouter.xml
+              subPath: portrouter.xml
+              readOnly: true
+            - name: tz-config
+              mountPath: /etc/localtime
+              readOnly: true

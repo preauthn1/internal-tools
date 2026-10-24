@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+// PayLine 賠線設定
+message PayLine {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+    
+    // 線編號
+    int32 LineID = 3;
+
+    // 位置
+    repeated Position Positions = 4; 
+}
+
+// Position 位置
+message Position {
+    // 輪軸編號
+    int32 Reel = 1;
+
+    // 位置編號
+    int32 Row = 2;
+}

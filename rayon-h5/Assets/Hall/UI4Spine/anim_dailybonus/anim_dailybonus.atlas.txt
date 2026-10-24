@@ -1,0 +1,153 @@
+
+anim_dailybonus.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bigvoin
+  rotate: false
+  xy: 335, 72
+  size: 221, 222
+  orig: 221, 222
+  offset: 0, 0
+  index: -1
+chest
+  rotate: false
+  xy: 558, 134
+  size: 166, 160
+  orig: 166, 160
+  offset: 0, 0
+  index: -1
+coin01
+  rotate: true
+  xy: 726, 230
+  size: 64, 46
+  orig: 64, 46
+  offset: 0, 0
+  index: -1
+coin02
+  rotate: false
+  xy: 71, 14
+  size: 57, 51
+  orig: 57, 51
+  offset: 0, 0
+  index: -1
+coin03
+  rotate: false
+  xy: 2, 14
+  size: 67, 51
+  orig: 67, 51
+  offset: 0, 0
+  index: -1
+coin04
+  rotate: false
+  xy: 335, 298
+  size: 56, 41
+  orig: 56, 41
+  offset: 0, 0
+  index: -1
+coin05
+  rotate: false
+  xy: 726, 199
+  size: 41, 29
+  orig: 41, 29
+  offset: 0, 0
+  index: -1
+coin06
+  rotate: false
+  xy: 159, 39
+  size: 37, 26
+  orig: 37, 26
+  offset: 0, 0
+  index: -1
+glow01
+  rotate: false
+  xy: 456, 296
+  size: 329, 214
+  orig: 329, 214
+  offset: 0, 0
+  index: -1
+glowray
+  rotate: true
+  xy: 787, 182
+  size: 328, 231
+  orig: 328, 231
+  offset: 0, 0
+  index: -1
+ray01
+  rotate: false
+  xy: 2, 67
+  size: 331, 272
+  orig: 331, 272
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 558, 29
+  size: 184, 103
+  orig: 184, 103
+  offset: 0, 0
+  index: -1
+shine
+  rotate: false
+  xy: 2, 341
+  size: 452, 169
+  orig: 452, 169
+  offset: 0, 0
+  index: -1
+spark01
+  rotate: false
+  xy: 187, 8
+  size: 24, 29
+  orig: 24, 29
+  offset: 0, 0
+  index: -1
+spark02
+  rotate: true
+  xy: 421, 313
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
+spark03
+  rotate: true
+  xy: 198, 39
+  size: 26, 37
+  orig: 26, 37
+  offset: 0, 0
+  index: -1
+spark04
+  rotate: false
+  xy: 393, 301
+  size: 26, 38
+  orig: 26, 38
+  offset: 0, 0
+  index: -1
+spark05
+  rotate: false
+  xy: 130, 27
+  size: 27, 38
+  orig: 27, 38
+  offset: 0, 0
+  index: -1
+spark06
+  rotate: false
+  xy: 726, 159
+  size: 26, 38
+  orig: 26, 38
+  offset: 0, 0
+  index: -1
+spark07
+  rotate: true
+  xy: 130, 2
+  size: 23, 27
+  orig: 23, 27
+  offset: 0, 0
+  index: -1
+spark08
+  rotate: false
+  xy: 159, 2
+  size: 26, 35
+  orig: 26, 35
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,468 @@
+syntax = "proto3";
+
+package cliapisvc;
+
+import "common.proto";
+import "server.proto";
+
+service PachiSlotService {
+    rpc MachineList (Empty) returns (PachiSlotMachineList);
+    rpc MachineInfo (QueryCondition) returns (PachiSlotMachine);
+    rpc AssignBonus (PachiSlotMachine) returns (Empty);
+    rpc AssignMode (PachiSlotMachine) returns (Empty);
+    rpc AssignResult (PachiSlotMachine) returns (Empty);
+    rpc AssignReplay (PachiSlotMachine) returns (Empty);
+    rpc AssignBonusSure (PachiSlotMachine) returns (Empty);
+    rpc AssignRT (PachiSlotMachine) returns (Empty);
+    rpc AssignBonusTimesLeft (PachiSlotMachine) returns (Empty);
+    rpc AssignJACTimesLeft (PachiSlotMachine) returns (Empty);
+    rpc AssignBonusStore (PachiSlotMachine) returns (Empty);
+    rpc AssignRoadMap (PachiSlotMachine) returns (Empty);
+    rpc QueryProto (PachiSlotQueryProtoCondition) returns (PachiSlotQueryProtoResponse);
+}
+
+// Scenario 情境
+enum PachiSlot_Scenario {
+    // Normal Game
+    PachiSlot_Scenario_NG = 0;
+
+    // Regular Bonus
+    PachiSlot_Scenario_RB = 1;
+
+    // Big Bonus
+    PachiSlot_Scenario_BB = 2;
+
+    // JAC
+    PachiSlot_Scenario_JAC = 3;
+
+    // ALL Scenario
+    PachiSlot_Scenario_ALL = 4;
+}
+
+// ModeType 模式類型
+enum PachiSlot_ModeType {
+    // 未指定
+    PachiSlot_ModeType_Unassigned = 0;
+
+    // A模式
+    PachiSlot_ModeType_A = 1;
+    
+    // B模式
+    PachiSlot_ModeType_B = 2;
+
+    // 天國模式
+    PachiSlot_ModeType_Heaven = 3;
+}
+
+// ResultType 牌型
+enum PachiSlot_ResultType {
+    // Empty
+    PachiSlot_ResultType_Empty = 0;
+
+    // 沒有中獎
+    PachiSlot_ResultType_None = 1;
+
+    // 純槓
+    PachiSlot_ResultType_FeatureNone = 2;
+
+    // JAC槓
+    PachiSlot_ResultType_JACNone = 3;
+
+    // 藍7連線
+    PachiSlot_ResultType_BlueSevenLink = 10;
+
+    // 紅7連線
+    PachiSlot_ResultType_RedSevenLink = 11;
+
+    // Bar連線
+    PachiSlot_ResultType_BarLink = 12;
+
+    // 銅鐘連線
+    PachiSlot_ResultType_BellLink = 13;
+
+    // 西瓜連線
+    PachiSlot_ResultType_WaterMelonLink = 14;
+
+    // 櫻桃連線
+    PachiSlot_ResultType_BerryLink = 15;
+
+    // Replay連線
+    PachiSlot_ResultType_ReplayLink = 16;
+    
+    // 雙7(藍7紅7混合)連線
+    PachiSlot_ResultType_DoubleSevenLink = 17;
+
+    // 需要解除RT 骰出後要依照當前大獎是 RB / BB，對應到 ReleaseRTonBB / ReleaseRTonRB
+    PachiSlot_ResultType_ReleaseRT = 100;
+
+    // 需要解除RT 當前大獎為BB
+    PachiSlot_ResultType_ReleaseRTonBB = 101;
+
+    // 需要解除RT 當前大獎為RB
+    PachiSlot_ResultType_ReleaseRTonRB = 102;
+
+    // Bonus確定
+    PachiSlot_ResultType_BonusSure = 200;
+
+    // 櫻桃出現在左邊任意位置
+    PachiSlot_ResultType_BerryLeftAny = 10000;
+}
+
+// PayType 賠付類型
+enum PachiSlot_PayType {
+    // 賠錢 Payout 為倍數
+    PachiSlot_PTChip = 0;
+    
+    // 免費再轉 Payout 為次數
+    PachiSlot_PTReplay = 1;
+
+    // 大獎 Payout 為 GameModeConfig 的 ID
+    PachiSlot_PTBonus = 2;
+
+    // 1G連 增加 Bonus 連莊 Payout 為次數 
+    PachiSlot_PT1G = 3;
+}
+
+// Symbol 符號
+enum PachiSlot_Symbol {
+    // 藍7 p1
+    PachiSlot_Symbol_BlueSeven = 0;
+
+    // 紅7 p2
+    PachiSlot_Symbol_RedSeven = 1;
+
+    // Bar p3
+    PachiSlot_Symbol_Bar = 2;
+
+    // 銅鐘 p4
+    PachiSlot_Symbol_Bell = 3;
+
+    // 西瓜 p5
+    PachiSlot_Symbol_WaterMelon = 4;
+
+    // 櫻桃 p6
+    PachiSlot_Symbol_Berry = 5;
+
+    // Replay p7
+    PachiSlot_Symbol_Replay = 6;
+}
+
+message PachiSlotMachineList {
+    repeated PachiSlotMachine Machines = 1;
+}
+
+message PachiSlotMachine {
+    int32 No = 1;
+    int32 BetOdds = 2;
+    int32 Pattern = 3;
+    PachiSlot_Scenario Scenario = 4;
+    PachiSlot_Scenario Bonus = 5;
+    PachiSlot_ModeType Mode = 6;
+    int32 RT = 7;
+    bool Replay = 8;
+    bool BonusSure = 9;
+    int32 JACTimes = 10;
+    int32 BonusTimesLeft = 11;
+    int32 JACTimesLeft = 12;
+    PachiSlot_ModeType NextMode = 13;
+    int32 BonusStore = 14;
+    PachiSlot_ResultType NextResult = 15;
+    PachiSlotRoadMap RoadMap = 16;
+    Player Player = 17;
+}
+
+// 轉數表
+message PachiSlotRoadMap {
+    // 累積轉數
+    int64 Total = 1;
+    // 當前轉數
+    int64 Spin = 2;
+    // 各個大獎累積次數
+    repeated PachiSlotRoadMapBonus Bonus = 3;
+    // 歷史快照
+    repeated PachiSlotRoadMapSnapshot Snapshots = 4;
+}
+
+// 轉數表(大獎累計次數)
+message PachiSlotRoadMapBonus {
+    // 大獎類型
+    PachiSlot_Scenario Type = 1;
+    // 累積次數
+    int64 Count = 2;
+}
+
+// 轉數表(歷史快照)(每次獲得大獎清空當前轉數時的狀態)
+message PachiSlotRoadMapSnapshot {
+    // 大獎類型
+    PachiSlot_Scenario Type = 1;
+    // 次數
+    int64 Count = 2;
+    // 時間點(Unit Timestamp)
+    int64 Time = 3;
+}
+
+// 查詢Proto條件
+message PachiSlotQueryProtoCondition {
+    bool ShowGameConfig = 1;
+    bool ShowPayLine = 2;
+    bool ShowPayTable = 3;
+    bool ShowReelStrips = 4;
+    bool ShowPattern = 5;
+    bool ShowModule = 6;
+    bool ShowMode = 7;
+    bool ShowRTRelease = 8;
+    bool ShowResultDistribution = 9;
+    bool ShowNextModeDistribution = 10;
+    bool ShowRTDistribution = 11;
+    bool ShowBRDistribution = 12;
+}
+
+// 查詢Proto結果
+message PachiSlotQueryProtoResponse {
+    PachiSlot_Proto_GameConfig GameConfig = 1;
+    repeated PachiSlot_Proto_PayLine PayLine = 2;
+    repeated PachiSlot_Proto_PayoutOption PayTable = 3;
+    repeated PachiSlot_Proto_ReelStripSymbol ReelStrips = 4;
+    repeated PachiSlot_Proto_PatternOption Pattern = 5;
+    repeated PachiSlot_Proto_Module Module = 6;
+    repeated PachiSlot_Proto_Mode Mode = 7;
+    repeated PachiSlot_Proto_RTReleaseOption RTRelease = 8;
+    repeated PachiSlot_Proto_ResultDistributionOption ResultDistribution = 9;
+    repeated PachiSlot_Proto_NextModeDistributionOption NextModeDistribution = 10;
+    repeated PachiSlot_Proto_RTDistributionOption RTDistribution = 11;
+    repeated PachiSlot_Proto_BRDistributionOption BRDistribution = 12;
+}
+
+// GameConfig 遊戲設定
+message PachiSlot_Proto_GameConfig {
+    // 流水號
+    int32 ID = 1;
+
+    // 名稱
+    string Name = 2;
+
+    // 使用的賠線群組
+    int32 PayLineGroupID = 3;
+
+    // 使用的賠付表群組
+    int32 PayTableGroupID = 4;
+
+    // 使用的Pattern群組
+    int32 PatternGroupID = 5;
+
+    // 使用的排列帶群組
+    int32 ReelStripsGroupID = 6;
+}
+
+// PayLine 賠線設定
+message PachiSlot_Proto_PayLine {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+    
+    // 線編號
+    int32 LineID = 3;
+
+    // 位置
+    repeated PachiSlot_Proto_Position Positions = 4; 
+}
+
+// Position 位置
+message PachiSlot_Proto_Position {
+    // 輪軸編號
+    int32 Reel = 1;
+
+    // 位置編號
+    int32 Row = 2;
+}
+
+// PayoutOption 賠付項目
+message PachiSlot_Proto_PayoutOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 牌型
+    PachiSlot_ResultType ResultType = 3;
+
+    // 賠付類型
+    PachiSlot_PayType PayType = 4;
+
+    // 賠付值
+    int32 Payout = 5;
+
+    // 適用情境
+    PachiSlot_Scenario UseType = 6;
+}
+
+// ReelStripSymbol 排列帶上符號
+message PachiSlot_Proto_ReelStripSymbol {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // Reel 輪軸編號
+    int32 Reel = 3;
+    
+    // Row 輪帶位置
+    int32 Row = 4;
+
+    // Symbol 符號名稱
+    PachiSlot_Symbol Symbol = 5;
+}
+
+// PatternOption 設定組合
+message PachiSlot_Proto_PatternOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 模式 群組編號
+    int32 ModeGroupID = 3;
+
+    // 一般遊戲 牌型機率 群組編號
+    int32 NGResultGroupID = 4;
+
+    // 遊戲模式 群組編號
+    int32 ModuleGroupID = 5;
+
+    // RT解除 群組編號
+    int32 RTReleaseGroupID = 6;
+}
+
+// Module 模組設定
+message PachiSlot_Proto_Module {
+    // 流水號
+    int32 ID = 1;
+    
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 牌型機率表群組ID
+    int32 ResultProbGroupID = 3;
+
+    // 遊戲類型
+    PachiSlot_Scenario Type = 4;
+
+    // 數量
+    int32 Count = 5;
+
+    // 消耗
+    int32 Cost = 6;
+}
+
+// Mode 模式設定
+message PachiSlot_Proto_Mode {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 模式
+    PachiSlot_ModeType ModeType = 3;
+
+    // 下次模式抽選組ID
+    int32 NextModeGroupID = 4;
+
+    // RT 表分配ID
+    int32 RTGroupID = 5;
+
+    // BR 表分配ID
+    int32 BRGroupID = 6;
+}
+
+// RTReleaseOption RT 解除條件項
+message PachiSlot_Proto_RTReleaseOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+    
+    // 牌型
+    PachiSlot_ResultType ResultType = 3;
+
+    // 解除機率分子
+    int32 Rate = 4;
+
+    // 解除機率分母
+	int32 Denominator = 5;
+
+    // 轉數
+    repeated int32 Times = 6;
+
+    // 適用狀態
+    PachiSlot_Scenario UseType = 7;
+}
+
+// ResultDistributionOption 牌型機率項
+message PachiSlot_Proto_ResultDistributionOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 牌型
+    PachiSlot_ResultType Result = 3;
+
+    // 權重
+    int32 Weight = 4;
+}
+
+// NextModeDistributionOption 下次模式抽選機率項
+message PachiSlot_Proto_NextModeDistributionOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 模式
+    PachiSlot_ModeType Mode = 3;
+
+    // 權重
+    int32 Weight = 4;
+}
+
+// RTDistributionOption RT表分配項
+message PachiSlot_Proto_RTDistributionOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 最小值
+    int32 Min = 3;
+
+    // 最大值
+    int32 Max = 4;
+
+    // 權重
+    int32 Weight = 5;
+}
+
+// BRDistributionOption 大獎分配項
+message PachiSlot_Proto_BRDistributionOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 獎項
+    PachiSlot_Scenario Type = 3;
+
+    // 權重
+    int32 Weight = 4;
+}

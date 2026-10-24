@@ -1,0 +1,284 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+        <button class="btn btn-red2 " v-on:click="showCreateModal">+ 建立下发纪录</button>
+    </h4>
+
+
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+            <div class="col-md-3">
+
+                <label for="" class="">@t.Text(i18nKeys.Common_Label_Status)</label>
+
+
+                <select class="form-control" v-model="dataTable.searchForm.merchantID" v-cloak>
+                    <option value="">@t.Text(i18nKeys.Common_Label_FilterAll)</option>
+                    <option v-for="(item , index) in dropdown.merchants " :value="item.value">
+                        {{item.text}}
+                    </option>
+                </select>
+
+            </div>
+
+
+
+            <div class="col-md-3">
+
+                <label for="" class="">@t.Text(i18nKeys.Common_Label_Status)</label>
+
+
+                <select class="form-control" v-model="dataTable.searchForm.status" v-cloak>
+                    <option value="">@t.Text(i18nKeys.Common_Label_FilterAll)</option>
+                    <option v-for="(item , index) in dropdown.normalStatus " :value="item.value">
+                        {{item.text}}
+                    </option>
+                </select>
+
+            </div>
+
+
+
+            <div class="col-md-3">
+                <div class="search-btn-row">
+                    <button class="btn btn-alternate" v-on:click="getList(1)"> @t.Text(i18nKeys.Common_Button_Search)</button>
+                    <button class="btn btn-secondary" v-on:click="resetForm"> @t.Text(i18nKeys.Common_Button_Reset)</button>
+                </div>
+            </div>
+
+
+            <div style="clear:both;"></div>
+
+
+        </div>
+
+    </div>
+
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+
+
+    <div id="create_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+        <div class="modal-dialog modal-lg" role="document" style="width: 600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">
+                        申请下发
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    <div class="clearboth"></div>
+
+                </div>
+                <div class="modal-body editForm">
+
+                    <div>@Html.RenderDropdown(t.Text(i18nKeys.Common_Label_MerchantID), "editForm.merchantID" , "dropdown.merchants")</div>
+                    <div>@Html.RenderInput(t.Text(i18nKeys.Common_Label_Amount), "editForm.amount")</div>
+                    <div>@Html.RenderInput("帳號資訊", "editForm.accountMemo")</div>
+                    <div>@Html.RenderTextArea(t.Text(i18nKeys.Common_Label_Memo), "editForm.memo")</div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">@t.Text(i18nKeys.Common_Button_Close)</button>
+                    <button type="button" class="btn btn-red2" v-on:click="save()">@t.Text(i18nKeys.Common_Button_Save)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+        $(function () {
+
+
+        })
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+                detailInfo: {},
+
+                editForm:
+                {
+                },
+
+                dataTable: {
+
+                    getData: function () {
+                        app.getList();
+                    },
+                    searchForm: {
+                        status: '',
+                        merchantID: '',
+                        cardNo: '',
+                        createTime_displayText: '',
+                        createTimeBegin: '',
+                        createTimeEnd: ''
+                    },
+                    pagination: {
+                        items: [],
+                        pageSize: 10,
+                        orderByColumn: "",
+                    },
+                    columns:
+                        [
+                            { text: "@t.Text(i18nKeys.Common_Label_SystemID)", column: "id" },
+                            { text: "@t.Text(i18nKeys.Common_Label_MerchantID)", column: "merchantID" },
+                            { text: "@t.Text(i18nKeys.Common_Label_DisplayName)", column: "merchantName" },
+                            { text: "@t.Text(i18nKeys.Common_Label_Amount)", column: "amount", 'align': "r", isMoneyFormat : true },
+                            { text: "帳號資訊", column: "accountMemo" },
+                            { text: "@t.Text(i18nKeys.Common_Label_Memo)", column: "memo", isPopupText : true },
+                            { text: "@t.Text(i18nKeys.Common_Label_Status)", column: "statusText" },
+                            { text: "@t.Text(i18nKeys.Common_Label_CreateTime)", column: "createTime", "html": function (row) { return format_helper.to_display_time(row.createTime); } },
+                            { text: "@t.Text(i18nKeys.Common_Label_CreateBy)", column: "createBy" },
+                            { text: "@t.Text(i18nKeys.Common_Label_UpdateTime)", column: "updateTime", "html": function (row) { return format_helper.to_display_time(row.createTime); } },
+                            { text: "@t.Text(i18nKeys.Common_Label_UpdateBy)", column: "updateBy" },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_OperateFunction)", column: "text", width: "10%", templates: [
+
+                                    
+                                ]
+                            }
+                        ]
+                }
+
+            },
+
+            methods: {
+
+                showCreateModal() {
+
+                    this.editForm = {};
+                    this.editForm.merchantID = '';
+                    $("#create_modal").modal("show");
+                },
+
+                closeModal() {
+                    $("#create_modal").modal("hide");
+                },
+
+               
+                save() {
+
+
+                    if (confirm('是否確認進行此操作？若確認後，將會從商戶資金扣除所輸入的金額')) {
+
+                        let url = window.API_DOMAIN + '/merchants/withdrawal';
+                        ajaxHelper.post(url, this.editForm)
+                            .then((res) => {
+                                console.log(res);
+
+                                this.successAlert();
+                                this.closeModal();
+                                this.getList();
+                            })
+                            .catch((error) => {
+                                alert(error.data.message);
+                            })
+                            .finally(() => {
+
+                            });
+                    }
+                   
+
+                },
+
+
+                click_dataTable(btn_type, row_data) {
+
+                    switch (btn_type) {
+                        case constant.template.edit:
+                            this.showEditModal(row_data);
+                            break;
+
+                        default:
+                            alert('undefined! ' + btn_type);
+                    }
+
+                },
+
+
+                getList(targetPageIndex) {
+
+                    let vm = this;
+
+                    //如果有指定頁數
+                    if (targetPageIndex) {
+                        this.dataTable.pagination.pageIndex = 1;
+                    }
+
+                    var queryString = form_helper.getSearchFormQueryString(this.dataTable);
+
+                    let url = window.API_DOMAIN + "/merchants/withdrawal";
+
+                    ajaxHelper.get(url + queryString)
+                        .then((res) => {
+                            vm.dataTable.pagination = res.data.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+
+                        });
+
+                }
+
+            },
+
+
+            mounted() {
+
+
+                this.getList();
+
+                this.getDropdownMerchants();
+
+                this.getDropdownNormalStatus();
+
+                let vm = this;
+
+
+                date_picker.datetime_range_empty(
+                    {
+                        vue_instance: vm.dataTable.searchForm,
+                        element_ID: "#createtime",
+                        vue_prop_begin: "createTimeBegin",
+                        vue_prop_end: "createTimeEnd",
+                        vue_prop_text: "createTime_displayText"
+                    });
+            }
+        })
+
+
+    </script>
+
+}

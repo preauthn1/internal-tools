@@ -1,0 +1,41 @@
+
+3dfish.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 46
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+bubble01
+  rotate: false
+  xy: 376, 143
+  size: 33, 95
+  orig: 33, 95
+  offset: 0, 0
+  index: -1
+bubble03
+  rotate: false
+  xy: 411, 183
+  size: 37, 55
+  orig: 37, 55
+  offset: 0, 0
+  index: -1
+bubbles02
+  rotate: false
+  xy: 2, 2
+  size: 151, 42
+  orig: 151, 42
+  offset: 0, 0
+  index: -1
+fish
+  rotate: false
+  xy: 197, 52
+  size: 177, 186
+  orig: 177, 186
+  offset: 0, 0
+  index: -1

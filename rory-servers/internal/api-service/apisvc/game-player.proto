@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package apisvc;
+
+// 玩家相關服務
+service GamePlayerService {
+  // 查詢錢包
+  rpc Wallet(WalletReq) returns (WalletRes);
+}
+
+message WalletReq { string AccessToken = 1; }
+
+message WalletRes {
+  int64 Amount = 1;
+  int32 MerchantWalletMode = 2;
+}

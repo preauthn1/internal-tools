@@ -1,0 +1,41 @@
+﻿
+@{
+
+    double timeZone = AdminSysHelper.GetDefaultTimeZone();
+
+    var today_begin = DateTimeHelper.GetCurrentTime(timeZone).Date;
+    var yesterday_begin = DateTimeHelper.GetCurrentTime(timeZone).Date.AddDays(-1);
+    var last_7days = DateTimeHelper.GetCurrentTime(timeZone).Date.AddDays(-6);
+    var last_30days = DateTimeHelper.GetCurrentTime(timeZone).Date.AddDays(-30);
+
+
+    var this_month = DateTimeHelper.GetCurrentTime(timeZone);
+    var last_month = DateTimeHelper.GetCurrentTime(timeZone).AddMonths(-1);
+
+
+    var this_month_begin = new DateTime(this_month.Year, this_month.Month, 1);
+    var last_month_begin = new DateTime(last_month.Year, last_month.Month, 1);
+}
+
+@functions {
+
+    public static string ToInputTime(DateTime date , int offsetDays = 0)
+    {
+        return date.AddDays(offsetDays).ToString("yyyy-MM-dd HH:mm:ss");
+    } 
+    
+    public static string ToInputTimeAddMonth(DateTime date , int offsetMonth = 0)
+    {
+        return date.AddMonths(offsetMonth).ToString("yyyy-MM-dd HH:mm:ss");
+    }
+}
+
+    <div style="padding-top:25px;">
+        <button class="btn btn-white" v-on:click="quickDatePick('@ToInputTime(yesterday_begin)' , '@ToInputTime(yesterday_begin , 1)')"> 昨日</button>
+        <button class="btn btn-white" v-on:click="quickDatePick('@ToInputTime(today_begin)' , '@ToInputTime(today_begin , 1)')"> 今日</button>
+        <button class="btn btn-white" v-on:click="quickDatePick('@ToInputTimeAddMonth(last_month_begin)' , '@ToInputTimeAddMonth(last_month_begin , 1)')"> 上月</button>
+        <button class="btn btn-white" v-on:click="quickDatePick('@ToInputTimeAddMonth(this_month_begin)' , '@ToInputTimeAddMonth(this_month_begin , 1)')"> 本月</button>
+        <button class="btn btn-white" v-on:click="quickDatePick('@ToInputTime(last_7days)' , '@ToInputTime(last_7days , 7)')"> 7日</button>
+        <button class="btn btn-white" v-on:click="quickDatePick('@ToInputTime(last_30days)' , '@ToInputTime(last_30days , 31)')"> 30日</button>
+
+    </div>

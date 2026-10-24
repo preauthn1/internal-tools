@@ -1,0 +1,10 @@
+port: 10090
+scheme: ws
+auth:
+  endpoint: http://example.invalid/third-party/slot88/md5
+  # endpoint: http://localhost:9001/token
+  cer: 851b-222e5f24024b
+logger:
+  level: debug
+money:
+  transfor: dollar  # score/dollar (default: score)

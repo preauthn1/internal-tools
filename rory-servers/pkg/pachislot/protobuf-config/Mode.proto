@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+import "base.proto";
+
+// Mode 模式設定
+message Mode {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 模式
+    ModeType ModeType = 3;
+
+    // 下次模式抽選組ID
+    int32 NextModeGroupID = 4;
+
+    // RT 表分配ID
+    int32 RTGroupID = 5;
+
+    // BR 表分配ID
+    int32 BRGroupID = 6;
+}
+
+// NextModeDistributionOption 下次模式抽選機率項
+message NextModeDistributionOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 模式
+    ModeType Mode = 3;
+
+    // 權重
+    int32 Weight = 4;
+}

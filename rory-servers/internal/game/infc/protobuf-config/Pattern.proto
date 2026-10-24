@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+message Pattern {
+	// Pattern的流水編號
+	int32 PatternID = 1;
+	// 定義Pattern使用的Stage群組編號
+	int32 StageGroupID = 2;
+	// 是否循環
+	int32 IsLoop = 3;
+}

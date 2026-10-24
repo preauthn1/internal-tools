@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "";
+}
+
+
+<div>
+
+    <h4>
+
+        Welcome! 欢迎使用 @AdminSysHelper.WebSiteDisplayName()
+    </h4>
+
+</div>
+
+
+@section Scripts{
+
+
+    <script>
+
+
+        var app = new Vue({
+            el: '#app',
+            components: {
+                //hello,
+            },
+            data: {
+                message: 'Title',
+
+                data: [
+                    {
+                        "name": "好吃",
+                        "text": "注意了",
+                        "id": "100",
+                    },
+                    {
+                        "name": "名稱",
+                        "text": "備註",
+                        "id": "101",
+                    }
+                ],
+
+                columns:
+                    [
+                        { "text": "AAA", column: "name" },
+                        { "text": "BBB", column: "text", "html": function (row) { return "<span style='color:#CCC'>" + row.text + "</span>"; } },
+                        { "text": "CCC", column: "id" }
+                    ]
+
+            },
+
+        })
+
+
+    </script>
+
+}

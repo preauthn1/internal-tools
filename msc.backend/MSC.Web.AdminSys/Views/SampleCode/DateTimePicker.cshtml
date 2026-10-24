@@ -1,0 +1,129 @@
+﻿
+
+
+<div id="app">
+
+    <h4>
+        卡號管理
+    </h4>
+
+    <hr />
+
+    <div>
+
+
+        <div class="row search-form">
+
+
+            {{searchForm.startTime}}
+
+            <div class="col-md-3">
+                <label for="exampleEmail" class="">卡號</label>
+                <input name="email" id="exampleEmail" placeholder="卡號" type="email" class="form-control">
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label for="exampleEmail" class="">卡號</label>
+                <input name="date" id="datepicker" placeholder="卡號" type="text" class="form-control datepicker">
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label for="exampleEmail" class="">卡號</label>
+                <input name="date" id="datepicker2" placeholder="卡號" type="text" class="form-control datepicker">
+
+            </div>
+            
+
+            <div class="col-md-3">
+                <div class="search-btn-row">
+                    <button class="btn btn-info">搜尋</button>
+                </div>
+            </div>
+
+
+            <div style="clear:both;"></div>
+
+        </div>
+
+
+
+    </div>
+
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Title',
+
+                startTime: '',
+                endTime: '',
+                searchForm: {
+                    startTime: ''
+                }
+            },
+
+            methods: {
+
+
+            },
+
+            mounted() {
+
+                this.getList();
+
+
+                let vm = this;
+
+                $('#datepicker').daterangepicker({
+                    timePicker: true,
+                    startDate: moment().startOf('hour'),
+                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale: {
+                        format: 'YYYY-MM-DD HH:mm'
+                    }
+                }, function (start, end, label) {
+                    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                    vm.startTime = start.format('YYYY-MM-DD');
+
+                    alert(vm.startTime);
+                });
+                
+
+                $('#datepicker2').daterangepicker({
+                    timePicker: true,
+                    singleDatePicker: true,
+                    locale: {
+                        format: 'YYYY-MM-DD HH:mm'
+                    }
+                }, function (start, end, label) {
+                    var years = moment().diff(start, 'years');
+                    alert("You are " + years + " years old!");
+
+
+                    vm.searchForm["startTime"] = "yyyy";
+                    alert(vm.searchForm.startTime);
+                });
+
+            }
+        })
+
+
+    </script>
+
+}

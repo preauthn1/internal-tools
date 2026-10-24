@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "角色权限";
+}
+
+
+<div id="app">
+
+    <h4>
+        角色权限
+    </h4>
+
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+
+            <div class="col-md-8">
+
+                <div>
+                    <div class="form-label"><label>RoleID</label></div>
+                    <div class="summary-info-column">
+                        {{roleInfo.roleID}}
+                    </div>
+                </div>
+
+
+                <div>
+                    <div class="form-label"><label>名稱</label></div>
+                    <div class="summary-info-column">
+                        {{roleInfo.roleName}}
+                    </div>
+                </div>
+
+
+                <div style="margin-top:35px;">
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <h5>
+                                已分配權限  <span style="font-size:16px;font-weight:400;margin-left:5px;">({{roleInfo.totalPermissionCount}} 個)</span>
+                            </h5>
+
+                            <div style="border-bottom: dashed 2px #dedede;margin-bottom:10px;width:80%"></div>
+                            <div v-for="(item , index) in roleInfo.permissions">
+                                {{item}}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <h5>
+                                未分配權限  
+                            </h5>
+
+                            <div style="border-bottom: dashed 2px #dedede;margin-bottom:10px;width:80%"></div>
+
+                            <div v-for="(item , index) in roleInfo.unassignPermissions">
+                                {{item}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="clear:both;"></div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+@section Scripts{
+
+
+    <script>
+
+
+
+        $(function () {
+
+
+
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+
+                roleInfo:
+                {
+                    unassignPermissions : [],
+                    permissions: []
+                    
+                }
+
+            },
+
+            methods: {
+
+
+                getList(roleID) {
+
+                    let url = window.API_DOMAIN + '/role/' + roleID +'/permissions';
+
+                    ajaxHelper.get(url)
+                        .then((res) => {
+
+                            this.roleInfo = res.data.data;
+
+                        })
+                        .catch((error) => { console.log(error) })
+                        .finally(() => { });
+
+                }
+
+            },
+
+            mounted() {
+
+                let roleID = this.getQueryString()["roleID"];             
+                let vm = this;
+                this.getList(roleID);
+
+            }
+        })
+
+
+    </script>
+
+}

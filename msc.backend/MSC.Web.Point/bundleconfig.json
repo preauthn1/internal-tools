@@ -1,0 +1,19 @@
+[
+  {
+    "outputFileName": "wwwroot/js/my_release_bundle.min.js",
+    "inputFiles": [
+      //"wwwroot/lib/jquery/dist/jquery.js",
+      "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      //"wwwroot/js/site.release.js",
+      "wwwroot/js/site.dev.Y6KGX.js",
+      "wwwroot/js/crypto.min.js",
+      "wwwroot/js/crypto.md5.js"
+    ],
+    "includeInProject": true,
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

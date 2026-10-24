@@ -1,0 +1,397 @@
+variables:
+  NAS_HOST: 0.0.0.0
+  NAS_USERNAME: release
+  NAS_PASSWORD: [REDACTED]
+  NAS_VERSION: "2.0"
+  NAS_MNT_TARGET: 99.release
+  NAS_MNT_FOLDER: bin
+  DOCKER_REGISTRY_DOMAIN: example.invalid
+  DOCKER_REGISTRY_USERNAME: admin
+  DOCKER_REGISTRY_PASSWORD: [REDACTED]
+  CI_BUILD_TARGETS: none
+
+.go-env:
+  image: golang:1.15
+  tags:
+    - golang
+  variables:
+    GOPATH: $CI_PROJECT_DIR/.go
+    GO111MODULE: "on"
+    GOPROXY: "http://0.0.0.0:3000"
+
+.go-build:
+  extends: .go-env
+  needs:
+    - go mod
+    - choose target
+  dependencies:
+    - go mod
+    - choose target
+  before_script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - mkdir -p ${NAS_MNT_FOLDER}
+    - mount -t cifs -o username=${NAS_USERNAME},password=[REDACTED],vers=${NAS_VERSION} //${NAS_HOST}/${NAS_MNT_TARGET} ${NAS_MNT_FOLDER}
+    - mkdir -p ${NAS_MNT_FOLDER}/${BUILD_NAME}
+    - source .env
+    - echo $CI_BUILD_TARGETS
+
+stages:
+  - Dependencies
+  - Unit Test
+  - Choose Type
+  - Build Binary
+  - Build Docker
+  - Deploy
+
+go mod:
+  extends: .go-env
+  stage: Dependencies
+  cache:
+    untracked: false
+    policy: pull-push
+    key: mod
+    paths:
+      - ${GOPATH}/pkg/mod
+  script: go mod download
+
+go lint:
+  image: cytopia/golint
+  stage: Unit Test
+  allow_failure: true
+  tags:
+    - golang
+  script:
+    - golint -set_exit_status ./...
+
+go test:
+  extends: .go-env
+  stage: Unit Test
+  artifacts:
+    name: "go-test"
+    untracked: false
+    expire_in: 60 mins
+    when: always
+    paths:
+      - output
+  cache:
+    untracked: false
+    policy: pull
+    key: mod
+    paths:
+      - ${GOPATH}/pkg/mod
+  retry: 2
+  script:
+    - make go-test
+
+choose target:
+  stage: Choose Type
+  when: manual
+  tags:
+    - golang
+  artifacts:
+    expire_in: 30 min
+    paths:
+      - .env
+  script:
+    - echo "export CI_BUILD_TARGETS=${CI_BUILD_TARGETS}" >> .env
+    - cat .env
+
+build cli command:
+  extends: .go-env
+  stage: Build Binary
+  cache:
+    untracked: false
+    policy: pull
+    key: mod
+    paths:
+      - ${GOPATH}/pkg/mod
+  artifacts:
+    untracked: false
+    expire_in: 30 min
+    paths:
+      - clibin
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags "-X example.invalid/ServerTeam/Servers/cmd/cli/conf.Version=${Ver}" -o clibin/cli ./cmd/cli
+
+build game server:
+  extends: .go-build
+  stage: Build Binary
+  cache:
+    untracked: false
+    policy: pull
+    key: mod
+    paths:
+      - ${GOPATH}/pkg/mod
+  script:
+    - GOOS=linux bash ./scripts/gitlab-ci-build-binary.sh
+
+build windows:
+  extends: .go-build
+  stage: Build Binary
+  cache:
+    untracked: false
+    policy: pull
+    key: mod
+    paths:
+      - ${GOPATH}/pkg/mod
+  script:
+    - GOOS=windows bash ./scripts/gitlab-ci-build-binary.sh
+
+build slot88:
+  extends: .go-env
+  stage: Build Binary
+  cache:
+    untracked: false
+    policy: pull
+    key: mod
+    paths:
+      - ${GOPATH}/pkg/mod
+  artifacts:
+    untracked: false
+    expire_in: 30 min
+    paths:
+      - bin
+  script:
+    - GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o bin/slot88-forward ./cmd/slot88/forward
+
+build docker:
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  needs:
+    - choose target
+    - build game server
+    - build cli command
+  dependencies:
+    - choose target
+    - build cli command
+  stage: Build Docker
+  tags:
+    - docker
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+    DOCKER_TLS_CERTDIR: ""
+    GOOS: "linux"
+  before_script:
+    - apk add --no-cache bash
+    - source ./scripts/gitlab-ci-variables.sh
+    - mkdir -p ${NAS_MNT_FOLDER}
+    - mount -t cifs -o username=${NAS_USERNAME},password=[REDACTED],vers=${NAS_VERSION} //${NAS_HOST}/${NAS_MNT_TARGET} ${NAS_MNT_FOLDER}
+    - source .env
+    - echo $CI_BUILD_TARGETS
+    - docker login -u ${DOCKER_REGISTRY_USERNAME} -p ${DOCKER_REGISTRY_PASSWORD} ${DOCKER_REGISTRY_DOMAIN}
+  script:
+    - cp clibin/cli build/docker
+    - bash ./scripts/gitlab-ci-docker-build.sh
+    - bash ./scripts/gitlab-ci-docker-push.sh
+
+build docker slot88:
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  needs:
+    - build slot88
+  dependencies:
+    - build slot88
+  stage: Build Docker
+  tags:
+    - docker
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+    DOCKER_TLS_CERTDIR: ""
+    GOOS: "linux"
+  before_script:
+    - docker login -u ${DOCKER_REGISTRY_USERNAME} -p ${DOCKER_REGISTRY_PASSWORD} ${DOCKER_REGISTRY_DOMAIN}
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - ls -l bin
+    - cp bin/slot88-forward ./cmd/slot88/forward
+    - docker build --pull -t $DOCKER_REGISTRY_DOMAIN/slot88/forward -t $DOCKER_REGISTRY_DOMAIN/slot88/forward:${Ver} ./cmd/slot88/forward
+    - docker push $DOCKER_REGISTRY_DOMAIN/slot88/forward
+    - docker push $DOCKER_REGISTRY_DOMAIN/slot88/forward:${Ver}
+
+dd-dev:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: dd-dev
+  variables:
+    REPO_ENV_TOKEN: [REDACTED]
+    REPO_ENV_URL: http://example.invalid:1688/api/v4/projects/366/trigger/pipeline
+  needs:
+    - choose target
+    - build docker
+  dependencies:
+    - choose target
+  before_script:
+    - source .env
+    - echo $CI_BUILD_TARGETS
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - "curl -X POST -F token=[REDACTED] -F ref=master -F variables[BUILD_NAME]=${Ver} -F variables[CI_BUILD_TARGETS]=${CI_BUILD_TARGETS} -F variables[BRANCH]=${CI_COMMIT_REF_NAME} -F variables[Message]=${CI_COMMIT_TITLE} ${REPO_ENV_URL}"
+  tags:
+    - golang
+
+dd-dev-slot88:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: dd-dev
+  needs:
+    - build docker slot88
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - helm upgrade slot88 deployments/slot88 -i -n dd-dev --set version=${Ver} -f deployments/slot88/dd-dev/values.yaml
+  tags:
+    - golang
+
+dd-qa:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: dd-qa
+  variables:
+    REPO_ENV_TOKEN: [REDACTED]
+    REPO_ENV_URL: http://example.invalid:1688/api/v4/projects/367/trigger/pipeline
+  needs:
+    - choose target
+    - build docker
+  dependencies:
+    - choose target
+  when: manual
+  before_script:
+    - source .env
+    - echo $CI_BUILD_TARGETS
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - "curl -X POST -F token=[REDACTED] -F ref=master -F variables[BUILD_NAME]=${Ver} -F variables[CI_BUILD_TARGETS]=${CI_BUILD_TARGETS} -F variables[BRANCH]=${CI_COMMIT_REF_NAME} -F variables[Message]=${CI_COMMIT_TITLE} ${REPO_ENV_URL}"
+  tags:
+    - golang
+
+target-dev:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: target-dev
+  variables:
+    REPO_ENV_TOKEN: [REDACTED]
+    REPO_ENV_URL: http://example.invalid:1688/api/v4/projects/371/trigger/pipeline
+  needs:
+    - choose target
+    - build docker
+  dependencies:
+    - choose target
+  before_script:
+    - source .env
+    - echo $CI_BUILD_TARGETS
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - curl -X POST -F token=[REDACTED] -F ref=master -F variables[BUILD_NAME]=${Ver} -F variables[CI_BUILD_TARGETS]=${CI_BUILD_TARGETS} -F variables[BRANCH]=${CI_COMMIT_REF_NAME} -F variables[Message]=${CI_COMMIT_TITLE} ${REPO_ENV_URL}
+  tags:
+    - golang
+
+target-dev-slot88:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: target-dev
+  needs:
+    - build docker slot88
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - helm upgrade slot88 deployments/slot88 -i -n target-dev --set version=${Ver} -f deployments/slot88/target-dev/values.yaml
+  tags:
+    - golang
+
+target-qa:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: target-qa
+  variables:
+    REPO_ENV_TOKEN: [REDACTED]
+    REPO_ENV_URL: http://example.invalid:1688/api/v4/projects/407/trigger/pipeline
+  needs:
+    - choose target
+    - build docker
+  dependencies:
+    - choose target
+  when: manual
+  before_script:
+    - source .env
+    - echo $CI_BUILD_TARGETS
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - "curl -X POST -F token=[REDACTED] -F ref=master -F variables[BUILD_NAME]=${Ver} -F variables[CI_BUILD_TARGETS]=${CI_BUILD_TARGETS} -F variables[BRANCH]=${CI_COMMIT_REF_NAME} -F variables[Message]=${CI_COMMIT_TITLE} ${REPO_ENV_URL}"
+  tags:
+    - golang
+
+target-qa-slot88:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: target-qa
+  needs:
+    - build docker slot88
+  when: manual
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - helm upgrade slot88 deployments/slot88 -i -n target-qa --set version=${Ver} -f deployments/slot88/target-qa/values.yaml
+  tags:
+    - golang
+
+target:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: target
+  variables:
+    REPO_ENV_TOKEN: [REDACTED]
+    REPO_ENV_URL: http://example.invalid:1688/api/v4/projects/405/trigger/pipeline
+  needs:
+    - choose target
+    - build docker
+  dependencies:
+    - choose target
+  when: manual
+  before_script:
+    - source .env
+    - echo $CI_BUILD_TARGETS
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - "curl -X POST -F token=[REDACTED] -F ref=master -F variables[BUILD_NAME]=${Ver} -F variables[CI_BUILD_TARGETS]=${CI_BUILD_TARGETS} -F variables[BRANCH]=${CI_COMMIT_REF_NAME} -F variables[Message]=${CI_COMMIT_TITLE} ${REPO_ENV_URL}"
+  tags:
+    - golang
+  only:
+    - tags
+
+target-slot88:
+  image: dtzar/helm-kubectl
+  stage: Deploy
+  environment:
+    name: target-slot88
+  variables:
+    REPO_ENV_TOKEN: [REDACTED]
+    REPO_ENV_URL: http://example.invalid:1688/api/v4/projects/406/trigger/pipeline
+  needs:
+    - build docker slot88
+  when: manual
+  script:
+    - source ./scripts/gitlab-ci-variables.sh
+    - Ver=$(if [ "$GIT_TAG" = "" ]; then echo $BUILD_NAME; else echo $GIT_TAG; fi)
+    - "curl -X POST -F token=[REDACTED] -F ref=master -F variables[BUILD_NAME]=${Ver} ${REPO_ENV_URL}"
+  tags:
+    - golang
+  only:
+    - tags

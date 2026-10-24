@@ -1,0 +1,105 @@
+{{- $dbver := .Values.defaultVersion | default "latest" }}
+{{- $hallver := .Values.defaultVersion | default "latest" }}
+{{- if .Values.versions }}
+  {{- if .Values.versions.common }}
+    {{- if .Values.versions.common.dbserver }}
+    {{- $dbver = .Values.versions.common.dbserver }}
+    {{- end }}
+    {{- if .Values.versions.common.hallserver }}
+    {{- $hallver = .Values.versions.common.hallserver }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{ if not .Values.websocket }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "game-server.fullname" . }}-hall
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: hall
+      protocol: TCP
+      port: 10000
+    - name: game
+      protocol: TCP
+      port: 10001
+  selector:
+    app: hallserver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "game-server.fullname" . }}-hall
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+  annotations:
+    example.invalid/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hallserver
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      name: {{ include "game-server.fullname" . }}-hall
+      labels:
+        app: hallserver
+        {{- include "game-server.labels" . | nindent 8 }}
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: db-config
+          configMap:
+            name: {{ include "game-server.fullname" . }}-db
+        - name: hall-config
+          configMap:
+            name: {{ include "game-server.fullname" . }}-hall
+        - name: storage
+          emptyDir: {}
+        - name: tz-config
+          hostPath: 
+            path: /usr/share/zoneinfo/{{ .Values.timezone | default "UTC" }}
+      containers:
+        - name: db
+          image: example.invalid/dbserver:{{ $dbver | default "latest" }}
+          imagePullPolicy: Always
+          ports:
+            - name: dbserver
+              containerPort: 8000
+              protocol: TCP
+          volumeMounts:
+            - name: db-config
+              mountPath: /app/config
+              readOnly: true
+            - name: tz-config
+              mountPath: /etc/localtime
+              readOnly: true
+        - name: hall
+          image: example.invalid/hallserver:{{ $hallver | default "latest" }}
+          imagePullPolicy: Always
+          ports:
+            - name: hall
+              containerPort: 10000
+              protocol: TCP
+            - name: game
+              containerPort: 10001
+              protocol: TCP
+          volumeMounts:
+            - name: hall-config
+              mountPath: /app/config
+              readOnly: true
+            - name: tz-config
+              mountPath: /etc/localtime
+              readOnly: true
+{{- end }}

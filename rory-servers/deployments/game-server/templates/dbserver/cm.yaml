@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "game-server.fullname" . }}-db
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+data:
+  db.dat: |
+    [tcp]
+    addr=:8000
+    grpcaddr=:3101
+
+    [conn]
+    connstring="server={{ .Values.db.host }};database=CenterDB;user id={{ .Values.db.username }};password={{ .Values.db.password }};port={{ .Values.db.port }};encrypt=disable;"
+    deallogconnstring="server={{ .Values.db.host }};database=PerGameLog;user id={{ .Values.db.username }};password={{ .Values.db.password }};port={{ .Values.db.port }};encrypt=disable;"
+    clubconnstring="server={{ .Values.db.host }};database=Club;user id={{ .Values.db.username }};password={{ .Values.db.password }};port={{ .Values.db.port }};encrypt=disable;"
+    semaphore={{ .Values.db.semaphore }}
+    pool={{ .Values.db.pool }}
+    smswebapi={{ .Values.db.smswebapi }}

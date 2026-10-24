@@ -1,0 +1,48 @@
+
+anim_giftdog.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ball
+  rotate: false
+  xy: 443, 163
+  size: 195, 104
+  orig: 195, 104
+  offset: 0, 0
+  index: -1
+dog
+  rotate: false
+  xy: 2, 149
+  size: 439, 352
+  orig: 439, 352
+  offset: 0, 0
+  index: -1
+doghands
+  rotate: false
+  xy: 218, 59
+  size: 171, 88
+  orig: 171, 88
+  offset: 0, 0
+  index: -1
+gift_back
+  rotate: false
+  xy: 2, 2
+  size: 214, 145
+  orig: 214, 145
+  offset: 0, 0
+  index: -1
+gift_front
+  rotate: false
+  xy: 716, 328
+  size: 276, 173
+  orig: 276, 173
+  offset: 0, 0
+  index: -1
+giftcap
+  rotate: false
+  xy: 443, 269
+  size: 271, 232
+  orig: 271, 232
+  offset: 0, 0
+  index: -1

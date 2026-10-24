@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+import "base.proto";
+
+// PayoutOption 賠付項目
+message PayoutOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 牌型
+    ResultType ResultType = 3;
+
+    // 賠付類型
+    PayType PayType = 4;
+
+    // 賠付值
+    int32 Payout = 5;
+
+    // 適用情境
+    Scenario UseType = 6;
+}
+
+// PayType 賠付類型
+enum PayType {
+    // 賠錢 Payout 為倍數
+    PTChip = 0;
+    
+    // 免費再轉 Payout 為次數
+    PTReplay = 1;
+
+    // 大獎 Payout 為 GameModeConfig 的 ID
+    PTBonus = 2;
+
+    // 1G連 增加 Bonus 連莊 Payout 為次數 
+    PT1G = 3;
+}

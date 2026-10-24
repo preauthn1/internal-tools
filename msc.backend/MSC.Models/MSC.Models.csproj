@@ -1,0 +1,17 @@
+﻿<Project Sdk="example.invalid.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>MSC.Models</AssemblyName>
+    <RootNamespace>MSC.Models</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\Common\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
+  </ItemGroup>
+
+</Project>

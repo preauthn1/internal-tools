@@ -1,0 +1,1 @@
+menu-04,menu-07,calc-04,calc-05,calc-06,calc-07,calc-09,calc-11,calc-12,event-03,nodata-01,nodata-07,nodata-08,nodata-10,ja-05,fs-en-04,fs-en-06,fs-ja-08,fs-ja-09,fs-zh-02,fs-zh-03,addr-02,fs-ja-02,pay-06,fs-ja-06,hours-05,fs-en-01,menu-08,calc-10,fs-en-03,fs-ja-03,fs-ja-04,fs-zh-04,fs-zh-05,calc-01,typo-04,typo-03,fs-ja-05,event-02

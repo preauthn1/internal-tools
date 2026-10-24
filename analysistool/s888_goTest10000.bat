@@ -1,0 +1,2 @@
+D:\Project\GameServerConfig\analysisTool\s888.exe analysis --proto D:\Project\KubeEnvironment\game-server\protodata\s888 --config D:\Project\GameServerConfig\slotconfig\s888_1\config -R -t 1000000
+pause

@@ -1,0 +1,62 @@
+
+texas.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 52
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+card01
+  rotate: true
+  xy: 197, 11
+  size: 104, 130
+  orig: 104, 130
+  offset: 0, 0
+  index: -1
+card02
+  rotate: false
+  xy: 329, 39
+  size: 73, 76
+  orig: 73, 76
+  offset: 0, 0
+  index: -1
+card03
+  rotate: false
+  xy: 409, 75
+  size: 72, 63
+  orig: 72, 63
+  offset: 0, 0
+  index: -1
+coin01
+  rotate: false
+  xy: 2, 2
+  size: 44, 48
+  orig: 44, 48
+  offset: 0, 0
+  index: -1
+coin02
+  rotate: false
+  xy: 404, 14
+  size: 73, 59
+  orig: 73, 59
+  offset: 0, 0
+  index: -1
+dice
+  rotate: true
+  xy: 409, 140
+  size: 104, 72
+  orig: 104, 72
+  offset: 0, 0
+  index: -1
+hat
+  rotate: false
+  xy: 197, 117
+  size: 210, 127
+  orig: 210, 127
+  offset: 0, 0
+  index: -1

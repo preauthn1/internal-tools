@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\csdjp.exe analysis --proto D:\Project\777Project\GameServerConfig\slotconfig\protodata -c D:\Project\777Project\GameServerConfig\slotconfig\csdjp_1\config -r -t 1000000

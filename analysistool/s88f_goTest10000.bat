@@ -1,0 +1,2 @@
+D:\Project\GameServerConfig\analysisTool\s88f.exe analysis --proto D:\Project\KubeEnvironment\game-server\protodata\s88f --config D:\Project\GameServerConfig\slotconfig\s88f_1\config -R -t 1000000
+pause

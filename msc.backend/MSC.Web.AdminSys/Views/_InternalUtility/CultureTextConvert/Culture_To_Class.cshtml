@@ -1,0 +1,96 @@
+﻿@using MSC.Models;
+@model List<ExcelConvertToClass>
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <div>
+        using System;
+    </div>
+
+    <div>
+        using MSC.Models.Attributes;
+    </div>
+
+    <div>
+        namespace MSC.Models.CultureText
+    </div>
+
+
+    <div>
+        {
+    </div>
+
+
+    <div style="padding-left:20px;">
+
+
+
+        @foreach (var item in Model)
+        {
+
+            <div>
+
+
+                public class @item.ClassName
+
+
+            </div>
+
+
+            <div>
+                {
+
+
+
+
+                @foreach (var prop in item.PropertyValues)
+                {
+
+                    @if (item.IsKeyObject)
+                    {
+                        foreach (var refText in prop.ReferenceText)
+                        {
+                            <div>
+                                [ReferenceText("@refText")]
+                            </div>
+                        }
+                    }
+
+                    <div style="padding-left:20px;">
+
+                        public const string @prop.PropertyText = "@prop.PropertyValue";
+
+                    </div>
+
+
+
+                    @if (item.IsKeyObject)
+                    {
+                        <div>
+                            <br />
+                        </div>
+                        <div>
+                            <br />
+                        </div>
+                    }
+
+
+                }
+
+            </div>
+
+
+            <div>
+                }
+            </div>
+        }
+
+
+    </div>
+    <div>
+        }
+    </div>
+
+
+}

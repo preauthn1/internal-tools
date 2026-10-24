@@ -1,0 +1,55 @@
+
+hundred.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 58
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 2, 22
+  size: 39, 34
+  orig: 39, 34
+  offset: 0, 0
+  index: -1
+coin02
+  rotate: false
+  xy: 2, 2
+  size: 23, 18
+  orig: 23, 18
+  offset: 0, 0
+  index: -1
+coinbg
+  rotate: false
+  xy: 368, 147
+  size: 133, 103
+  orig: 133, 103
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 297, 68
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+text
+  rotate: false
+  xy: 197, 140
+  size: 169, 110
+  orig: 169, 110
+  offset: 0, 0
+  index: -1
+tile
+  rotate: false
+  xy: 197, 60
+  size: 98, 78
+  orig: 98, 78
+  offset: 0, 0
+  index: -1

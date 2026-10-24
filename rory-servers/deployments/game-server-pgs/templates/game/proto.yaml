@@ -1,0 +1,43 @@
+{{- $root := . }}
+{{- $fullname := include "game-server.fullname" . }}
+
+## from files
+{{- $file := .Files }}
+{{- $folders := dict }}
+{{- range $path, $bytes := .Files.Glob "protodata/**" }}
+  {{- $_ := set $folders (base (dir $path)) true }}
+{{- end }}
+
+{{- range $key, $val := $folders }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullname }}-proto-{{ $key }}
+  labels:
+    {{- with $root }}
+    {{- include "game-server.labels" . | nindent 4 }}
+    {{- end }}
+data:
+  {{- $f := printf "protodata/%s/**" $key }}
+  {{- range $path, $bytes := $file.Glob $f }}
+  b64-{{ base $path }}: {{ $file.Get $path | b64enc }}
+  {{- end }}
+---
+{{- end }}
+
+## from --set-file
+{{- range $key, $files := .Values.proto }} 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullname }}-proto-{{ $key }}
+  labels:
+    {{- with $root }}
+    {{- include "game-server.labels" . | nindent 4 }}
+    {{- end }}
+data:
+  {{- range $filename, $data := $files }} 
+  b64-{{ $filename }}.bytes: {{ $data | b64enc}}
+  {{- end }}
+---
+{{- end }}

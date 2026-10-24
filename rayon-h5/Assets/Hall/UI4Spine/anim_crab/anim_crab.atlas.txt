@@ -1,0 +1,104 @@
+
+anim_crab.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm
+  rotate: false
+  xy: 312, 98
+  size: 132, 28
+  orig: 132, 28
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 54
+  size: 122, 72
+  orig: 122, 72
+  offset: 0, 0
+  index: -1
+left eye
+  rotate: false
+  xy: 294, 8
+  size: 22, 41
+  orig: 22, 41
+  offset: 0, 0
+  index: -1
+leftclaw01
+  rotate: true
+  xy: 126, 50
+  size: 76, 91
+  orig: 76, 91
+  offset: 0, 0
+  index: -1
+leftclaw02
+  rotate: true
+  xy: 2, 13
+  size: 39, 72
+  orig: 39, 72
+  offset: 0, 0
+  index: -1
+leftleg01
+  rotate: true
+  xy: 312, 54
+  size: 42, 59
+  orig: 42, 59
+  offset: 0, 0
+  index: -1
+leftleg02
+  rotate: true
+  xy: 433, 55
+  size: 31, 51
+  orig: 31, 51
+  offset: 0, 0
+  index: -1
+leftleg03
+  rotate: false
+  xy: 318, 16
+  size: 19, 36
+  orig: 19, 36
+  offset: 0, 0
+  index: -1
+right eye
+  rotate: true
+  xy: 76, 29
+  size: 23, 41
+  orig: 23, 41
+  offset: 0, 0
+  index: -1
+rightclaw01
+  rotate: true
+  xy: 219, 51
+  size: 75, 91
+  orig: 75, 91
+  offset: 0, 0
+  index: -1
+rightclaw02
+  rotate: true
+  xy: 219, 2
+  size: 47, 73
+  orig: 47, 73
+  offset: 0, 0
+  index: -1
+rightleg01
+  rotate: true
+  xy: 373, 61
+  size: 35, 58
+  orig: 35, 58
+  offset: 0, 0
+  index: -1
+rightleg02
+  rotate: true
+  xy: 446, 88
+  size: 38, 54
+  orig: 38, 54
+  offset: 0, 0
+  index: -1
+rightleg03
+  rotate: false
+  xy: 339, 18
+  size: 17, 34
+  orig: 17, 34
+  offset: 0, 0
+  index: -1

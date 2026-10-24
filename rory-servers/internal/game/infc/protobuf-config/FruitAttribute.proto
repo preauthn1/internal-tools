@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+message FruitAttribute {
+    // 流水編號
+	int32 ID = 1;
+	// 群組編號
+	int32 GroupID = 2;
+	// 水果名稱
+	string FruitName = 3;
+	// 水果重量
+    float FruitWeight = 4;
+}

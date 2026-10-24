@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\wlhc.exe analysis --proto D:\Project\777Project\GameServerConfig\slotconfig\protodata -c D:\Project\777Project\GameServerConfig\slotconfig\wlhc_1\config -r -t 100000

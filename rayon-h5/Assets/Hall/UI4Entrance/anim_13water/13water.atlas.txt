@@ -1,0 +1,69 @@
+
+13water.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 53
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+card01
+  rotate: true
+  xy: 511, 111
+  size: 134, 154
+  orig: 134, 154
+  offset: 0, 0
+  index: -1
+card02
+  rotate: true
+  xy: 351, 97
+  size: 148, 158
+  orig: 148, 158
+  offset: 0, 0
+  index: -1
+card03
+  rotate: false
+  xy: 197, 89
+  size: 152, 156
+  orig: 152, 156
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 2, 2
+  size: 48, 49
+  orig: 48, 49
+  offset: 0, 0
+  index: -1
+confetti01
+  rotate: false
+  xy: 735, 213
+  size: 21, 32
+  orig: 21, 32
+  offset: 0, 0
+  index: -1
+confetti02
+  rotate: false
+  xy: 197, 56
+  size: 24, 31
+  orig: 24, 31
+  offset: 0, 0
+  index: -1
+ribbon
+  rotate: false
+  xy: 667, 182
+  size: 66, 63
+  orig: 66, 63
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 667, 135
+  size: 40, 45
+  orig: 40, 45
+  offset: 0, 0
+  index: -1

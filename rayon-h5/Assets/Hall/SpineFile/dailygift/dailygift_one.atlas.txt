@@ -1,0 +1,104 @@
+
+dailygift_one.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG
+  rotate: false
+  xy: 304, 296
+  size: 378, 214
+  orig: 378, 214
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 185, 80
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ray128
+  rotate: false
+  xy: 315, 92
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ring glow
+  rotate: false
+  xy: 2, 210
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+shine
+  rotate: false
+  xy: 919, 417
+  size: 95, 93
+  orig: 95, 93
+  offset: 0, 0
+  index: -1
+spark01
+  rotate: false
+  xy: 2, 2
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+spark02
+  rotate: false
+  xy: 562, 262
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+spark03
+  rotate: false
+  xy: 562, 262
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+spark04
+  rotate: false
+  xy: 562, 262
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+spark06
+  rotate: false
+  xy: 562, 262
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+spark07
+  rotate: false
+  xy: 562, 262
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+starshine01
+  rotate: false
+  xy: 2, 26
+  size: 181, 182
+  orig: 181, 182
+  offset: 0, 0
+  index: -1
+starshine02
+  rotate: false
+  xy: 684, 279
+  size: 233, 231
+  orig: 233, 231
+  offset: 0, 0
+  index: -1
+text
+  rotate: false
+  xy: 304, 222
+  size: 256, 72
+  orig: 256, 72
+  offset: 0, 0
+  index: -1

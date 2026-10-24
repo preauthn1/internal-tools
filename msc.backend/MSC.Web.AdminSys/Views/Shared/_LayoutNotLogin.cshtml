@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@( AdminSysHelper.WebSiteDisplayName() + " - " + ViewData["Title"])</title>
+    <link href="~/lib/architectui/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/lib/boostrap_modules/bootstrap.modal_only.min.css" rel="stylesheet" />
+    <script src="~/js/constant.js"></script>
+
+    @if (AdminSysHelper.GetWebSiteBrandingType() == WebSiteBrandingTypeEnum.OGC)
+    {
+        <link rel="icon" href="@Url.Content("~/ogc_ico.ico")">
+    }
+    else
+    {
+        <link rel="icon" href="@Url.Content("~/msc.png")">
+    }
+
+</head>
+<body>
+
+
+    <div>
+
+        <div>
+            @RenderBody()
+        </div>
+
+        @Html.Partial("_LayoutGlobalAlert")
+
+    </div>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/boostrap_modules/bootstrap.modal_only.min.js"></script>
+    <script src="~/js/js_extension.js" asp-append-version="true"></script>
+    <script src="~/js/vue_mixin.js" asp-append-version="true"></script>
+    <script src="~/lib/architectui/main.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/vue/vue.js"></script>
+    <script src="~/lib/vue/axios.min.js"></script>
+    <script src="~/lib/daterangepicker/moment.min.js"></script>
+    <script src="~/lib/daterangepicker/daterangepicker.min.js"></script>
+    <script src="~/lib/cookie/js.cookie.min.js"></script>
+    <script src="~/js/common.js"></script>
+
+
+    <script>
+
+        window.Env = "@SettingHelper.Env";
+        window.API_DOMAIN = "@SettingHelper.WebApplicationSetting.F2E_AdminSys_API_Doamin";
+        window.constant = constant;
+
+
+    </script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

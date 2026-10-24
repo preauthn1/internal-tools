@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+import "base.proto";
+
+// BRDistributionOption 大獎分配項
+message BRDistributionOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+
+    // 獎項
+    Scenario Type = 3;
+
+    // 權重
+    int32 Weight = 4;
+}

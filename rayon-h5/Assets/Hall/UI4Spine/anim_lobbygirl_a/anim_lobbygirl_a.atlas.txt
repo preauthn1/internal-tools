@@ -1,0 +1,195 @@
+
+anim_lobbygirl_a.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+backskirt
+  rotate: false
+  xy: 178, 19
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+bigcoin
+  rotate: false
+  xy: 414, 110
+  size: 85, 97
+  orig: 85, 97
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 179, 130
+  size: 86, 130
+  orig: 86, 130
+  offset: 0, 0
+  index: -1
+coin01
+  rotate: true
+  xy: 870, 316
+  size: 29, 73
+  orig: 29, 73
+  offset: 0, 0
+  index: -1
+coin02
+  rotate: false
+  xy: 404, 28
+  size: 87, 80
+  orig: 87, 80
+  offset: 0, 0
+  index: -1
+coin03
+  rotate: false
+  xy: 501, 201
+  size: 82, 82
+  orig: 82, 82
+  offset: 0, 0
+  index: -1
+coin04
+  rotate: false
+  xy: 311, 115
+  size: 101, 92
+  orig: 101, 92
+  offset: 0, 0
+  index: -1
+eyeclosed
+  rotate: false
+  xy: 597, 288
+  size: 106, 52
+  orig: 106, 52
+  offset: 0, 0
+  index: -1
+hair01
+  rotate: false
+  xy: 1002, 388
+  size: 20, 34
+  orig: 20, 34
+  offset: 0, 0
+  index: -1
+hair_front
+  rotate: false
+  xy: 345, 361
+  size: 193, 146
+  orig: 193, 146
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 540, 342
+  size: 167, 165
+  orig: 167, 165
+  offset: 0, 0
+  index: -1
+lefteye
+  rotate: false
+  xy: 705, 288
+  size: 106, 52
+  orig: 106, 52
+  offset: 0, 0
+  index: -1
+lefthand
+  rotate: true
+  xy: 307, 22
+  size: 91, 95
+  orig: 91, 95
+  offset: 0, 0
+  index: -1
+leftleg
+  rotate: true
+  xy: 345, 209
+  size: 56, 137
+  orig: 56, 137
+  offset: 0, 0
+  index: -1
+leftpony
+  rotate: false
+  xy: 2, 173
+  size: 175, 334
+  orig: 175, 334
+  offset: 0, 0
+  index: -1
+mouth01
+  rotate: true
+  xy: 489, 346
+  size: 13, 21
+  orig: 13, 21
+  offset: 0, 0
+  index: -1
+mouth02
+  rotate: false
+  xy: 813, 331
+  size: 15, 9
+  orig: 15, 9
+  offset: 0, 0
+  index: -1
+ray01
+  rotate: true
+  xy: 2, 2
+  size: 169, 174
+  orig: 169, 174
+  offset: 0, 0
+  index: -1
+ribbon
+  rotate: false
+  xy: 501, 118
+  size: 82, 81
+  orig: 82, 81
+  offset: 0, 0
+  index: -1
+ribbon02
+  rotate: true
+  xy: 945, 424
+  size: 83, 77
+  orig: 83, 77
+  offset: 0, 0
+  index: -1
+righteve
+  rotate: true
+  xy: 945, 316
+  size: 106, 55
+  orig: 106, 55
+  offset: 0, 0
+  index: -1
+righthand
+  rotate: false
+  xy: 345, 267
+  size: 142, 92
+  orig: 142, 92
+  offset: 0, 0
+  index: -1
+rightleg
+  rotate: false
+  xy: 870, 347
+  size: 73, 160
+  orig: 73, 160
+  offset: 0, 0
+  index: -1
+rightpony
+  rotate: false
+  xy: 179, 218
+  size: 164, 289
+  orig: 164, 289
+  offset: 0, 0
+  index: -1
+skirt
+  rotate: false
+  xy: 178, 46
+  size: 127, 82
+  orig: 127, 82
+  offset: 0, 0
+  index: -1
+twoeye
+  rotate: false
+  xy: 489, 285
+  size: 106, 55
+  orig: 106, 55
+  offset: 0, 0
+  index: -1
+wale
+  rotate: false
+  xy: 709, 342
+  size: 159, 165
+  orig: 159, 165
+  offset: 0, 0
+  index: -1

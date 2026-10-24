@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>target.API.Vendor</name>
+    </assembly>
+    <members>
+        <member name="M:target.API.Vendor.Controllers.BetRecordController.GetGameRecords(target.Models.ViewModels.GameRecordRequestModel)">
+            <summary>
+            3.1.1 Get betRecords (取得投注记录)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.BetRecordController.GetGameRecordByTransactionNo(target.Models.ViewModels.SingleWalletGameRecordRequestModel)">
+            <summary>
+            3.1.2 Get betRecord by transactionNo (根据投注单号取得投注记录) (SeamlessMode) 
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.BetRecordController.GetReportSummary(target.Models.ViewModels.VendorReportSummaryRequestModel)">
+            <summary>
+            3.1.3 Get merchant statistic report (取得商户总报表资讯)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.BetRecordController.GenerateDetailInfoLink(target.Models.ViewModels.BetRecordDetailInfoLinkGenerateRequestModel)">
+            <summary>
+            (這隻API不完整) 先不對外
+            產生給外部查看 盤面結果的 查看頁網址
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.DemoSiteUtilityController.GetServers(System.Int32)">
+            <summary>
+            這隻API 基本上是for demo站使用
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.GameLaunchController.GenerateGameUrl(target.Models.ViewModels.GameLaunchVendorApiTransferModeRequestModel)">
+            <summary>
+            2.1.1 Get game launch url (取得游戏启动连结) (TransferMode)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.GameLaunchController.GenerateSingleWalletGameLaunchUrl(target.Models.ViewModels.GameLaunchVendorApiSingleWalletModeRequestModel)">
+            <summary>
+            2.1.2 Get game launch url (取得游戏启动连结) (SeamlessMode)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.GamesController.GetAllGames(target.Models.ViewModels.GameInfoRequestModel)">
+            <summary>
+            4.6.1 Get game list (取得游戏列表)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.InternalDocumentController.GetAllEnumsList">
+            <summary>
+            列出後端定義的所有enum
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.PlayerController.CheckIsPlayerAccountExist(target.Models.ViewModels.QueryPlayerAccountExistRequestModel)">
+            <summary>
+            2.2.1 Check player exist (检查用户是否存在)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.PlayerController.CreateNewPlayer(target.Models.ViewModels.CreatePlayerAccountExistRequestModel)">
+            <summary>
+            2.2.2 Create player account (建立玩家帐户)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.SwaggerDocumentRedirectController.RedirectTo_TransferDocument_EN">
+            <summary>
+            透過中間一層網址導頁 (英文)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.SwaggerDocumentRedirectController.RedirectTo_TransferDocument_CN">
+            <summary>
+            透過中間一層網址導頁 (英文)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.SwaggerDocumentRedirectController.RedirectTo_SingleWalletDocument_EN">
+            <summary>
+            透過中間一層網址導頁 (英文)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.SwaggerDocumentRedirectController.RedirectTo_SingleWalletDocument_CN">
+            <summary>
+            透過中間一層網址導頁 (中文)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.WalletTransferController.GetUserWalletCash(target.Models.ViewModels.WalletCashPlayerAmountRequestModel)">
+            <summary>
+            2.4.1 Get player wallet (取得玩家钱包余额)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.WalletTransferController.TransferCashToGameWallet(target.Models.ViewModels.WalletTransferRequestModel)">
+            <summary>
+            2.4.2 Wallet transfer from platform to gameWallet (玩家钱包转账)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.WalletTransferController.TransferCashToPlatformWallet(target.Models.ViewModels.WalletTransferRequestModel)">
+            <summary>
+            2.4.3 Wallet transfer from gameWallet to platform (玩家钱包转账)
+            </summary>
+        </member>
+        <member name="M:target.API.Vendor.Controllers.WalletTransferController.GetTransferByMerchant(target.Models.ViewModels.QueryTransferRecordRequestModel)">
+            <summary>
+            2.4.4 Query transfer record (查询转账记录)
+            </summary>
+        </member>
+        <member name="M:game.GameAPI.Controllers.InternalHelperController.ConvertDataSchema_To_CSharpClass(System.String)">
+            <summary>
+            透過postman貼上 SSMS複製的schema格式 可以轉成C# class程式碼
+            </summary>
+        </member>
+    </members>
+</doc>

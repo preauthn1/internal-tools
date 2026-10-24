@@ -1,0 +1,43 @@
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using target.Models.ViewModels.Base;
+using example.invalid.Http;
+using System.Collections.Generic;
+using System.Linq;
+using System;
+using target.Models.Enums;
+using Newtonsoft.Json;
+
+namespace target.Web.Modules.Filter
+{
+    [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
+    public class ApiConfig : System.Attribute
+    {
+
+        public bool IsLogApiEnable { get; set; }
+
+        public bool IsRequestBodyLogEnable { get; set; }
+
+        public bool IsResponseLogEnable { get; set; }
+
+        public bool IsRedirectToErrorPage { get; set; }
+
+        public bool IsHeaderLogEnable { get; set; }
+
+        public ApiConfigCategoryEnum ApiCategory { get; set; }
+
+
+
+        public ApiConfig()
+        {
+            IsLogApiEnable = true;
+            IsResponseLogEnable = true;
+            IsRequestBodyLogEnable = true;
+            IsRedirectToErrorPage = false;
+            IsHeaderLogEnable = true;
+            ApiCategory = ApiConfigCategoryEnum.Default;
+        }
+    }
+
+}

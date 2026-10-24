@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "首頁";
+
+}
+
+
+
+<div style="display:none;">
+    @RuntimeHelper.MyVersion
+</div>
+
+
+@if (!SettingHelper.IsProduction && !SettingHelper.IsUAT)
+{
+    <div style="text-align:center">
+
+        <div>
+
+            <h3>
+                <b>
+
+                    <div id="msg_hello"></div>
+                    奧爾遊戲 會員儲值
+                </b>
+            </h3>
+        </div>
+
+        <div>
+
+            <a href="/Home/ToCardInputLink">
+                <img src="@Url.Content("~/img/card_sample.png")" />
+            </a>
+
+        </div>
+
+        <div style="color:#888;">
+            點擊前往 MSCard 儲值
+        </div>
+
+
+        <hr />
+
+
+        <div style="margin-top:150px;">
+
+            <h4>
+                <b>
+                    Excel小工具已轉移至後台
+                </b>
+            </h4>
+
+        </div>
+    </div>
+}
+
+
+
+@section Scripts{
+
+
+    <script>
+
+        $(function () {
+
+
+        })
+
+    </script>
+
+
+}

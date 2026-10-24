@@ -1,0 +1,35 @@
+﻿<Project Sdk="example.invalid.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>67844102-f696-40d5-8e75-562f1e3949ad</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AppData\" />
+  </ItemGroup>
+
+  <ItemGroup>  
+    <Content Include="AppData\**">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>	
+  </ItemGroup>
+
+  <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Azure_toStage.pubxml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\MSC.BL\MSC.BL.csproj" />
+    <ProjectReference Include="..\MSC.DA\MSC.DA.csproj" />
+    <ProjectReference Include="..\MSC.Models\MSC.Models.csproj" />
+    <ProjectReference Include="..\MSC.Utility\MSC.Utility.csproj" />
+    <ProjectReference Include="..\MSC.Web.Modules\MSC.Web.Modules.csproj" />
+  </ItemGroup>
+
+
+</Project>

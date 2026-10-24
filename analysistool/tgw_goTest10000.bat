@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\tgw.exe analysis --proto D:\Project\KubeEnvironment\game-server\protodata\tgw -c D:\Project\777Project\GameServerConfig\slotconfig\tgw_1\config -t 100000

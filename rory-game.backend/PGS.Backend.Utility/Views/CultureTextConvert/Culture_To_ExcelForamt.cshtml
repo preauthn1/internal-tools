@@ -1,0 +1,33 @@
+﻿@using Lck.GoogleApi;
+
+@model List<SheetReadModel>
+
+<div style="padding:25px;">
+
+
+    <table>
+
+        @if (Model != null && Model.Count > 0)
+        {
+
+            foreach (var item in Model)
+            {
+                <tr>
+
+                    @foreach(var eachValue in item.ColumnValues)
+                    {
+
+                    <td>@eachValue</td>
+
+                    }
+
+                </tr>
+            }
+
+        }
+
+    </table>
+
+
+
+</div>

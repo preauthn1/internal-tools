@@ -1,0 +1,48 @@
+﻿<Project Sdk="example.invalid.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>2f397362-b926-4234-af91-81b2105e2ddd</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>  
+    <Content Include="AppData\**">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>	
+  </ItemGroup>
+
+  <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Azure_toProduction.pubxml" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Azure_toStage.pubxml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.48.0.2021" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MSC.BL\MSC.BL.csproj" />
+    <ProjectReference Include="..\MSC.DA\MSC.DA.csproj" />
+    <ProjectReference Include="..\MSC.Models\MSC.Models.csproj" />
+    <ProjectReference Include="..\MSC.Utility\MSC.Utility.csproj" />
+    <ProjectReference Include="..\MSC.Web.Modules\MSC.Web.Modules.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AppData\" />
+  </ItemGroup>
+
+
+
+</Project>

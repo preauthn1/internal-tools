@@ -1,0 +1,76 @@
+
+2cow.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 62
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 197, 74
+  size: 109, 180
+  orig: 109, 180
+  offset: 0, 0
+  index: -1
+card01
+  rotate: false
+  xy: 81, 12
+  size: 86, 48
+  orig: 86, 48
+  offset: 0, 0
+  index: -1
+card02
+  rotate: false
+  xy: 427, 197
+  size: 79, 57
+  orig: 79, 57
+  offset: 0, 0
+  index: -1
+card03
+  rotate: true
+  xy: 2, 2
+  size: 58, 77
+  orig: 58, 77
+  offset: 0, 0
+  index: -1
+hand01
+  rotate: false
+  xy: 427, 123
+  size: 47, 72
+  orig: 47, 72
+  offset: 0, 0
+  index: -1
+hand02
+  rotate: false
+  xy: 169, 7
+  size: 44, 53
+  orig: 44, 53
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 308, 118
+  size: 117, 136
+  orig: 117, 136
+  offset: 0, 0
+  index: -1
+light01
+  rotate: false
+  xy: 308, 15
+  size: 103, 101
+  orig: 103, 101
+  offset: 0, 0
+  index: -1
+ring
+  rotate: false
+  xy: 476, 167
+  size: 25, 28
+  orig: 25, 28
+  offset: 0, 0
+  index: -1

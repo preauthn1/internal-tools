@@ -1,0 +1,16 @@
+FROM alpine:3.9 AS base
+
+# Install tools
+RUN apk add --no-cache \
+    tmux \
+    libc6-compat
+
+# Setting Env
+ENV LANG="zh_TW.UTF8"
+ENV LC_ALL="zh_TW.UTF8"
+
+RUN mkdir -p /app
+WORKDIR /app
+VOLUME [ "/app/config", "/app/log" ]
+
+ADD entrypoint.sh entrypoint.sh

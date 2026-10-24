@@ -1,0 +1,48 @@
+
+showhand.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 51
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+card01
+  rotate: false
+  xy: 197, 63
+  size: 81, 77
+  orig: 81, 77
+  offset: 0, 0
+  index: -1
+card02
+  rotate: false
+  xy: 2, 2
+  size: 86, 47
+  orig: 86, 47
+  offset: 0, 0
+  index: -1
+chip01
+  rotate: false
+  xy: 197, 142
+  size: 96, 101
+  orig: 96, 101
+  offset: 0, 0
+  index: -1
+chip02
+  rotate: false
+  xy: 295, 147
+  size: 101, 96
+  orig: 101, 96
+  offset: 0, 0
+  index: -1
+crown01
+  rotate: false
+  xy: 398, 148
+  size: 101, 95
+  orig: 101, 95
+  offset: 0, 0
+  index: -1

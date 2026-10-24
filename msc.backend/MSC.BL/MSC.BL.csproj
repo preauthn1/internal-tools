@@ -1,0 +1,13 @@
+﻿<Project Sdk="example.invalid.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MSC.DA\MSC.DA.csproj" />
+    <ProjectReference Include="..\MSC.Models\MSC.Models.csproj" />
+    <ProjectReference Include="..\MSC.Utility\MSC.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

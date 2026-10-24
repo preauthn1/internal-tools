@@ -1,0 +1,87 @@
+﻿@using MSC.Utility.Helper;
+@using MSC.Utility.Extensions;
+@using MSC.Utility;
+
+<!DOCTYPE html>
+
+@{
+    LanguageEnum myLangEnum = HeaderValueHelper.GetCurrentLanguage();
+    WebSiteBrandingTypeEnum branding = (WebSiteBrandingTypeEnum)SettingHelper.WebApplicationSetting.BrandingType;
+
+    string js_fileName = myLangEnum.ToString().Replace("_", "-");
+
+    CardInputPageSettingViewModel layoutSetting = ViewBag.PageLayoutSettings;
+
+    if(layoutSetting != null)
+    {
+        branding = (WebSiteBrandingTypeEnum)layoutSetting.WebSiteBrandingType;
+    }
+
+    string siteName = branding == WebSiteBrandingTypeEnum.MSCard ? "MSCard點卡系統" : "OG Credits";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @if (branding == WebSiteBrandingTypeEnum.OGC)
+    {
+        <meta property="og:image" content="@Url.Content("~/ogc_ico.ico")">
+    }
+    else
+    {
+        <meta property="og:image" content="@Url.Content("~/favicon.png")">
+    }
+
+
+    <title>@ViewData["Title"] - @siteName</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css?v=@RuntimeHelper.RandomID" />
+
+    @if (branding == WebSiteBrandingTypeEnum.OGC)
+    {
+        <link rel="icon" href="@Url.Content("~/ogc_ico.ico")">
+    }
+    else
+    {
+        <link rel="icon" href="@Url.Content("~/favicon.png")">
+    }
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
+            <div class="container">
+
+                @if (branding == WebSiteBrandingTypeEnum.MSCard)
+                {
+                    <img src="@Url.Content("~/img/marscard logo.svg")" style="height:50px;" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/img/ogc_logo_4.png")" style="height:50px;" />
+                }
+            </div>
+        </nav>
+    </header>
+    <div class="container grey">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/my_release_bundle.min.js" asp-append-version="true"></script>
+
+
+    @*載入js使用的語系檔案*@
+    <script type="text/javascript" src="@Url.Content(string.Format("~/langs/{0}.js" , js_fileName))" charset="utf-8"></script>
+
+    <script>
+
+        window.API_DOMAIN = "@SettingHelper.WebApplicationSetting.F2E_Point_API_Doamin";
+
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

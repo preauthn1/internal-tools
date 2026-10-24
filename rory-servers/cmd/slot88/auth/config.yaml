@@ -1,0 +1,44 @@
+port: 9001
+
+admin:
+  users:
+    target: terpro123!@#
+
+token:
+  [REDACTED] 5k4g4ddhk4g4ru
+  expire: 30m
+  clean_during: 30m
+
+server:
+  # TCP 直接轉
+  conntype: TCP
+  dnsprefix: ""
+
+  # TCP 轉 tfserver
+  # conntype: TCP
+  # dnsprefix: "game-server-tfserver.dd-dev.svc.cluster.local"
+
+  # Websocket 轉 tfserver
+  # conntype: Websocket
+  # dnsprefix: "game-server-tfserver.dd-dev.svc.cluster.local:10080"
+
+# type: dd
+# db:
+#   host: 0.0.0.0
+#   port: 1433
+#   user: sa
+#   password: [REDACTED]
+#   database: CenterDB
+#   encrypt: disable
+
+target:
+  api:
+    public: example.invalid
+type: target
+db:
+  host: 0.0.0.0
+  port: 1433
+  user: target
+  password: [REDACTED]
+  database: PGS_Master
+  encrypt: disable

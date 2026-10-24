@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cliapisvc;
+
+import "common.proto";
+
+service MessageService {
+    rpc Trace(QueryCondition) returns (stream Message);
+}
+
+message Message {
+    Endpoint Src = 1;
+    Endpoint Dest = 2;
+    int32 BClassID = 3;
+    int32 SClassID = 4;
+    string Data = 5;
+    int32 PlayerID = 6;
+}
+
+enum Endpoint {
+    Server = 0;
+    Client = 1;
+    RPC = 2;
+}

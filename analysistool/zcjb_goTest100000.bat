@@ -1,0 +1,1 @@
+D:\Project\777Project\GameServerConfig\analysisTool\zcjb.exe analysis --proto D:\Project\777Project\GameServerConfig\slotconfig\protodata -c D:\Project\777Project\GameServerConfig\slotconfig\zcjb_1\config -r -t 3007

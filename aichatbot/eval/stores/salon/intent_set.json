@@ -1,0 +1,55 @@
+{
+  "說明": "第二家測試商家（霧光髮廊，美髮沙龍，#66）的分類題組，格式同 eval/intent_set.json：accept=可接受的意圖（第一個是最理想的）；state=分類當下的對話狀態。11 個內建意圖都要有，用沙龍會出現的說法。不能和森日茶屋的題組、案例庫、沙龍自己的案例重複（eval/check_overlap.py）。",
+  "items": [
+    {"text": "染髮會不會傷髮質", "accept": ["general"]},
+    {"text": "可以指定設計師嗎", "accept": ["general"]},
+    {"text": "剪一個頭大概要多久", "accept": ["general"]},
+    {"text": "男生剪髮怎麼算", "accept": ["general"]},
+    {"text": "漂髮要加多少錢", "accept": ["general"]},
+    {"text": "你們禮拜一有做嗎", "accept": ["general"]},
+    {"text": "騎機車去可以停哪", "accept": ["general"]},
+    {"text": "謝謝你的說明", "accept": ["general"]},
+    {"text": "你好，想問一下護髮", "accept": ["general"]},
+    {"text": "Do you do balayage?", "accept": ["general"]},
+    {"text": "カットはいくらですか", "accept": ["general"]},
+    {"text": "Can I bring my kid for a trim?", "accept": ["general"]},
+
+    {"text": "我想剪頭髮", "accept": ["booking", "general"]},
+    {"text": "想約週六下午染髮", "accept": ["booking"]},
+    {"text": "幫我預約 {{date:+3:M/D}} 早上十一點護髮", "accept": ["booking"]},
+    {"text": "I'd like to book a haircut", "accept": ["booking"]},
+    {"text": "下午兩點半", "state": "booking:time", "accept": ["booking"]},
+    {"text": "林小姐", "state": "booking:name", "accept": ["booking", "self_intro"]},
+
+    {"text": "我週末的染髮預約要取消", "accept": ["cancel"]},
+    {"text": "先不要約了", "state": "booking:date", "accept": ["cancel"]},
+
+    {"text": "設計師回我了沒", "state": "ticket", "accept": ["follow_up"]},
+    {"text": "請問有下文了嗎", "state": "ticket", "accept": ["follow_up"]},
+
+    {"text": "上次設計師說下次護髮免費", "accept": ["claim"]},
+    {"text": "你們之前答應我染壞可以免費重染", "accept": ["claim"]},
+
+    {"text": "你是機器人還是真人", "accept": ["identity"]},
+    {"text": "你是這間店的設計師嗎", "accept": ["identity"]},
+
+    {"text": "我叫小雯", "accept": ["self_intro"]},
+    {"text": "敝姓黃", "accept": ["self_intro"]},
+
+    {"text": "可以請店長直接跟我說嗎", "accept": ["human_request"]},
+    {"text": "我要找真人客服", "accept": ["human_request"]},
+    {"text": "Can I speak to a stylist directly?", "accept": ["human_request"]},
+
+    {"text": "這次染的顏色跟說好的完全不一樣", "accept": ["complaint"]},
+    {"text": "等了四十分鐘還沒輪到我", "accept": ["complaint"]},
+    {"text": "剪完超醜，很失望", "accept": ["complaint"]},
+
+    {"text": "推薦附近好吃的午餐", "accept": ["off_topic"]},
+    {"text": "幫我算一下微積分作業", "accept": ["off_topic"]},
+    {"text": "股票要買哪支", "accept": ["off_topic"]},
+
+    {"text": "那這樣呢", "accept": ["unclear"]},
+    {"text": "嗯那個", "accept": ["unclear"]},
+    {"text": "呃就是說", "accept": ["unclear"]}
+  ]
+}

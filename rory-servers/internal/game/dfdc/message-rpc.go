@@ -1,0 +1,14 @@
+package dfdc
+
+import (
+	"example.invalid/ServerTeam/Servers/pkg/msg"
+	"example.invalid/ServerTeam/Servers/pkg/netproto"
+)
+
+// OnRecvRPCMessageFunc 接收DB Server回傳的Message訊息
+func (logic *Logic) OnRecvRPCMessageFunc(m *msg.Message) {
+	switch m.SClassID {
+	case int32(netproto.Slot_GameMessageClassID_Slot_BonusGameReadRetID):
+		logic.RecvJackpotGame(m)
+	}
+}

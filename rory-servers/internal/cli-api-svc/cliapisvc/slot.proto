@@ -1,0 +1,252 @@
+syntax = "proto3";
+
+package cliapisvc;
+
+import "common.proto";
+
+service SlotService {
+    rpc Info (QueryCondition) returns (SlotInfo);
+    rpc QueryProto (SlotProtoQueryCondition) returns (SlotProtoQueryResponse);
+}
+
+message SlotInfo {
+    int32 SlotPattern = 1;
+    repeated int64 BetCounts = 2;
+    repeated int64 BetRates = 3;
+    int64 MaxBetCount = 4;
+    int64 MaxBetRate = 5;
+    int64 MinCarryMoney = 6;
+    repeated SlotUnitPrefix UnitPrefixs = 7;
+    repeated SlotDescription Descriptions = 8;
+    string PaylineMode = 9;
+    repeated Jackpot Jackpots = 10;
+    string SlotPatternComment = 11;
+}
+
+message SlotUnitPrefix {
+    string Key = 1;
+    int64 Value = 2;
+}
+
+message SlotDescription {
+    string Name = 1;
+	string Title = 2;
+	string Description = 3;
+}
+
+message Jackpot {
+    int32 ID = 1;
+    bool IsProgress = 2;
+    int64 Increment = 3;
+    bool IsLink = 4;
+    string Level = 5;
+    int64 Startup = 6;
+    int64 Contribution = 7;
+    int64 Award = 8;
+}
+
+// SlotProtoQueryCondition 查詢 Proto 條件
+message SlotProtoQueryCondition {
+    bool ShowSlotPattern = 1;
+    bool ShowSlotPayLine = 2;
+    bool ShowSlotPayTable = 3;
+    bool ShowMainGameTable = 4;
+    bool ShowSymbolAttributes = 5;
+    bool ShowJackpotTable = 6;
+    bool ShowFreeSpinTable = 7;
+    bool ShowSlotSymbolDistribution = 8;
+    bool ShowBonusTable = 9;
+    bool ShowPickGameTable = 10;
+    bool ShowSelectionTable = 11;
+    bool ShowRespinTable = 12;
+    bool ShowReelBGDistribution = 13;
+    bool ShowExtraRule = 14;
+}
+
+// SlotProtoQueryResponse 查詢 Proto 結果
+message SlotProtoQueryResponse {
+    repeated Slot_Proto_SlotPattern Pattern = 1;
+    repeated Slot_Proto_SlotPayLine PayLine = 2;
+    repeated Slot_Proto_SlotPayTable PayTable = 3;
+    repeated Slot_Proto_MainGameTable MainGameTable = 4;
+    repeated Slot_Proto_SymbolAttributes SymbolAttributes = 5;
+    repeated Slot_Proto_JackpotTable JackpotTable = 6;
+    repeated Slot_Proto_FreeSpinTable FreeSpinTable = 7;
+    repeated Slot_Proto_SlotSymbolDistribution SlotSymbolDistribution = 8;
+    repeated Slot_Proto_BonusTable BonusTable = 9;
+    repeated Slot_Proto_PickGameTable  PickGameTable = 10;
+    repeated Slot_Proto_SelectionTable  SelectionTable = 11;
+    repeated Slot_Proto_RespinTable  RespinTable = 12;
+    repeated Slot_Proto_ReelBGDistribution  ReelBGDistribution = 13;
+    repeated Slot_Proto_ExtraRule  ExtraRule = 14;
+}
+
+message Slot_Proto_SlotPattern {
+    int32 ID = 1;
+    int32 SymbolAttributesGroupID = 2;
+    int32 MainGameTableGroupID = 3;
+    int32 PayTableGroupID = 4;
+    string LineType = 5;
+    int32 PayLineGroupID = 6;
+    int32 ExtraRuleGroup = 7;
+    int32 JackpotGroup = 8;
+    string RTP = 9;
+    string Comment = 10;
+}
+
+message Slot_Proto_SlotPayLine {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    int32 LineID = 3;
+    string Content = 4;
+}
+
+message Slot_Proto_SlotPayTable {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    string LinkType = 3;
+    string Symbol = 4;
+    string PayType = 5;
+    int32 Count = 6;
+    string Payout = 7;
+    string UseType = 8;
+}
+
+message Slot_Proto_MainGameTable {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    int32 SymbolGroupID = 3;
+    int32 ReelNum = 4;
+    int32 RowNum = 5;
+    string MultiplierType = 6;
+    string MultiplierValue = 7;
+    int32 IsGoldsymbol = 8;
+    string GoldCondition = 9;
+    string ConditionValue = 10;
+    int32 IsGoldReel = 11;
+    int32 GoldReelGroupId = 12;
+    string InvalidPosition = 13;
+}
+
+message Slot_Proto_SymbolAttributes {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    string Symbol = 3;
+    int32 IsGoldsymbol = 4;
+    string GoldCondition = 5;
+    string ConditionValue = 6;
+    string ReplaceGoldsymbol = 7;
+    int32 IsWild = 8;
+    string WildEx = 9;
+    int32 Multiplier = 10;
+    int32 IsExpand = 11;
+    int32 IsSticky = 12;
+    string StickyType = 13;
+    int32 IsGoldBall = 14;
+    string GoldballType = 15;
+    string GoldballValue = 16;
+    int32 IsPluri = 17;
+    int32 PluriCount = 18;
+    string SubstituteSymbol = 19;
+}
+
+message Slot_Proto_JackpotTable {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    int32 IsProgress = 3;
+    int32 IsLinked = 4;
+    int32 Increment = 5;
+    int32 PerBetProb = 6;
+    int64 StartUp = 7;
+    int32 IsMultiLevel = 8;
+    string Level = 9;
+    int32 IsCeling = 10;
+    int64 CelingValue = 11;
+    int32 PerProb = 12;
+}
+
+message Slot_Proto_FreeSpinTable {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    int32 FreeSpinCount = 3;
+    int32 FreeSymbolGroupID = 4;
+    int32 FreeReelNum = 5;
+    int32 FreeRowNum = 6;
+    string MultiplierType = 7;
+    string MultiplierValue = 8;
+    int32 IsGoldsymbol = 9;
+    string GoldCondition = 10;
+    string ConditionValue = 11;
+    int32 IsInfo = 12;
+    string Info = 13;
+    int32 IsGoldReel = 14;
+    int32 GoldReelGroupID = 15;
+    string InvalidPosition = 16;
+}
+
+message Slot_Proto_SlotSymbolDistribution {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    int32 ReelNum = 3;
+    string Symbol = 4;
+    int32 Proportion = 5;
+    int32 Order = 6;
+}
+
+message Slot_Proto_BonusTable {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    string RewardType = 3;
+    string RewardValue = 4;
+    int32 PerProb = 5;
+    string Condition = 6;
+    string ConditionValue = 7;
+}
+
+message Slot_Proto_PickGameTable {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    int32 PickCount = 3;
+    int32 RewardValue = 4;
+    int32 IsGhost = 5;
+}
+
+message Slot_Proto_SelectionTable {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    string SelectionType = 3;
+    int32 SelectionValue = 4;
+    int32 IsGoldsymbol = 5;
+    string GoldCondition = 6;
+    string ConditionValue = 7;
+}
+
+message Slot_Proto_RespinTable {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    int32 RespinCount = 3;
+    string AppearReel = 4;
+    string RespinType = 5;
+    int32 RespinValue = 6;
+    int32 IsLimit = 7;
+    string LimitType = 8;
+    string LimitValue = 9;
+}
+
+message Slot_Proto_ReelBGDistribution {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    int32 ReelNum = 3;
+    string BgEnum = 4;
+    int32 Proportion = 5;
+}
+
+message Slot_Proto_ExtraRule {
+    int32 ID = 1;
+    int32 GroupID = 2;
+    string UseType = 3;
+    string Condition = 4;
+    string ConditionValue = 5;
+    string Action = 6;
+    string ActionValue = 7;
+}

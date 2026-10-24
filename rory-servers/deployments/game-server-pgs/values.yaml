@@ -1,0 +1,5 @@
+target:
+  common:
+    - nil
+  game:
+    - nil

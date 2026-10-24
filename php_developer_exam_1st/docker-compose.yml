@@ -1,0 +1,56 @@
+services:
+  mysql:
+    container_name: mysql
+    image: 'mysql:8.0.44'
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      'MYSQL_ROOT_PASSWORD': 'afbff41f9be2'
+      'MYSQL_DATABASE': 'exam1'
+      'MYSQL_USER': 'exam1user'
+      'MYSQL_PASSWORD': '8486bfc8caad6'
+    networks:
+      - exam1-network
+
+  redis:
+    container_name: redis
+    image: 'redis:8.4.0'
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis-data:/data
+    restart: always
+    networks:
+      - exam1-network
+
+  bitnami:
+    #image: 'bitnami/laravel:latest'
+    container_name: bitnami
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 80:8000
+      #- 80:80
+    volumes:
+      - ./laravel:/app
+    restart: unless-stopped
+    tty: true
+    environment:
+      'LARAVEL_DATABASE_TYPE': 'mysql'
+      'LARAVEL_DATABASE_HOST': 'mysql'
+      'LARAVEL_DATABASE_PORT_NUMBER': '3306'
+      'LARAVEL_DATABASE_NAME': 'exam1'
+      'LARAVEL_DATABASE_USER': 'exam1user'
+      'LARAVEL_DATABASE_PASSWORD': '8486bfc8caad6'
+    networks:
+      - exam1-network
+
+networks:
+  exam1-network:
+    driver: bridge
+

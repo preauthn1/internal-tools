@@ -1,0 +1,22 @@
+{
+  "name": "aichatbot",
+  "build": { "dockerfile": "Dockerfile" },
+  "features": {
+    "example.invalid/devcontainers/features/node:1": { "version": "22" }
+  },
+  // pnpm 版本由 web/package.json 的 packageManager 欄位鎖定（corepack）
+  "postCreateCommand": "corepack enable",
+  // GOTOOLCHAIN=auto：照 go/go.mod 的 toolchain 用同一個 Go 版本（映像預設 local 會忽略它）
+  "containerEnv": { "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0", "GOTOOLCHAIN": "auto", "BOT_EMBED_MODEL": "/opt/aichatbot/models/multilingual-e5-small" },
+  // 容器裡用 host.docker.internal 連 Mac 上的 Swift 模型服務（Colima 也適用）
+  "runArgs": ["--add-host=host.docker.internal:host-gateway"],
+  // e5 句子向量的模型檔（470 MB，不進 git，見 README「多語言句子向量」）唯讀掛進容器；資料夾不存在時先建好，不然容器起不來
+  // 掛到 /opt 而不是 ~/.cache：掛進 ~/.cache 會讓 ~/.cache 變成 root 的，go 的編譯快取就建不起來
+  "initializeCommand": "mkdir -p \"${localEnv:HOME}/.cache/aichatbot/models\"",
+  "mounts": ["source=${localEnv:HOME}/.cache/aichatbot/models,target=/opt/aichatbot/models,type=bind,readonly"],
+  "customizations": {
+    "vscode": {
+      "extensions": ["golang.go", "Vue.volar", "ms-python.python"]
+    }
+  }
+}

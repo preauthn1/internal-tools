@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+import "base.proto";
+
+// RTReleaseOption RT 解除條件項
+message RTReleaseOption {
+    // 流水號
+    int32 ID = 1;
+
+    // 群組編號
+    int32 GroupID = 2;
+    
+    // 牌型
+    ResultType ResultType = 3;
+
+    // 解除機率分子
+    int32 Rate = 4;
+
+    // 解除機率分母
+	int32 Denominator = 5;
+
+    // 轉數
+    repeated int32 Times = 6;
+
+    // 適用狀態
+    Scenario UseType = 7;
+}

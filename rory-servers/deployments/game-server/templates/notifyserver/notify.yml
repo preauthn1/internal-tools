@@ -1,0 +1,76 @@
+{{- $notifyver := .Values.defaultVersion | default "latest" }}
+{{- if .Values.versions }}
+  {{- if .Values.versions.common }}
+    {{- if .Values.versions.common.notifyserver }}
+    {{- $notifyver = .Values.versions.common.notifyserver }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "game-server.fullname" . }}-notify
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 9000
+  selector:
+    app: notifyserver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "game-server.fullname" . }}-notify
+  labels:
+    {{- include "game-server.labels" . | nindent 4 }}
+  annotations:
+    example.invalid/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notifyserver
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      name: {{ include "game-server.fullname" . }}-notify
+      labels:
+        app: notifyserver
+        {{- include "game-server.labels" . | nindent 8 }}
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: notify-config
+          configMap:
+            name: {{ include "game-server.fullname" . }}-notify
+        - name: storage
+          emptyDir: {}
+        - name: tz-config
+          hostPath: 
+            path: /usr/share/zoneinfo/{{ .Values.timezone | default "UTC" }}
+      containers:
+        - name: notify
+          image: example.invalid/notifyserver:{{ $notifyver | default "latest" }}
+          imagePullPolicy: Always
+          ports:
+            - name: notifyserver
+              containerPort: 9000
+              protocol: TCP
+          volumeMounts:
+            - name: notify-config
+              mountPath: /app/config
+              readOnly: true
+            - name: tz-config
+              mountPath: /etc/localtime
+              readOnly: true
+          

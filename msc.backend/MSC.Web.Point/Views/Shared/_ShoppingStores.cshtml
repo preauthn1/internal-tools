@@ -1,0 +1,22 @@
+﻿@using MSC.Models.ViewModels
+
+
+@{ 
+    List<ShoppingStoreViewModel> list = ViewBag.ShoppingStore;
+}
+
+<div>
+
+    @if (list != null && list.Count() > 0)
+    {
+        foreach (var item in list.Where(z=> z.IsEnable))
+        {
+            <div>
+                <a href="@item.LinkUrl" target="_blank">
+                    <img src="@item.ImageUrl" />
+                </a>
+            </div>
+        }
+    }
+
+</div>

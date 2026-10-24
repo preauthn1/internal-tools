@@ -1,0 +1,149 @@
+﻿@model DataTableParameter
+
+@{
+    var myModel = Model ?? new DataTableParameter();
+    string vue_variable_name = myModel.Name; //預設值是 dataTable
+}
+
+<div>
+
+
+    <div class="main-card mb-3 card" :set="targetTable = @vue_variable_name " v-cloak>
+        <div class="card-body">
+
+            <table class="table table-striped table-hover" style="width:100%">
+
+                <thead>
+                    <tr>
+                        <th v-for="(item , index) in targetTable.columns" :class="item.align == 'r' ? 'text-r' : item.align == 'c' ? 'text-c' : 'text-l'" :style="(item.width ? 'width:'+item.width : '')">
+                            {{item.text}}
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr v-for="(eachData , index) in targetTable.pagination.items">
+                        <td v-for="(row , index) in targetTable.columns" :class="targetTable.columns[index].align == 'r' ? 'text-r' : targetTable.columns[index].align == 'c' ? 'text-c' : 'text-l'">
+
+                            <div v-if="row.templates">
+                                @**全域js變數 template 定義在 constant.js *@
+                                <div v-for="(each , index) in row.templates" class="each_btn">
+                                    <button v-if="each == template.edit" class="btn btn-primary" v-on:click="click_dataTable(each , eachData)">@t.Text(i18nKeys.Common_Button_Edit)</button>
+                                    <button v-if="each == template.advanceSetting" class="btn btn-green2" v-on:click="click_dataTable(each , eachData)">進階設置</button>
+                                    <button v-if="each == template.detail" class="btn btn-info" v-on:click="click_dataTable(each , eachData)">@t.Text(i18nKeys.Common_Button_DetailInfo)</button>
+                                    <button v-if="each == template.triggerNotify" class="btn btn-alternate" v-on:click="click_dataTable(each , eachData)">@t.Text(i18nKeys.Common_Button_ResendNotify)</button>
+                                    <button v-if="each == template.externalLogs" class="btn btn-primary" v-on:click="click_dataTable(each , eachData)">@t.Text(i18nKeys.Common_Button_RequestLog)</button>
+                                    <button v-if="each == template.updatePassword" class="btn btn-primary" v-on:click="click_dataTable(each , eachData)">修改密碼</button>
+                                    <button v-if="each == template.generateOrderLink" class="btn btn-secondary" v-on:click="click_dataTable(each , eachData)">產生連結</button>
+                                    <button v-if="each == template.destroyCard && eachData.cardStatus == 0" class="btn btn-secondary" v-on:click="click_dataTable(each , eachData)">銷毀卡號</button>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <div v-if="row.isCopyText">
+                                    <span v-on:click="copyTextToClipboard(eachData[row.column])" class="allowCopy">
+                                        {{eachData[row.column]}}
+                                    </span>
+                                </div>
+                                <div v-else-if="row.isMoneyFormat">
+                                    <span>
+                                        {{eachData[row.column] | toMoneyDisplayFormat}}
+                                    </span>
+                                </div>
+                                <div v-else-if="row.isPopupText" v-on:click="popupText(eachData[row.column])">
+                                    <div class="showPopupText">
+                                        {{eachData[row.column]}}
+                                    </div>
+                                </div>
+                                <div v-else-if="row.isPopupHtml" v-on:click="popupText(row.html(eachData))">
+                                    <div class="showPopupText">
+                                        {{eachData[row.column]}}
+                                    </div>
+                                </div>
+                                <div v-else-if="row.html" v-html="row.html(eachData)"></div>
+                                <div v-else-if="!row.html" v-html="eachData[row.column]"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    @*加總列 summaryColumns *@
+                    <tr v-if="targetTable.pagination.summaryInfo && targetTable.pagination.summaryInfo != null && targetTable.summaryColumns && targetTable.summaryColumns != null && targetTable.summaryColumns.length > 0" 
+                        style="background: #f4e5ff;font-weight: 700;" >
+                        <td v-for="(row , index) in targetTable.columns" :class="targetTable.columns[index].align == 'r' ? 'text-r' : targetTable.columns[index].align == 'c' ? 'text-c' : 'text-l'">
+                                                       
+                            <div v-if="targetTable.summaryColumns.includes(row.column)">
+                              
+                                <div v-if="row.isMoneyFormat">
+                                    {{targetTable.pagination.summaryInfo[row.column] | toMoneyDisplayFormat}}
+                                </div>                               
+                                <div v-else-if="row.html" v-html="row.html(targetTable.pagination.summaryInfo)"></div>
+                                <div v-else-if="!row.html" v-html="targetTable.pagination.summaryInfo[row.column]"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+
+            <div class="row table-footer" v-if="targetTable != null && targetTable.pagination && targetTable.pagination != null && targetTable.pagination.pageIndex != null ">
+                <div class="col-sm-12 col-md-5">
+                    <div class="targetTable" id="example_info" role="status" aria-live="polite" v-show="targetTable.pagination.totalCount > 0">             
+                        第
+                        {{((targetTable.pagination.pageIndex -1)* targetTable.pagination.pageSize + 1)}}-{{(targetTable.pagination.pageIndex * targetTable.pagination.pageSize >= targetTable.pagination.totalCount ? targetTable.pagination.totalCount : targetTable.pagination.pageIndex * targetTable.pagination.pageSize)}} 
+                       
+                        (共 {{targetTable.pagination.totalCount}} 筆)
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-2">
+
+                    <div></div>
+                </div>
+
+                <div class="col-sm-12 col-md-5" v-show="targetTable.pagination.totalCount > targetTable.pagination.pageSize">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                        <ul class="pagination">
+
+                            <li class="paginate_button page-item" v-show="targetTable.pagination.pageIndex > 1" v-on:click="targetTable.pagination.pageIndex = 1 ;targetTable.getData();">
+                                <a aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link"><<</a>
+                            </li>
+
+                            <li class="paginate_button page-item previous disabled" v-show="targetTable.pagination.pageIndex <= 1">
+                                <a aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link"><</a>
+                            </li>
+
+                            <li class="paginate_button page-item previous" v-show="targetTable.pagination.pageIndex > 1" v-on:click="targetTable.pagination.pageIndex-- ;targetTable.getData();">
+                                <a aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link"><</a>
+                            </li>
+
+                            <li v-for="(item , index) in targetTable.pagination.pageItems" :class="'paginate_button page-item ' + (item ==  targetTable.pagination.pageIndex ? 'active' : '') ">
+                                <a class="page-link" v-on:click="targetTable.pagination.pageIndex =item; targetTable.getData()">
+                                    {{item}}
+                                </a>
+                            </li>
+
+                            <li class="paginate_button page-item next disabled" v-show="dataTable.pagination.pageIndex >= dataTable.pagination.totalPage">
+                                <a aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">
+                                    >
+                                </a>
+                            </li>
+                            <li class="paginate_button page-item next" v-show="dataTable.pagination.pageIndex < dataTable.pagination.totalPage" v-on:click="dataTable.pagination.pageIndex++ ;dataTable.getData();">
+                                <a aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">
+                                    >
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</div>

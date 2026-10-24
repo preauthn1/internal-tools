@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>target.API.Game</name>
+    </assembly>
+    <members>
+        <member name="M:target.API.Game.Controllers.GameBetController.PlaceBet(target.Models.ViewModels.GamePlaceBetRequestModel)">
+            <summary>
+            投注
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.GameResultController.UpdateSettlementResult(target.Models.ViewModels.GamePlayResultRequestModel)">
+            <summary>
+            每局結算完寫分、更新錢包
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.GameResultController.UpdateSettlementResultV2Process(target.Models.ViewModels.GamePlayResultRequestModel)">
+            <summary>
+            每局結算完寫分、更新錢包
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.GameResultController.WritePerGameLog(target.Models.ViewModels.PerGameLogRequestModel)">
+            <summary>
+            寫入每局遊戲紀錄
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.GameResultController.WritePerGameLogV2Process(target.Models.ViewModels.PerGameLogRequestModel)">
+            <summary>
+            寫入每局遊戲紀錄
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.GameRoomController.GameRoomEnter(target.Models.ViewModels.GameRoomEnterRequestModel)">
+            <summary>
+            (access_Token*) 遊戲進房
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.GameRoomController.GameRoomLeave(target.Models.ViewModels.GameRoomLeaveRequestModel)">
+            <summary>
+            遊戲退房
+            </summary>
+        </member>
+        <member name="T:target.API.Game.Controllers.JackpotController">
+            <summary>
+            老虎機
+            </summary>
+            <remarks>
+            老虎機 Jackpot
+            </remarks>
+        </member>
+        <member name="M:target.API.Game.Controllers.JackpotController.UpdatetJackpot(System.Int32,target.Models.ViewModels.GameSlotJackpotUpdateRequestModel)">
+            <summary>
+            更新老虎機彩池金額, 後返回當前數值
+            </summary>
+        </member>
+        <member name="T:target.API.Game.Controllers.BaseController">
+            <summary>
+            Base Controller
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.BaseController.#ctor">
+            <summary>
+            Base Controller
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.BaseController.GetCurrentPlayerID">
+            <summary>
+            取得玩家ID
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.BaseController.InstanceAllServiceImplement``1(``0)">
+            <summary>
+            實例所有服務
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.HomeController.GetConfigValue(System.String)">
+            <summary>
+            讀取指定的config
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.InternalDocumentController.GetAllEnumsList">
+            <summary>
+            列出後端定義的所有enum
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.InternalHelperController.RemoveAllCache">
+            <summary>
+            清除所有Cache
+            </summary>
+        </member>
+        <member name="T:target.API.Game.Controllers.QATestUtilityController">
+            <summary>
+            專門提供測試環境使用的API
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.QATestUtilityController.ParsingJwtTokenToModel">
+            <summary>
+            解析token
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.QATestUtilityController.GenerateToken(target.Models.ViewModels.FakeDataGenerateRequestModel)">
+            <summary>
+            提供測試用，快速產生jwtToken
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.QATestUtilityController.AddPlayerWalletAmount(System.Int32)">
+            <summary>
+            提供測試用，快速加錢
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.PlayerWalletController.GetPlayerInfo">
+            <summary>
+            (access_Token*) 用戶基本資訊
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.PlayerWalletController.GetPlayerWalletCash">
+            <summary>
+            (access_Token*) 用戶錢包 (單純取錢包金額)
+            </summary>
+        </member>
+        <member name="P:target.API.Game.Controllers.RobotController.GameServerSettingService">
+            <summary>
+            Game Server Setting Service
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.RobotController.GetRobots(target.Models.ViewModels.RobotListRequestModel)">
+            <summary>
+            取得機器人設定
+            </summary>
+        </member>
+        <member name="T:target.API.Game.Controllers.ServerSettingController">
+            <summary>
+            Server Setting Controller
+            </summary>
+        </member>
+        <member name="P:target.API.Game.Controllers.ServerSettingController.GameServerSettingService">
+            <summary>
+            Game Server Setting Service
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.ServerSettingController.GetServerListAndSetting(target.Models.ViewModels.ServerListAndSettingRequestModel)">
+            <summary>
+            取得伺服器配置設定、開放給哪些供應商使用
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.ServerSettingController.RunServerStartProcess(target.Models.ViewModels.ServerStartProcessRequestModel)">
+            <summary>
+            伺服器「啟動」 相關註冊與初始化
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.ServerSettingController.RunServerCloseProcess(target.Models.ViewModels.ServerCloseProcessRequestModel)">
+            <summary>
+            伺服器「關閉」 相關程序
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.ServerSettingController.ServerReRegister(target.Models.ViewModels.SystemReregisterRequestModel)">
+            <summary>
+            GameServer的資料 可能是透過這隻建的
+            Server (Gs) 啟動的時候 之後每30秒服務器註冊
+            </summary>
+        </member>
+        <member name="T:target.API.Game.Controllers.SlotGameController">
+            <summary>
+            Game Slot Play
+            </summary>
+        </member>
+        <member name="P:target.API.Game.Controllers.SlotGameController.GameSlotService">
+            <summary>
+            Game Slot Service
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.GetSlotProbRecord(target.Models.ViewModels.GameSlotRequestModel)">
+            <summary>
+            獲取老虎機設置 GameSlotProbabilitySetting
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.UpdateSlotProbRecord(target.Models.ViewModels.GameSlotProbRequestModel)">
+            <summary>
+            更新老虎機資料  GameSlotProbabilitySetting
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.DeleteSlotProbRecord(target.Models.ViewModels.GameSlotRequestModel)">
+            <summary>
+            重置 GameSlotProbabilitySetting
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.GetSlotDeferredAward(target.Models.ViewModels.GameSlotDeferredAwardRequestModel)">
+            <summary>
+            讀取PlayerSlotDeferredAward資料
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.AddSlotDeferredAward(target.Models.ViewModels.GameSlotDeferredAwardUpdateRequestModel)">
+            <summary>
+            寫入 SlotDeferredAward資料
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.DeleteSlotDeferredAward(target.Models.ViewModels.GameSlotDeferredAwardRequestModel)">
+            <summary>
+            讀取 SlotDeferredAward第一筆記錄，並刪除該紀錄
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.GetUserAssignedMode(target.Models.ViewModels.GameSlotRequestModel)">
+            <summary>
+            讀取 Slot_UserAssignedMode 資料
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.AddSlotAssignedMode(target.Models.ViewModels.GameSlotPlayerAssignedRequestModel)">
+            <summary>
+            寫入 Slot_UserAssignedMode資料
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameController.DeleteSlotAssignedMode(target.Models.ViewModels.GameSlotRequestModel)">
+            <summary>
+            刪除 Slot_UserAssignedMode指定紀錄
+            </summary>
+        </member>
+        <member name="P:target.API.Game.Controllers.SlotGameRecordsController.GameSlotService">
+            <summary>
+            Game Slot Service
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.GetSlotGameLog(target.Models.ViewModels.GameSlotLogRequestModel)">
+            <summary>
+            Slot 取遊戲歷程
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.AddSlotGameLog(target.Models.ViewModels.GameSlotHistoryLogRequestModel)">
+            <summary>
+            寫入Slot遊戲歷程
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.GetSlotBonusRecord(target.Models.ViewModels.GameSlotRequestModel)">
+            <summary>
+            獲取老虎機資料2 Slot Bonus Record
+            </summary>
+            <remarks>
+            讀取PlayerSlotBonusRecord資料 (原PrGs_Slot_BonusGameRead)
+            </remarks>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.UpdateSlotBonusRecord(target.Models.ViewModels.GameSlotBonusRecordRequestModel)">
+            <summary>
+            更新老虎機資料2
+            </summary>
+            <remarks>
+            更新Slot_BonusGameRecord資料 (原PrGs_Slot_BonusGameRecord)
+            </remarks>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.ResetSlotBonusRecord(target.Models.ViewModels.GameSlotBonusRequestModel)">
+            <summary>
+            重置老虎機資料2
+            </summary>
+            <remarks>
+            重置Slot_BonusGameRecord資料 (原PrGs_Slot_BonusGameReset)
+            </remarks>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.GetSlotFreeSpinRecord(target.Models.ViewModels.GameSlotRequestModel)">
+            <summary>
+            獲取老虎機資料3
+            </summary>
+            <remarks>
+            讀取PlayerSlotFreeSpinRecord資料 (原PrGs_Slot_FreeSpinRead)
+            </remarks>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.UpdateSlotFreeSpinRecord(target.Models.ViewModels.GameSlotFreeSpinRequestModel)">
+            <summary>
+            更新老虎機資料3
+            </summary>
+            <remarks>
+            寫入FreeSpin紀錄 (原PrGs_Slot_FreeSpinRecord)
+            </remarks>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.GetSlotLightningRecord(target.Models.ViewModels.GameSlotRequestModel)">
+            <summary>
+            獲取老虎機資料 (金吉報喜 相關的遊戲會用到)
+            </summary>
+            <remarks>
+            讀取PlayerSlotLightningRecord資料 (原PrGs_Slot_LightningGameRead)
+            </remarks>
+        </member>
+        <member name="M:target.API.Game.Controllers.SlotGameRecordsController.UpdateSlotLightningRecord(target.Models.ViewModels.GameSlotLightningRequestModel)">
+            <summary>
+            獲取老虎機資料4
+            </summary>
+            <remarks>
+            寫入PlayerSlotLightningRecord紀錄 (原PrGs_Slot_LightningRecord)
+            </remarks>
+        </member>
+        <member name="T:target.API.Game.Controllers.SuperToolController">
+            <summary>
+            超端(水池相關)
+            </summary>    
+        </member>
+        <member name="M:target.API.Game.Controllers.SystemSettingController.GetDenyIpAddressList">
+            <summary>
+            取得黑名單IP，Gs如果防護配置有打開才會呼叫
+            </summary>
+        </member>
+        <member name="T:target.API.Game.Controllers.ThirdPartyCustomizeController">
+            <summary>
+            針對某些三方遊戲有特別的客製API
+            </summary>
+        </member>
+        <member name="M:target.API.Game.Controllers.ThirdPartyCustomizeController.GetPlayerInformationByMD5(target.Models.ViewModels.QuerySlot88MD5RequestModel)">
+            <summary>
+            根據slot88的MD5 反查某些玩家資訊
+            </summary>      
+        </member>
+    </members>
+</doc>

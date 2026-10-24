@@ -1,0 +1,48 @@
+
+21.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+a
+  rotate: false
+  xy: 365, 149
+  size: 131, 86
+  orig: 131, 86
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 43
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+chip
+  rotate: false
+  xy: 197, 111
+  size: 166, 124
+  orig: 166, 124
+  offset: 0, 0
+  index: -1
+coin01
+  rotate: false
+  xy: 2, 2
+  size: 45, 39
+  orig: 45, 39
+  offset: 0, 0
+  index: -1
+coin02
+  rotate: false
+  xy: 365, 127
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+k
+  rotate: false
+  xy: 197, 32
+  size: 157, 77
+  orig: 157, 77
+  offset: 0, 0
+  index: -1

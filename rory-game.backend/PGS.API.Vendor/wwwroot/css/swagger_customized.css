@@ -1,0 +1,93 @@
+
+.download-url-wrapper
+{
+    display:none !important;
+}
+
+
+tr[data-param-name="XXXXXXXXXX"] 
+{
+    display: none !important;
+}
+
+
+button.try-out__btn {
+    display: none !important;
+}
+
+
+td input[type=text] 
+{
+    display: none !important;
+}
+
+
+tr[data-param-in="query"] .parameter__in {
+    display: none !important;
+}
+
+
+.response p {
+    white-space: break-spaces;
+}
+
+
+.response-control-media-type__accept-message {
+    display: none !important;
+}
+
+
+table.responseColmns {
+    width: 500px;
+    padding: 4px 0 !important;
+}
+
+table.responseColmns  td{
+    padding: 4px 0 !important;
+}
+
+    table.responseColmns th {
+        text-align: left;
+        font-weight: 700;
+        padding: 8px 0 !important;
+    }
+
+
+[data-param-name="orderByColumn"] {
+    display: none !important;
+}
+
+[data-param-name="isASC"] {
+    display: none !important;
+}
+
+
+[data-name="model"] {
+    display: none !important;
+}
+
+
+h4.opblock-tag {
+    display: none !important;
+}
+
+div.opblock-summary-description {
+    margin-left: 15px !important;
+    text-align: right;
+}
+
+
+.wrapper .models {
+    display: none !important;
+}
+
+
+.info a.link {
+    display: none !important;
+}
+
+
+.opblock-description p
+{
+    line-height:25px;
+}

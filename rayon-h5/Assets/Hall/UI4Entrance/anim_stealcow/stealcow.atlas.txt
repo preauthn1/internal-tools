@@ -1,0 +1,209 @@
+
+stealcow.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+01
+  rotate: false
+  xy: 587, 853
+  size: 58, 56
+  orig: 58, 56
+  offset: 0, 0
+  index: -1
+02
+  rotate: true
+  xy: 529, 837
+  size: 67, 56
+  orig: 67, 56
+  offset: 0, 0
+  index: -1
+03
+  rotate: true
+  xy: 129, 23
+  size: 109, 130
+  orig: 109, 130
+  offset: 0, 0
+  index: -1
+04
+  rotate: true
+  xy: 392, 654
+  size: 126, 132
+  orig: 126, 132
+  offset: 0, 0
+  index: -1
+05
+  rotate: false
+  xy: 389, 525
+  size: 131, 127
+  orig: 131, 127
+  offset: 0, 0
+  index: -1
+06
+  rotate: false
+  xy: 392, 782
+  size: 135, 122
+  orig: 135, 122
+  offset: 0, 0
+  index: -1
+07
+  rotate: true
+  xy: 261, 34
+  size: 137, 121
+  orig: 137, 121
+  offset: 0, 0
+  index: -1
+08
+  rotate: true
+  xy: 254, 173
+  size: 139, 123
+  orig: 139, 123
+  offset: 0, 0
+  index: -1
+09
+  rotate: true
+  xy: 237, 314
+  size: 142, 125
+  orig: 142, 125
+  offset: 0, 0
+  index: -1
+10
+  rotate: true
+  xy: 2, 54
+  size: 182, 125
+  orig: 182, 125
+  offset: 0, 0
+  index: -1
+11
+  rotate: true
+  xy: 2, 238
+  size: 186, 125
+  orig: 186, 125
+  offset: 0, 0
+  index: -1
+12
+  rotate: true
+  xy: 2, 426
+  size: 189, 125
+  orig: 189, 125
+  offset: 0, 0
+  index: -1
+13
+  rotate: false
+  xy: 197, 883
+  size: 193, 124
+  orig: 193, 124
+  offset: 0, 0
+  index: -1
+14
+  rotate: true
+  xy: 2, 617
+  size: 196, 124
+  orig: 196, 124
+  offset: 0, 0
+  index: -1
+15
+  rotate: false
+  xy: 236, 528
+  size: 151, 124
+  orig: 151, 124
+  offset: 0, 0
+  index: -1
+16
+  rotate: true
+  xy: 129, 134
+  size: 156, 123
+  orig: 156, 123
+  offset: 0, 0
+  index: -1
+17
+  rotate: true
+  xy: 129, 292
+  size: 160, 106
+  orig: 160, 106
+  offset: 0, 0
+  index: -1
+18
+  rotate: false
+  xy: 392, 906
+  size: 184, 101
+  orig: 184, 101
+  offset: 0, 0
+  index: -1
+19
+  rotate: false
+  xy: 578, 911
+  size: 184, 96
+  orig: 184, 96
+  offset: 0, 0
+  index: -1
+20
+  rotate: false
+  xy: 764, 916
+  size: 183, 91
+  orig: 183, 91
+  offset: 0, 0
+  index: -1
+21
+  rotate: true
+  xy: 128, 631
+  size: 182, 85
+  orig: 182, 85
+  offset: 0, 0
+  index: -1
+22
+  rotate: false
+  xy: 215, 654
+  size: 175, 79
+  orig: 175, 79
+  offset: 0, 0
+  index: -1
+23
+  rotate: true
+  xy: 949, 832
+  size: 175, 73
+  orig: 175, 73
+  offset: 0, 0
+  index: -1
+24
+  rotate: false
+  xy: 236, 458
+  size: 137, 68
+  orig: 137, 68
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 815
+  size: 193, 192
+  orig: 193, 192
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 2
+  size: 122, 50
+  orig: 122, 50
+  offset: 0, 0
+  index: -1
+fan
+  rotate: false
+  xy: 647, 872
+  size: 57, 37
+  orig: 57, 37
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 215, 735
+  size: 152, 146
+  orig: 152, 146
+  offset: 0, 0
+  index: -1
+lerafs
+  rotate: true
+  xy: 129, 454
+  size: 175, 105
+  orig: 175, 105
+  offset: 0, 0
+  index: -1

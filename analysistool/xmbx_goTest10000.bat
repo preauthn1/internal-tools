@@ -1,0 +1,1 @@
+D:\Project\GameServerConfig\analysisTool\xmbx.exe analysis --proto D:\Project\GameServerConfig\slotconfig\protodata -c D:\Project\GameServerConfig\slotconfig\xmbx_1\config -t 100000

@@ -1,0 +1,298 @@
+﻿/* Please see documentation at https://example.invalid/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+    height: 100%;
+    background: #F5F5F5;
+}
+
+
+.text-c {
+    text-align: center;
+}
+
+.text-l {
+    text-align: left;
+}
+
+.grey {
+    padding: 20px 0 0 0 !important;
+    height:90%;
+}
+
+.form-group {
+    max-width: 450px;
+    margin: auto;
+}
+
+.card-no-group .row {
+    margin: 0;
+}
+
+
+.card-no-group .col-3 {
+        
+      padding: 0px !important;
+}
+
+
+    .card-no-group .form-control {
+        display: inline-block;
+        width: 90%;
+    }
+
+input.form-control {
+    text-transform: uppercase;
+    height: 42px;
+    line-height: 40px;
+    background: #F5F5F5;
+    outline: 0;
+    border: none;
+    border: solid 2px #FFF;
+}
+
+
+
+    input.form-control:focus {
+        border: solid 2px #FFC100;
+        box-shadow: none;
+    }
+
+    input.form-control::placeholder {
+        color: #A8B2B3;
+    }
+
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.submit_btn {
+    border-radius: 25px;
+    border: solid 2px #FFC100;
+    width: 85%;
+    background: #FFF;
+    height: 50px;
+    font-weight: 700;
+    outline: none !important;
+    box-shadow: 0px 6px 10px #FFC00066;
+}
+
+
+    .submit_btn.available {
+        background: #FFC100;
+    }
+
+    .errorMsg {
+        color: #FF3C31;
+        font-size: 12px;
+        height: 25px;
+    }
+
+    .errorMsg span {
+        vertical-align: middle;
+    }
+
+.errorMsg.hide
+{
+    visibility:hidden;
+}
+
+.modal-body
+{
+    text-align:center;
+}
+
+.modal-lg .modal-body {
+    padding: 15px 25px;
+}
+
+.modal-dialog {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-content H1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.modal-content {
+    padding: 8%;
+    border-radius:10px;
+}
+
+
+#errorMsg {
+    color: #707070;
+    font-size: 14px;
+}
+
+    .modal-body button {
+        margin-top:25px;
+        background: #4BD0C5;
+        border-radius: 25px;
+        width: 70%;
+        color:#FFF;
+        border: none;
+        height:50px;
+        box-shadow: 0px 6px 10px #4BD0C566;
+    }
+
+    .point-hint
+    {
+        font-size:14px;
+        margin-bottom:20px;
+    }
+
+.point-text {
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 1px;
+    padding-bottom: 10px;
+    display: inline-block;
+    letter-spacing: -15px;
+    margin-left: -15px;
+    vertical-align: middle;
+    color: #FFD241;
+}
+
+
+.our-vendors{
+    margin-top: 30px;
+    padding: 25px;
+}
+
+
+    .our-vendors h4, .our-vendors h3 {
+        text-align: center;
+    }
+
+    .our-vendors img {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .our-vendors img:hover {
+        opacity:.85;
+    }
+
+
+
+@media screen and (max-width: 992px) {
+
+    .input-card-panel {
+        padding: 45px 20px;
+        height: 100vh;
+        width: 100%;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        background: #FFF;
+        box-shadow: 0px 3px 15px #00000029;
+    }
+
+    .modal-dialog {
+        margin-top: 30%;
+    }
+
+    .our-vendors {
+        margin-top: 5px !important;
+        padding: 10px 3px;
+    }
+
+        .our-vendors h3 {
+            font-size: 16px;
+        }
+}
+
+
+@media screen and (min-width: 992px) {
+
+    .input-card-panel {
+        padding: 45px 20px;
+        border-radius: 25px;
+        background: #FFF;
+        max-width: 800px;
+        margin: auto;
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .our-vendors {
+        padding: 25px;
+    }
+
+    .modal-dialog {
+        margin-top: 10%;
+    }
+}
+
+.iframe-container {
+    position: relative;
+    width: 100%;
+    height: 550px;
+}
+
+    .iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }

@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Launch Fail";
+}
+
+
+    <div style="padding-top: 15%;text-align: center; font-family: monospace;">
+
+        <div style="font-size: 64px; font-weight: 700; color:#444;">
+            Error :(
+        </div>
+
+        <div style="padding: 10px; font-size: 20px; color: #888;">
+            @ViewBag.Msg
+        </div>
+
+        <div style="padding:10px;color:#AAA;">
+            Error code: @ViewBag.Code
+        </div>
+
+
+        <div style="padding: 10px; color: #dc5757;margin-top:20px;">
+
+            <img src="@Url.Content("~/img/logo.png")" style="width:75px;border-radius: 50%;" />
+
+        </div>
+
+    </div>

@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package protobufcfg;
+
+message FruitEmitter {
+    // 流水編號
+	int32 ID = 1;
+	// 發射器群組編號
+	int32 EmitterGroupID = 2;
+	// 發射器編號
+	// 對應Client及4、物件發射規則
+	// 中提及的發射器
+	int32 EmitterID = 3;
+	// 發射器角度範圍最小值
+	// 固定角度則AngleMax填入相同數字
+	float AngleMin = 4;
+	// 發射器角度範圍最大值
+	// 固定角度，則AngleMin填入相同數字
+	float AngleMax = 5;
+	// 發射器力道範圍最小值
+	// 固定力道則ForceMax填入相同數字
+	float ForceMin = 6;
+	// 發射器力道範圍最大值
+	// 固定力道則ForceMin填入相同數字
+	float ForceMax = 7;
+	// 從這組EmitterGroupID開始執行，需延遲幾秒才發射
+	// 發射間隔範圍最小值
+	// 範圍不隨機，則IntervalMax填入相同數字如立即發射，給0
+	float IntervalMin = 8;
+	// 發射間隔範圍最大值
+	// 範圍不隨機，則IntervalMin填入相同數字
+	float IntervalMax = 9;
+	// 水果ID
+	float FruitID = 10;
+}

@@ -1,0 +1,14 @@
+# 森日茶屋 FAQ（B 版本：AI 只負責挑題，回答一律用這裡店家寫好的答案）
+# 格式：代號 | 常見問法（用 / 分隔，越多越好挑） | 中文答案 | English | 日本語
+# 改完存檔後，在對話中打 /reload 生效
+
+hours | 營業時間/幾點開/幾點關/今天有開嗎/禮拜一有開嗎/公休/opening hours/when do you open/営業時間/定休日/何時から | 我們週二至週日 11:00–20:00 營業，週一公休喔！ | We're open Tuesday to Sunday, 11:00–20:00, and closed on Mondays! | 火曜日〜日曜日の 11:00–20:00 営業、月曜日は定休日です！
+address | 地址/在哪裡/怎麼去/店在哪/where are you/address/住所/アクセス | 我們在台北市大安區復興南路一段 100 號～ | We're at No. 100, Sec. 1, Fuxing S. Rd., Da'an Dist., Taipei~ | 台北市大安区復興南路一段100号にございます～
+menu | 菜單/有什麼飲料/推薦什麼/招牌是什麼/menu/what do you recommend/メニュー/おすすめ | 招牌飲品有：日月潭紅玉紅茶 120 元、桂花烏龍 110 元、抹茶拿鐵 150 元～ | Our signature drinks: Sun Moon Lake Ruby Black Tea NT$120, Osmanthus Oolong NT$110, Matcha Latte NT$150~ | 看板メニューは日月潭紅玉紅茶 120元、金木犀烏龍茶 110元、抹茶ラテ 150元です～
+price_hongyu | 紅玉多少錢/紅茶多少/紅玉紅茶價格/how much is the black tea/紅玉の価格 | 日月潭紅玉紅茶一杯 120 元～ | Sun Moon Lake Ruby Black Tea is NT$120 per cup~ | 日月潭紅玉紅茶は一杯 120元です～
+price_osmanthus | 桂花烏龍多少錢/烏龍多少/how much is the oolong/金木犀烏龍の価格 | 桂花烏龍一杯 110 元～ | Osmanthus Oolong is NT$110 per cup~ | 金木犀烏龍茶は一杯 110元です～
+price_matcha | 抹茶拿鐵多少錢/抹茶多少/how much is the matcha latte/抹茶ラテの価格 | 抹茶拿鐵一杯 150 元～ | Matcha Latte is NT$150 per cup~ | 抹茶ラテは一杯 150元です～
+delivery | 有外送嗎/可以外送嗎/Uber Eats/foodpanda/do you deliver/配達 | 有的！Uber Eats 和 foodpanda 都找得到我們～ | Yes! You can find us on both Uber Eats and foodpanda~ | はい！Uber Eats と foodpanda でご注文いただけます～
+pickup_discount | 自取有優惠嗎/自取打折/有折扣嗎/pickup discount/持ち帰り割引 | 店內自取滿 300 元打 9 折喔！ | In-store pickup orders of NT$300 or more get 10% off! | 店頭受け取りで 300元以上のご注文は 10%オフです！
+payment | 怎麼付款/可以刷卡嗎/可以用LINE Pay嗎/收現金嗎/payment/credit card/支払い方法 | 可以用現金、LINE Pay；信用卡需消費滿 200 元喔！ | We accept cash and LINE Pay; credit cards for purchases of NT$200 or more! | 現金・LINE Pay がご利用いただけます。クレジットカードは 200元以上からです！
+private_event | 包場/可以包場嗎/包場要提前多久/包場低消/可以坐幾個人/private event/貸切 | 可以包場喔！最多 20 人，需提前 7 天預約，低消 3000 元～ | Private bookings are available for up to 20 people. Please book 7 days ahead; minimum spend is NT$3,000~ | 貸切できます！最大 20名様、7日前までのご予約、最低利用金額は 3000元です～

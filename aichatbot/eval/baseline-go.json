@@ -1,0 +1,83 @@
+{
+ "說明": "Go 版的分數基準（eval/verify.py 產生，--update-baseline 更新）。[分子, 分母]；分母不同表示題組改過，要重量。",
+ "updated": "2026-10-14",
+ "commit": "fe61973",
+ "metrics": {
+  "intent.ten": [
+   112,
+   112
+  ],
+  "intent.human": [
+   5,
+   5
+  ],
+  "testset.ok": [
+   106,
+   118
+  ],
+  "testset.wrong": [
+   0,
+   118
+  ],
+  "testset.missed": [
+   4,
+   118
+  ],
+  "testset.blocked": [
+   5,
+   118
+  ],
+  "testset.trap_fabricated": [
+   1,
+   16
+  ],
+  "testset.xlang_ok": [
+   13,
+   15
+  ],
+  "flows.pass": [
+   207.0,
+   207
+  ],
+  "holdout.intent.ten": [
+   62,
+   70
+  ],
+  "holdout.flows.pass": [
+   34.0,
+   34
+  ],
+  "salon.intent.ten": [
+   30,
+   37
+  ],
+  "salon.intent.human": [
+   3,
+   3
+  ],
+  "salon.testset.ok": [
+   34,
+   41
+  ],
+  "salon.testset.wrong": [
+   5,
+   41
+  ],
+  "salon.testset.missed": [
+   2,
+   41
+  ],
+  "salon.testset.blocked": [
+   0,
+   41
+  ],
+  "salon.testset.trap_fabricated": [
+   1,
+   10
+  ],
+  "salon.flows.pass": [
+   23.0,
+   28
+  ]
+ }
+}

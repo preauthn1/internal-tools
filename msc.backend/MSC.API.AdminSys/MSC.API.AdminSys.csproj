@@ -1,0 +1,35 @@
+﻿<Project Sdk="example.invalid.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>92306f4b-8caa-4590-aac2-b0f13cdbce93</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GoogleAuthenticator" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MSC.BL\MSC.BL.csproj" />
+    <ProjectReference Include="..\MSC.DA\MSC.DA.csproj" />
+    <ProjectReference Include="..\MSC.Models\MSC.Models.csproj" />
+    <ProjectReference Include="..\MSC.Utility\MSC.Utility.csproj" />
+    <ProjectReference Include="..\MSC.Web.Modules\MSC.Web.Modules.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AppData\" />
+  </ItemGroup>
+
+  <ItemGroup>  
+    <Content Include="AppData\**">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>	
+  </ItemGroup>
+
+  <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Azure_toProduction.pubxml" />
+  </ItemGroup>
+
+
+</Project>

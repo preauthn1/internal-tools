@@ -1,0 +1,322 @@
+﻿@{
+    ViewData["Title"] = PermissionHelper.GetCurrentPageTile();
+}
+
+
+<div id="app">
+
+    <h4>
+        @PermissionHelper.GetCurrentPageTile()
+    </h4>
+    <div class="card search-form-card">
+
+
+        <div class="row search-form">
+
+
+            <div class="col-md-3">
+                <label for="cardNo" class="">@t.Text(i18nKeys.Common_Label_MemberName)</label>
+                <input type="text" name="memberCode" id="memberCode" placeholder="@t.Text(i18nKeys.Common_Label_MemberName)" class="form-control" v-model="dataTable.searchForm.memberCode">
+            </div>
+
+
+
+            <div class="col-md-3">
+                <label for="cardNo" class="">@t.Text(i18nKeys.Common_Label_MerchantRequestID)</label>
+                <input type="text" name="merchantRequestID" id="merchantRequestID" placeholder="@t.Text(i18nKeys.Common_Label_MerchantRequestID)" class="form-control" v-model="dataTable.searchForm.merchantRequestID">
+            </div>
+
+
+            <div class="col-md-3">
+                <label for="createtime" class="">@t.Text(i18nKeys.Common_Label_CreateTime)</label>
+                <input type="text" name="createtime" id="createtime" placeholder="@t.Text(i18nKeys.Common_Msg_FilterTimeRange)" class="form-control" v-model="dataTable.searchForm.createTime_displayText">
+            </div>
+
+            <div class="col-md-3">
+
+                @Html.Partial("_PartialQuickDatepicker")
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <label for="" class="">@t.Text(i18nKeys.Common_Label_Merchant)</label>
+
+                <select class="form-control" v-model="dataTable.searchForm.merchantID">
+                    <option value="">@t.Text(i18nKeys.Common_Label_FilterAll)</option>
+                    <option v-for="(item , index) in dropdown.merchants" :value="item.value">
+                        {{item.text}}
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="search-btn-row">
+                    <button class="btn btn-alternate" v-on:click="getList(1)"> @t.Text(i18nKeys.Common_Button_Search)</button>
+                    <button class="btn btn-secondary" v-on:click="resetForm"> @t.Text(i18nKeys.Common_Button_Reset)</button>
+                    <button class="btn btn-focus" v-on:click="exportExcel">  @t.Text(i18nKeys.Common_Button_Excel)</button>
+                </div>
+            </div>
+
+
+            <div style="clear:both;"></div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div>
+        @Html.Partial("DataTable")
+    </div>
+
+
+    <div>
+        @Html.Partial("_MerchantRequestProcessInfo")
+    </div>
+</div>
+
+
+
+
+
+@section Scripts{
+
+
+    <script>
+
+
+
+        $(function () {
+
+
+
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            mixins: [global_mixin],
+            data: {
+                detailInfo: {},
+                dataTable: {
+
+                    getData: function () {
+                        app.getList();
+                    },
+                    searchForm: {
+                        merchantID: '',
+                        merchantRequestID: '',
+                        createTime_displayText: '',
+                        createTimeBegin: '',
+                        createTimeEnd: ''
+                    },
+                    pagination: {
+                        items: [],
+                        pageSize: 10,
+                        orderByColumn: "Id",
+                    },
+                    columns:
+                        [
+                            { text: "@t.Text(i18nKeys.Common_Label_SystemOrderNo)", column: "systemRequestID" },
+                            { text: "@t.Text(i18nKeys.Common_Label_MerchantRequestID)", column: "merchantRequestID" },
+                            { text: "@t.Text(i18nKeys.Common_Label_Merchant)", column: "merchantName" },
+                            { text: "@t.Text(i18nKeys.Common_Label_MemberName)", column: "memberCode", isPopupText: true  },
+                            { text: "@t.Text(i18nKeys.Common_Label_Amount)", column: "amount", "align": "r" },
+                            { text: "@t.Text(i18nKeys.Common_Label_IPAddress)", column: "ipAddress", "align": "r" },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_IsOrderComplete)", column: "isDisabled", "align": "c",
+                                "html": function (row) {
+                                    return row.isDisabled ? "<i class='pe-7s-check table-size'></i>" : "";
+                                }
+                            },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_MerchantNotifyCompleted)", column: "isNotifyCompleted", "align": "c",
+                                "html": function (row) {
+
+                                    if (!row.isNotifyExist) {
+                                        return "";
+                                    }
+
+                                    if (row.isNotifyCompleted) {
+                                        return "<i class='pe-7s-check table-size'></i>";
+                                    }
+
+                                    return "<i class='pe-7s-attention table-size'></i>";
+                                }
+                            },
+
+
+
+
+                            { text: "@t.Text(i18nKeys.Common_Label_CreateTime)", column: "createTime", "html": function (row) { return format_helper.to_display_time(row.createTime); } },
+                            {
+                                text: "@t.Text(i18nKeys.Common_Label_OperateFunction)", column: "text", width: "10%", templates: [constant.template.detail]
+                            }
+                        ]
+                }
+
+            },
+
+            methods: {
+
+                opacityClassStyle(item) {
+
+                    if (!item || item == null) {
+                        return " opcity50 ";
+                    };
+
+                    return "";
+                },
+
+                click_dataTable(btn_type, row_data) {
+
+                    switch (btn_type) {
+                        case constant.template.detail:
+                            this.showDetail(row_data);
+                            break;
+
+                        default:
+                            alert('undefined! ' + btn_type);
+                    }
+
+                },
+
+                showDetail(row_data) {
+
+                    console.log(row_data);
+                    this.getDetail(row_data);
+                    $("#process_info").modal("show");
+                },
+
+                getDetail(row) {
+
+                    let vm = this;
+
+                    var param = String.format("MerchantRequestID={0}&MerchantID={1}", row.merchantRequestID, row.merchantID);
+                    ajaxHelper.get(window.API_DOMAIN + '/records/process-detail?' + param)
+                        .then((res) => {
+
+                            vm.detailInfo = res.data.data;
+
+                        })
+                        .catch((error) => { console.log(error) })
+                        .finally(() => { /* 不論失敗成功皆會執行 */ });
+
+                },
+
+                getList(targetPageIndex) {
+
+                    let vm = this;
+
+                    //如果有指定頁數
+                    if (targetPageIndex) {
+                        this.dataTable.pagination.pageIndex = 1;
+                    }
+
+                    var queryString = form_helper.getSearchFormQueryString(this.dataTable);
+
+                    let url = window.API_DOMAIN + '/records/card-link-request' + queryString;
+                    ajaxHelper.get(url)
+                        .then((res) => {
+                            vm.dataTable.pagination = res.data.data;
+                        })
+                        .catch((error) => { console.log(error) })
+                        .finally(() => { /* 不論失敗成功皆會執行 */ });
+
+                },
+
+
+                exportExcel() {
+
+                    let vm = this;
+                    vm.showMask();	
+
+                    var queryString = form_helper.getSearchFormAndSpecificPageSize(this.dataTable, 10000, this.dataTable.pagination.orderByColumn);
+
+                    let headers = this.dataTable.columns.map(x => { return x.text; });
+
+                    //最後一欄不需要
+                    arrayHelper.removeLastArrayItem(headers);
+
+                    let url = window.API_DOMAIN + '/records/card-link-request' + queryString;
+                    ajaxHelper.get(url)
+                        .then((res) => {
+
+                            let converExcelRows = vm.convertToExcelColumns(res.data.data.items);
+                            common.exportExcel({
+                                headers: headers,
+                                rows: converExcelRows,
+                                fileName: "export_MerchantOrderRequest.xlsx"
+                            })
+                        })
+                        .catch((error) => {
+
+                            console.log(error);
+                            alert('error');
+
+                        })
+                        .finally(() => {
+
+                            vm.hideMask();
+
+                        });
+
+                },
+
+                convertToExcelColumns(list) {
+
+                    let requiredColumns = this.dataTable.columns.map(x => { return x.column; });
+
+                    let converList = list.map(item => {
+
+                        let convert = {};
+
+                        requiredColumns.forEach(column => {
+                            convert[column] = item[column];
+                        })
+
+                        convert.isDisabled = item.isDisabled ? "v" : "";
+                        convert.isNotifyCompleted = item.isNotifyCompleted ? "v" : "";
+                        convert.createTime = format_helper.to_display_time(item.createTime);
+                        return convert;
+                    });
+
+                    return converList;
+                }
+            },
+
+            mounted() {
+
+                this.getDropdownMerchants();
+
+                let vm = this;
+
+                date_picker.datetime_range_empty(
+                    {
+                        vue_instance: vm.dataTable.searchForm,
+                        element_ID: "#createtime",
+                        vue_prop_begin: "createTimeBegin",
+                        vue_prop_end: "createTimeEnd",
+                        vue_prop_text: "createTime_displayText"
+                    });
+
+                this.dataTable.searchForm.createTimeBegin = "@AdminSysHelper.GetRecently7Days().Begin";
+                this.dataTable.searchForm.createTimeEnd = "@AdminSysHelper.GetRecently7Days().End";
+                this.dataTable.searchForm.createTime_displayText = this.dataTable.searchForm.createTimeBegin + " - " + this.dataTable.searchForm.createTimeEnd;
+
+                this.getList();
+
+            }
+
+        })
+
+
+    </script>
+
+}

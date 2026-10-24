@@ -1,0 +1,8 @@
+forward: 
+  port: 10090
+  auth:
+    addr: ":9001"
+  logger:
+    level: info
+  ingress:
+    enabled: false

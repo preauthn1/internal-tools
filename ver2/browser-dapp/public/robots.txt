@@ -1,0 +1,3 @@
+# https://example.invalid/robotstxt.html
+User-agent: *
+Disallow:

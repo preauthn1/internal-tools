@@ -1,0 +1,56 @@
+﻿
+
+<div id="ex_logs_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ex_logs_modal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" >
+            <div class="modal-header">
+
+
+                <h4 class="modal-title" id="myModalLabel">
+                    @t.Text(i18nKeys.Common_Button_RequestLog)
+                </h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                <div class="clearboth"></div>
+              
+            </div>
+            <div class="modal-body">
+
+
+                <div class="row form-info" style="padding:10px;">
+
+                    <div v-for="(item , index) in external_logs" style="margin-bottom:35px;">
+
+                        <div>
+
+                            <span class="requestUrl">
+                                {{item.requestUrl}}
+                            </span>
+
+                            <span class="dateText">
+                                {{item.createTime | to_display_time}}
+                            </span>
+                        </div>
+
+                        <div class="code-wrapper">
+                            {{item.requestContent}}
+                        </div>
+
+                        <div class="code-wrapper" style="color:#1b49b2">
+                            {{item.responseText}}
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>

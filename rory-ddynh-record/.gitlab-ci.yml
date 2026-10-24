@@ -1,0 +1,12 @@
+stages:
+  - database-publish
+
+publish:
+  image: netroby/alpine-rsync
+  stage: database-publish
+  script:
+    - rsync -a --exclude .git/ --exclude .gitlab-ci.yml --no-o --no-g --delete ./ /mnt/release/database/
+    - echo "$(TZ=Asia/Taipei date +%Y%m%d)-build-${CI_PIPELINE_ID}" > /mnt/release/database/last_update_build.txt
+  only:
+    refs:
+      - master
