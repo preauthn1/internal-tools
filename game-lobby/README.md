@@ -1,6 +1,6 @@
 # game-lobby
 
-原始路径：`game-lobby`　|　文件：**346**　|　主语言：Vue 155, PHP 109, TypeScript 36
+原始路径：`game-lobby`　|　文件：**345**　|　主语言：Vue 155, PHP 109, TypeScript 36
 
 ## 目录构成
 
@@ -10,15 +10,14 @@ src/app/  — 55
 src/.claude/  — 25
 src/tests/  — 18
 src/database/  — 16
+src/  — 14
 src/config/  — 13
 src/routes/  — 3
 src/bootstrap/  — 2
 src/public/  — 2
+docker/  — 2
 docker/php/  — 2
-README.md/  — 1
-src/package.json/  — 1
-src/CLAUDE.md/  — 1
-src/.env.example/  — 1
+docker/nginx/  — 1
 ```
 
 ## 关键文件

@@ -1,29 +1,14 @@
 # analysistool
 
-原始路径：`analysistool`　|　文件：**31**　|　主语言：—
+原始路径：`analysistool`　|　文件：**30**　|　主语言：—
 
 ## 目录构成
 
 ```
-faf_goTest10000.bat/  — 1
-jjbx_goFGTest10000.bat/  — 1
-s888_goTest10000.bat/  — 1
-cfll_goFGTest10000.bat/  — 1
-lkb_goTest10000.bat/  — 1
-jjbx_goTest10000.bat/  — 1
-README.md/  — 1
-jgyf_goTest10000.bat/  — 1
-wlzbjp_goTest300000.bat/  — 1
-wlzbjp_goTest10000.bat/  — 1
-ald_goTest10000.bat/  — 1
-dgno_goTest10000.bat/  — 1
-dhzw_goTest10000.bat/  — 1
-qow_goTest10000.bat/  — 1
 ```
 
 ## 主要文件
 
-- `README.md`
 - `ALL_goTest10000.bat`
 - `s5ll_goTest10000.bat`
 - `wlzbjp_goTest10000.bat`
@@ -31,6 +16,7 @@ qow_goTest10000.bat/  — 1
 - `jjbx_goLTNTest10000.bat`
 - `jjbx_goFGTest10000.bat`
 - `cfll_goFGTest10000.bat`
+- `wlzbjp_goTest300000.bat`
 
 ## 说明
 

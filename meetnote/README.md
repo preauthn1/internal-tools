@@ -1,24 +1,19 @@
 # meetnote
 
-原始路径：`meetnote`　|　文件：**59**　|　主语言：TypeScript 10, JSON 9, Python 8
+原始路径：`meetnote`　|　文件：**58**　|　主语言：TypeScript 10, JSON 9, Python 8
 
 ## 目录构成
 
 ```
 app/src/  — 16
+app/  — 12
+spike/  — 11
 app/src-tauri/  — 8
 spike/diar/  — 4
 spike/samples/  — 2
-CLAUDE.md/  — 1
-README.md/  — 1
-AGENTS.md/  — 1
-spike/afm.py/  — 1
-spike/meeting.py/  — 1
-spike/FINDINGS.md/  — 1
-spike/README.md/  — 1
-spike/segtest.py/  — 1
-spike/haiku.py/  — 1
-spike/cer.py/  — 1
+spike/Sources/  — 1
+spike/AFM/  — 1
+app/.vscode/  — 1
 ```
 
 ## 关键文件

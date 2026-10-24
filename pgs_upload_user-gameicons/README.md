@@ -1,13 +1,11 @@
 # pgs_upload_user-gameicons
 
-原始路径：`pgs_upload_user-gameicons`　|　文件：**3**　|　主语言：YAML 1
+原始路径：`pgs_upload_user-gameicons`　|　文件：**2**　|　主语言：YAML 1
 
 ## 目录构成
 
 ```
-README.md/  — 1
-.gitlab-ci.yml/  — 1
-cs-download/原廠文件連結_請勿直接貼給客戶.txt/  — 1
+cs-download/  — 1
 ```
 
 ## 关键文件
@@ -17,7 +15,6 @@ cs-download/原廠文件連結_請勿直接貼給客戶.txt/  — 1
 ## 主要文件
 
 - `.gitlab-ci.yml`
-- `README.md`
 - `cs-download/原廠文件連結_請勿直接貼給客戶.txt`
 
 ## 说明

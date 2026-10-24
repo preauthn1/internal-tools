@@ -1,24 +1,24 @@
 # gameslobby
 
-原始路径：`gameslobby`　|　文件：**108**　|　主语言：PHP 91, JSON 4, JavaScript 3
+原始路径：`gameslobby`　|　文件：**107**　|　主语言：PHP 91, JSON 4, JavaScript 3
 
 ## 目录构成
 
 ```
 app/Http/  — 18
 resources/views/  — 18
+config/  — 15
 database/migrations/  — 9
 app/Providers/  — 5
+routes/  — 4
 app/Models/  — 4
 resources/lang/  — 4
 resources/js/  — 3
+public/  — 3
+tests/  — 2
 app/Console/  — 2
 resources/sass/  — 2
-.styleci.yml/  — 1
-package.json/  — 1
-webpack.mix.js/  — 1
-.env.example/  — 1
-README.md/  — 1
+bootstrap/  — 1
 ```
 
 ## 关键文件

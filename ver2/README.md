@@ -1,6 +1,6 @@
 # ver2
 
-原始路径：`ver2`　|　文件：**72**　|　主语言：JavaScript 46, JSON 12, CSS 5
+原始路径：`ver2`　|　文件：**71**　|　主语言：JavaScript 46, JSON 12, CSS 5
 
 ## 目录构成
 
@@ -9,16 +9,14 @@ react-wallet-aqn/src/  — 19
 browser-dapp/src/  — 16
 browser-dapp/config/  — 9
 aqn-wallet-node/routes/  — 5
+react-wallet-aqn/  — 5
+browser-dapp/  — 3
 browser-dapp/scripts/  — 3
 browser-dapp/public/  — 3
+aqn-wallet-node/  — 3
 react-wallet-aqn/public/  — 3
-README.md/  — 1
-browser-dapp/package.json/  — 1
-browser-dapp/README.md/  — 1
-browser-dapp/package-lock.json/  — 1
-aqn-wallet-node/package.json/  — 1
-aqn-wallet-node/app.js/  — 1
-aqn-wallet-node/package-lock.json/  — 1
+aqn-wallet-node/.vscode/  — 1
+aqn-wallet-node/public/  — 1
 ```
 
 ## 关键文件

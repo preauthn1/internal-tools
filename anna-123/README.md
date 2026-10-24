@@ -1,6 +1,6 @@
 # anna-123
 
-原始路径：`anna-123`　|　文件：**318**　|　主语言：HTML 164, JavaScript 74, CSS 63
+原始路径：`anna-123`　|　文件：**317**　|　主语言：HTML 164, JavaScript 74, CSS 63
 
 ## 目录构成
 
@@ -9,7 +9,6 @@ GriFFin/ApolloGroup_原/  — 155
 OGC/OG Credits/  — 123
 GriFFin/ae888/  — 33
 PGS/龍虎鬥/  — 6
-README.md/  — 1
 ```
 
 ## 关键文件

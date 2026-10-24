@@ -1,15 +1,11 @@
 # encryption
 
-原始路径：`encryption`　|　文件：**5**　|　主语言：YAML 1, JavaScript 1, HTML 1
+原始路径：`encryption`　|　文件：**4**　|　主语言：YAML 1, JavaScript 1, HTML 1
 
 ## 目录构成
 
 ```
-README.md/  — 1
-docker-compose.yml/  — 1
-nginx.conf/  — 1
-html/script.js/  — 1
-html/index.html/  — 1
+html/  — 2
 ```
 
 ## 关键文件
@@ -21,7 +17,6 @@ html/index.html/  — 1
 
 - `html/script.js`
 - `html/index.html`
-- `README.md`
 - `nginx.conf`
 - `docker-compose.yml`
 

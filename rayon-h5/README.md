@@ -1,6 +1,6 @@
 # rayon-h5
 
-原始路径：`rayon-h5`　|　文件：**779**　|　主语言：C# 398, Lua 150, JSON 44
+原始路径：`rayon-h5`　|　文件：**778**　|　主语言：C# 398, Lua 150, JSON 44
 
 ## 目录构成
 
@@ -9,16 +9,12 @@ Assets/Hall/  — 331
 Assets/Plugins/  — 221
 Assets/FrameWork/  — 201
 Assets/PlayServicesResolver/  — 7
+Assets/  — 4
 Assets/Editor/  — 2
 Assets/FX/  — 2
 Assets/codeandweb.com/  — 2
-readme.md/  — 1
-ab.bat/  — 1
-README.md/  — 1
-autodeleteAssetBundle.bat/  — 1
-process.bat/  — 1
-autohotupdate.bat/  — 1
-appkey说明.txt/  — 1
+Packages/  — 1
+ProjectSettings/  — 1
 ```
 
 ## 关键文件

@@ -1,21 +1,14 @@
 # ver1
 
-原始路径：`ver1`　|　文件：**35**　|　主语言：JavaScript 21, JSON 7, CSS 3
+原始路径：`ver1`　|　文件：**34**　|　主语言：JavaScript 21, JSON 7, CSS 3
 
 ## 目录构成
 
 ```
 react-dice-nft/src/  — 20
+react-dice-nft/  — 5
 dapp-nft-node/routes/  — 5
-README.md/  — 1
-react-dice-nft/package.json/  — 1
-react-dice-nft/README.md/  — 1
-react-dice-nft/desktop.ini/  — 1
-react-dice-nft/app.yaml/  — 1
-react-dice-nft/package-lock.json/  — 1
-dapp-nft-node/package.json/  — 1
-dapp-nft-node/app.js/  — 1
-dapp-nft-node/package-lock.json/  — 1
+dapp-nft-node/  — 3
 dapp-nft-node/public/  — 1
 ```
 

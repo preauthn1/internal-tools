@@ -1,24 +1,13 @@
 # ai-auto-dev-mgmt
 
-原始路径：`ai-auto-dev-mgmt`　|　文件：**19**　|　主语言：JSON 2, YAML 1
+原始路径：`ai-auto-dev-mgmt`　|　文件：**18**　|　主语言：JSON 2, YAML 1
 
 ## 目录构成
 
 ```
-CLAUDE.md/  — 1
-README.md/  — 1
-AGENTS.md/  — 1
-.mcp.json/  — 1
-.private/README.md/  — 1
-.devcontainer/devcontainer.json/  — 1
-.devcontainer/docker-compose.yml/  — 1
-.devcontainer/Dockerfile/  — 1
-autonomous-dev-workflow/flow-state-tracker-template.md/  — 1
-autonomous-dev-workflow/quality-gate-checklist.md/  — 1
-autonomous-dev-workflow/product-owner-agent-system-prompt.md/  — 1
-autonomous-dev-workflow/api-contract-template.md/  — 1
-autonomous-dev-workflow/orchestrator-agent-system-prompt.md/  — 1
-autonomous-dev-workflow/backend-engineer-agent-system-prompt.md/  — 1
+autonomous-dev-workflow/  — 11
+.devcontainer/  — 3
+.private/  — 1
 ```
 
 ## 关键文件

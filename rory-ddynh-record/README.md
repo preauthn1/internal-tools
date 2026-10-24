@@ -1,6 +1,6 @@
 # rory-ddynh-record
 
-原始路径：`rory-ddynh-record`　|　文件：**50**　|　主语言：SQL 19, YAML 1
+原始路径：`rory-ddynh-record`　|　文件：**49**　|　主语言：SQL 19, YAML 1
 
 ## 目录构成
 
@@ -15,8 +15,6 @@
 002_20191216/AdminSys/  — 4
 001_20191213/CenterDB/  — 2
 002_20191216/Server/  — 2
-README.md/  — 1
-.gitlab-ci.yml/  — 1
 001_20191213/Server/  — 1
 ```
 

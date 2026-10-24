@@ -1,24 +1,19 @@
 # youbet
 
-原始路径：`youbet`　|　文件：**27**　|　主语言：C# 11, XML 7, JSON 1
+原始路径：`youbet`　|　文件：**26**　|　主语言：C# 11, XML 7, JSON 1
 
 ## 目录构成
 
 ```
 YouBet.Android/Resources/  — 8
+YouBet/  — 4
+YouBet.iOS/  — 3
+YouBet.UITests/  — 3
+YouBet.Android/  — 2
 YouBet.Android/Properties/  — 2
-README.md/  — 1
-YouBet.sln/  — 1
-YouBet/MainPage.xaml.cs/  — 1
-YouBet/App.xaml.cs/  — 1
-YouBet/AssemblyInfo.cs/  — 1
-YouBet/YouBet.csproj/  — 1
-YouBet.iOS/Main.cs/  — 1
-YouBet.iOS/YouBet.iOS.csproj/  — 1
-YouBet.iOS/AppDelegate.cs/  — 1
 YouBet.iOS/Assets.xcassets/  — 1
 YouBet.iOS/Properties/  — 1
-YouBet.UITests/Tests.cs/  — 1
+YouBet.Android/Assets/  — 1
 ```
 
 ## 关键文件

@@ -1,15 +1,11 @@
 # smart-contracts
 
-原始路径：`smart-contracts`　|　文件：**5**　|　主语言：JavaScript 2, JSON 1
+原始路径：`smart-contracts`　|　文件：**4**　|　主语言：JavaScript 2, JSON 1
 
 ## 目录构成
 
 ```
-README.md/  — 1
-truffle-config.js/  — 1
-package-lock.json/  — 1
-deploy.bat/  — 1
-migrations/1_initial_migration.js/  — 1
+migrations/  — 1
 ```
 
 ## 主要文件
@@ -17,7 +13,6 @@ migrations/1_initial_migration.js/  — 1
 - `package-lock.json`
 - `truffle-config.js`
 - `migrations/1_initial_migration.js`
-- `README.md`
 - `deploy.bat`
 
 ## 说明

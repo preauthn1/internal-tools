@@ -1,24 +1,24 @@
 # vworld_side_project
 
-原始路径：`vworld_side_project`　|　文件：**177**　|　主语言：PHP 157, JavaScript 6, JSON 4
+原始路径：`vworld_side_project`　|　文件：**176**　|　主语言：PHP 157, JavaScript 6, JSON 4
 
 ## 目录构成
 
 ```
 laravel-bootstrap/app/  — 26
 resources/views/  — 21
+config/  — 15
 laravel-bootstrap/config/  — 15
 laravel-bootstrap/resources/  — 13
 app/Http/  — 11
 database/migrations/  — 9
+laravel-bootstrap/  — 6
 laravel-bootstrap/database/  — 6
 app/Console/  — 6
 app/Providers/  — 5
+routes/  — 4
 lang/en/  — 4
 laravel-bootstrap/routes/  — 4
-laravel-bootstrap/tests/  — 4
-laravel-bootstrap/lang/  — 4
-laravel-bootstrap/public/  — 2
 ```
 
 ## 关键文件

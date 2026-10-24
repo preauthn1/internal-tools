@@ -1,6 +1,6 @@
 # php_developer_exam_1st
 
-原始路径：`php_developer_exam_1st`　|　文件：**222**　|　主语言：PHP 177, Shell 27, JavaScript 5
+原始路径：`php_developer_exam_1st`　|　文件：**221**　|　主语言：PHP 177, Shell 27, JavaScript 5
 
 ## 目录构成
 
@@ -12,13 +12,12 @@ docker/rootfs/  — 14
 docker/prebuildfs/  — 14
 laravel/config/  — 13
 laravel/database/  — 11
+laravel/  — 8
 laravel/routes/  — 3
 laravel/bootstrap/  — 2
 laravel/public/  — 2
-README.md/  — 1
-docker-compose.yml/  — 1
-laravel/package.json/  — 1
-laravel/.env.example/  — 1
+laravel/vendor/  — 1
+docker/  — 1
 ```
 
 ## 关键文件

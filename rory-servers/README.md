@@ -1,6 +1,6 @@
 # rory-servers
 
-原始路径：`rory-servers`　|　文件：**1952**　|　主语言：Go 1780, YAML 41, Shell 16
+原始路径：`rory-servers`　|　文件：**1951**　|　主语言：Go 1780, YAML 41, Shell 16
 
 ## 目录构成
 
@@ -12,13 +12,13 @@ pkg/netproto/  — 113
 pkg/pachislot/  — 77
 cmd/game/  — 68
 internal/apiserver/  — 52
+release-notes/  — 37
 pkg/gamelogic/  — 32
 pkg/poker/  — 31
 cmd/slot88/  — 31
 internal/cli-api-svc/  — 28
 internal/hallserver/  — 27
 pkg/gameserver/  — 23
-internal/monitorserver/  — 21
 ```
 
 ## 关键文件

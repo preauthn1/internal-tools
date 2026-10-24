@@ -1,6 +1,6 @@
 # aichatbot
 
-原始路径：`aichatbot`　|　文件：**1221**　|　主语言：TypeScript 496, Vue 355, Go 121
+原始路径：`aichatbot`　|　文件：**1220**　|　主语言：TypeScript 496, Vue 355, Go 121
 
 ## 目录构成
 
@@ -9,16 +9,16 @@ web/packages/  — 811
 go/internal/  — 108
 web/internal/  — 94
 web/apps/  — 72
+eval/  — 30
 web/scripts/  — 20
 Sources/BotCore/  — 14
 go/cmd/  — 13
+web/  — 10
+loop/  — 8
 Sources/Telegram/  — 5
 eval/stores/  — 5
+docs/  — 3
 docs/agents/  — 3
-docs/adr/  — 3
-eval/holdout/  — 3
-scripts/dev/  — 3
-Sources/bot/  — 2
 ```
 
 ## 关键文件

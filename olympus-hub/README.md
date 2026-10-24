@@ -1,6 +1,6 @@
 # olympus-hub
 
-原始路径：`olympus-hub`　|　文件：**30**　|　主语言：PHP 18, JSON 2, XML 1
+原始路径：`olympus-hub`　|　文件：**29**　|　主语言：PHP 18, JSON 2, XML 1
 
 ## 目录构成
 
@@ -10,15 +10,15 @@ docs/plans/  — 3
 resources/views/  — 3
 src/Support/  — 2
 docs/superpowers/  — 2
-CLAUDE.md/  — 1
-README.md/  — 1
-composer.json/  — 1
-GEMINI.md/  — 1
-phpunit.xml/  — 1
-routes/web.php/  — 1
-src/OlympusHubServiceProvider.php/  — 1
+routes/  — 1
+src/  — 1
 src/Consul/  — 1
 src/Services/  — 1
+src/Http/  — 1
+src/Console/  — 1
+tests/Consul/  — 1
+tests/Services/  — 1
+tests/Support/  — 1
 ```
 
 ## 关键文件
