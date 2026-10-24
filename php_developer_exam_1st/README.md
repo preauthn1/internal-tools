@@ -1,36 +1,31 @@
-# PHP exam1
+# php_developer_exam_1st
 
-## System requirements
-* PHP8.4
-* Laravel 12
-* MySQL8.0+
-* docker
+原始路径：`php_developer_exam_1st`　|　收录文件：**222**
 
-## Installation Steps
+## 语言构成
 
-* clone project and cd
-* docker compose up -d
-* check cache folders permission
-* composer install
-* npm install && npm run build
-* setup .env
-* php artisan key:generate
-* php artisan config:clear
-* php artisan migrate
+- PHP — 177 个文件（81%）
+- Shell — 27 个文件（12%）
+- JavaScript — 5 个文件（2%）
+- JSON — 4 个文件（1%）
+- Markdown — 1 个文件（0%）
+- YAML — 1 个文件（0%）
 
-## DB migrations
-* user table username unique, add balance
-* add account_transaction for deposit / withdraw
-    * transaction_no for our system, TN+date(YmdHis)+last_insert_id(補0, 4位)
-    * type 0 => deposit , type 1 -> withdraw
-    * status 0 => pending , 1 ->succeed , 2-> failed
-* add game_records table to store user bet records
+## 目录结构
 
-
-## crontab
-同步 vendor 資料 ，每分鐘跑 (撈兩分內的資料，避免遊戲商延遲問題，可加長時間, maybe 10 mins)
 ```
-# 注意事項: 起始結束時間不得大於八小時, 每分鐘只能跑一次，相同參數不要重複跑，會被擋
-* * * * * /usr/bin/docker exec -it bitnami bash -c "php artisan game-records:fetch --vendor=target --start_time=\"$(date -d '2 minute ago' +\%Y-\%m-\%d \%H:\%I:\%S)\" --end_time=$(date +\%Y-\%m-\%d \%H:\%I:\%S)\" "
+laravel/  (191 个文件)
+docker/  (29 个文件)
+./  (2 个文件)
 ```
+
+## 关键文件
+
+- 构建脚本：`docker-compose.yml`、`docker/Dockerfile`
+- 依赖清单：`laravel/package.json`、`laravel/composer.json`
+- 前端入口：`laravel/resources/js/app.js`
+
+## 说明
+
+文本源码与配置的静态快照；二进制资源未收录。发布前已按本目录实际内容替换凭据、密钥、内网地址与域名。
 

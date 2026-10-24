@@ -1,64 +1,37 @@
-<p align="center"><a href="https://example.invalid" target="_blank"><img src="https://example.invalid/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# vworld_side_project
 
-<p align="center">
-<a href="https://example.invalid/laravel/framework"><img src="https://example.invalid/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://example.invalid/packages/laravel/framework"><img src="https://example.invalid/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://example.invalid/packages/laravel/framework"><img src="https://example.invalid/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://example.invalid/packages/laravel/framework"><img src="https://example.invalid/packagist/l/laravel/framework" alt="License"></a>
-</p>
+原始路径：`vworld_side_project`　|　收录文件：**177**
 
-## About Laravel
+## 语言构成
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- PHP — 157 个文件（91%）
+- JavaScript — 6 个文件（3%）
+- JSON — 4 个文件（2%）
+- Markdown — 2 个文件（1%）
+- XML — 2 个文件（1%）
 
-- [Simple, fast routing engine](https://example.invalid/docs/routing).
-- [Powerful dependency injection container](https://example.invalid/docs/container).
-- Multiple back-ends for [session](https://example.invalid/docs/session) and [cache](https://example.invalid/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://example.invalid/docs/eloquent).
-- Database agnostic [schema migrations](https://example.invalid/docs/migrations).
-- [Robust background job processing](https://example.invalid/docs/queues).
-- [Real-time event broadcasting](https://example.invalid/docs/broadcasting).
+## 目录结构
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```
+laravel-bootstrap/  (81 个文件)
+app/  (26 个文件)
+resources/  (23 个文件)
+config/  (15 个文件)
+database/  (11 个文件)
+./  (6 个文件)
+routes/  (4 个文件)
+tests/  (4 个文件)
+lang/  (4 个文件)
+public/  (2 个文件)
+bootstrap/  (1 个文件)
+```
 
-## Learning Laravel
+## 关键文件
 
-Laravel has the most extensive and thorough [documentation](https://example.invalid/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- 依赖清单：`package.json`、`composer.json`、`laravel-bootstrap/package.json`、`laravel-bootstrap/composer.json`
+- 前端入口：`laravel-bootstrap/resources/js/app.js`、`resources/js/app.js`
 
-If you don't feel like reading, [Laracasts](https://example.invalid) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 说明
 
-## Laravel Sponsors
+文本源码与配置的静态快照；二进制资源未收录。发布前已按本目录实际内容替换凭据、密钥、内网地址与域名。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://example.invalid/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://example.invalid/)**
-- **[Tighten Co.](https://example.invalid)**
-- **[Kirschbaum Development Group](https://example.invalid)**
-- **[64 Robots](https://example.invalid)**
-- **[Cubet Techno Labs](https://example.invalid)**
-- **[Cyber-Duck](https://example.invalid.uk)**
-- **[Many](https://example.invalid.uk)**
-- **[Webdock, Fast VPS Hosting](https://example.invalid/en)**
-- **[DevSquad](https://example.invalid)**
-- **[Curotec](https://example.invalid/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://example.invalid/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://example.invalid)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://example.invalid/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://example.invalid/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [user@example.invalid](mailto:user@example.invalid). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://example.invalid/licenses/MIT).
