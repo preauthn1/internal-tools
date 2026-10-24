@@ -1,37 +1,43 @@
 # vworld_side_project
 
-原始路径：`vworld_side_project`　|　收录文件：**177**
+原始路径：`vworld_side_project`　|　文件：**177**　|　主语言：PHP 157, JavaScript 6, JSON 4
 
-## 语言构成
-
-- PHP — 157 个文件（91%）
-- JavaScript — 6 个文件（3%）
-- JSON — 4 个文件（2%）
-- Markdown — 2 个文件（1%）
-- XML — 2 个文件（1%）
-
-## 目录结构
+## 目录构成
 
 ```
-laravel-bootstrap/  (81 个文件)
-app/  (26 个文件)
-resources/  (23 个文件)
-config/  (15 个文件)
-database/  (11 个文件)
-./  (6 个文件)
-routes/  (4 个文件)
-tests/  (4 个文件)
-lang/  (4 个文件)
-public/  (2 个文件)
-bootstrap/  (1 个文件)
+laravel-bootstrap/app/  — 26
+resources/views/  — 21
+laravel-bootstrap/config/  — 15
+laravel-bootstrap/resources/  — 13
+app/Http/  — 11
+database/migrations/  — 9
+laravel-bootstrap/database/  — 6
+app/Console/  — 6
+app/Providers/  — 5
+lang/en/  — 4
+laravel-bootstrap/routes/  — 4
+laravel-bootstrap/tests/  — 4
+laravel-bootstrap/lang/  — 4
+laravel-bootstrap/public/  — 2
 ```
 
 ## 关键文件
 
-- 依赖清单：`package.json`、`composer.json`、`laravel-bootstrap/package.json`、`laravel-bootstrap/composer.json`
+- 依赖清单：`package.json`、`composer.json`、`laravel-bootstrap/package.json`
 - 前端入口：`laravel-bootstrap/resources/js/app.js`、`resources/js/app.js`
+
+## 主要文件
+
+- `laravel-bootstrap/resources/views/welcome.blade.php`
+- `resources/views/welcome.blade.php`
+- `laravel-bootstrap/lang/en/validation.php`
+- `app/Http/Controllers/SampleController.php`
+- `lang/en/validation.php`
+- `config/app.php`
+- `resources/views/vendor/pagination/tailwind.blade.php`
+- `laravel-bootstrap/config/app.php`
 
 ## 说明
 
-文本源码与配置的静态快照；二进制资源未收录。发布前已按本目录实际内容替换凭据、密钥、内网地址与域名。
+该工程为平台的一个组件。仅收录文本源码与配置，图片、音频等二进制资源未收录；凭据、密钥、内网地址与域名已按实际内容替换。
 

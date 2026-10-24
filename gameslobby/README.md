@@ -1,28 +1,24 @@
 # gameslobby
 
-原始路径：`gameslobby`　|　收录文件：**108**
+原始路径：`gameslobby`　|　文件：**108**　|　主语言：PHP 91, JSON 4, JavaScript 3
 
-## 语言构成
-
-- PHP — 91 个文件（87%）
-- JSON — 4 个文件（3%）
-- JavaScript — 3 个文件（2%）
-- YAML — 1 个文件（0%）
-- Markdown — 1 个文件（0%）
-- Shell — 1 个文件（0%）
-
-## 目录结构
+## 目录构成
 
 ```
-app/  (32 个文件)
-resources/  (27 个文件)
-config/  (15 个文件)
-database/  (11 个文件)
-./  (10 个文件)
-routes/  (4 个文件)
-tests/  (4 个文件)
-public/  (4 个文件)
-bootstrap/  (1 个文件)
+app/Http/  — 18
+resources/views/  — 18
+database/migrations/  — 9
+app/Providers/  — 5
+app/Models/  — 4
+resources/lang/  — 4
+resources/js/  — 3
+app/Console/  — 2
+resources/sass/  — 2
+.styleci.yml/  — 1
+package.json/  — 1
+webpack.mix.js/  — 1
+.env.example/  — 1
+README.md/  — 1
 ```
 
 ## 关键文件
@@ -30,7 +26,18 @@ bootstrap/  (1 个文件)
 - 依赖清单：`package.json`、`composer.json`
 - 前端入口：`resources/js/app.js`
 
+## 主要文件
+
+- `package-lock.json`
+- `public/css/app.css`
+- `resources/views/home.blade.php`
+- `resources/views/welcome.blade.php`
+- `app/Services/PgsApiService.php`
+- `config/app.php`
+- `resources/lang/en/validation.php`
+- `resources/views/vendor/pagination/tailwind.blade.php`
+
 ## 说明
 
-文本源码与配置的静态快照；二进制资源未收录。发布前已按本目录实际内容替换凭据、密钥、内网地址与域名。
+该工程为平台的一个组件。仅收录文本源码与配置，图片、音频等二进制资源未收录；凭据、密钥、内网地址与域名已按实际内容替换。
 

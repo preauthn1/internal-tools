@@ -1,25 +1,34 @@
 # deploy-manually
 
-原始路径：`deploy-manually`　|　收录文件：**16**
+原始路径：`deploy-manually`　|　文件：**16**　|　主语言：Shell 11
 
-## 语言构成
-
-- Shell — 11 个文件（78%）
-- Markdown — 3 个文件（21%）
-
-## 目录结构
+## 目录构成
 
 ```
-tools/  (11 个文件)
-./  (4 个文件)
-docs/  (1 个文件)
+tools/back/  — 11
+.env.example/  — 1
+CHANGELOG.md/  — 1
+README.md/  — 1
+Makefile/  — 1
+docs/superpowers/  — 1
 ```
 
 ## 关键文件
 
-- 构建脚本：`Makefile`
+- CI/构建：`Makefile`
+
+## 主要文件
+
+- `Makefile`
+- `docs/superpowers/plans/2026-04-22-back-dev-prod-split.md`
+- `CHANGELOG.md`
+- `tools/back/merge_tpower.sh`
+- `tools/back/merge_vworld.sh`
+- `tools/back/merge_wintoto.sh`
+- `tools/back/clear_feature_branch.sh`
+- `tools/back/pull_branch.sh`
 
 ## 说明
 
-文本源码与配置的静态快照；二进制资源未收录。发布前已按本目录实际内容替换凭据、密钥、内网地址与域名。
+该工程为平台的一个组件。仅收录文本源码与配置，图片、音频等二进制资源未收录；凭据、密钥、内网地址与域名已按实际内容替换。
 

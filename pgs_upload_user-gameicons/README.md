@@ -1,24 +1,26 @@
 # pgs_upload_user-gameicons
 
-原始路径：`pgs_upload_user-gameicons`　|　收录文件：**3**
+原始路径：`pgs_upload_user-gameicons`　|　文件：**3**　|　主语言：YAML 1
 
-## 语言构成
-
-- Markdown — 1 个文件（50%）
-- YAML — 1 个文件（50%）
-
-## 目录结构
+## 目录构成
 
 ```
-./  (2 个文件)
-cs-download/  (1 个文件)
+README.md/  — 1
+.gitlab-ci.yml/  — 1
+cs-download/原廠文件連結_請勿直接貼給客戶.txt/  — 1
 ```
 
 ## 关键文件
 
-- 构建脚本：`.gitlab-ci.yml`
+- CI/构建：`.gitlab-ci.yml`
+
+## 主要文件
+
+- `.gitlab-ci.yml`
+- `README.md`
+- `cs-download/原廠文件連結_請勿直接貼給客戶.txt`
 
 ## 说明
 
-文本源码与配置的静态快照；二进制资源未收录。发布前已按本目录实际内容替换凭据、密钥、内网地址与域名。
+该工程为平台的一个组件。仅收录文本源码与配置，图片、音频等二进制资源未收录；凭据、密钥、内网地址与域名已按实际内容替换。
 

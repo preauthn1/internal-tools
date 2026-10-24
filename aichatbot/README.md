@@ -1,38 +1,44 @@
 # aichatbot
 
-原始路径：`aichatbot`　|　收录文件：**1221**
+原始路径：`aichatbot`　|　文件：**1221**　|　主语言：TypeScript 496, Vue 355, Go 121
 
-## 语言构成
-
-- TypeScript — 496 个文件（42%）
-- Vue — 355 个文件（30%）
-- Go — 121 个文件（10%）
-- JSON — 121 个文件（10%）
-- Markdown — 42 个文件（3%）
-- CSS — 14 个文件（1%）
-
-## 目录结构
+## 目录构成
 
 ```
-web/  (1007 个文件)
-go/  (121 个文件)
-eval/  (38 个文件)
-Sources/  (24 个文件)
-docs/  (9 个文件)
-loop/  (8 个文件)
-./  (6 个文件)
-.devcontainer/  (3 个文件)
-scripts/  (3 个文件)
-Tests/  (2 个文件)
+web/packages/  — 811
+go/internal/  — 108
+web/internal/  — 94
+web/apps/  — 72
+web/scripts/  — 20
+Sources/BotCore/  — 14
+go/cmd/  — 13
+Sources/Telegram/  — 5
+eval/stores/  — 5
+docs/agents/  — 3
+docs/adr/  — 3
+eval/holdout/  — 3
+scripts/dev/  — 3
+Sources/bot/  — 2
 ```
 
 ## 关键文件
 
-- 构建脚本：`.devcontainer/Dockerfile`、`web/scripts/deploy/Dockerfile`
-- 依赖清单：`web/package.json`、`web/internal/vite-config/package.json`、`web/internal/lint-configs/stylelint-config/package.json`、`web/internal/lint-configs/oxlint-config/package.json`
+- CI/构建：`.devcontainer/Dockerfile`、`web/scripts/deploy/Dockerfile`
+- 依赖清单：`web/package.json`、`web/internal/vite-config/package.json`、`web/internal/lint-configs/stylelint-config/package.json`
 - 前端入口：`web/apps/web-antd/index.html`、`web/apps/web-antd/src/main.ts`
+
+## 主要文件
+
+- `web/pnpm-lock.yaml`
+- `web/packages/effects/layouts/src/authentication/icons/slogan.vue`
+- `Tests/bot-tests/main.swift`
+- `eval/chat.swift`
+- `go/internal/dialog/booking_test.go`
+- `docs/研究總結.md`
+- `Tests/telegram-tests/main.swift`
+- `go/internal/dialog/dialog_test.go`
 
 ## 说明
 
-文本源码与配置的静态快照；二进制资源未收录。发布前已按本目录实际内容替换凭据、密钥、内网地址与域名。
+该工程为平台的一个组件。仅收录文本源码与配置，图片、音频等二进制资源未收录；凭据、密钥、内网地址与域名已按实际内容替换。
 
